@@ -1,2 +1,1 @@
-# SistemaCarniceria
-Proyecto de la asignatura trabajo de campo/de diploma en la carrera de ingeniería en sistemas informáticos UAI
+[ReadMe.md](https://github.com/lucassmatias/SistemaCarniceria/files/11502525/ReadMe.md)
