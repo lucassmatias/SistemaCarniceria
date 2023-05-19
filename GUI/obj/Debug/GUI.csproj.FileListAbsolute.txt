@@ -22,3 +22,7 @@ C:\Users\lukit\OneDrive\Escritorio\Recursos UAI\3er Año - 1er Cuatrimestre\Inge
 C:\Users\lukit\OneDrive\Escritorio\Recursos UAI\3er Año - 1er Cuatrimestre\Ingeniería de software\Código\SistemaCarniceria\GUI\obj\Debug\GUI.UsersForm.resources
 C:\Users\lukit\OneDrive\Escritorio\Recursos UAI\3er Año - 1er Cuatrimestre\Ingeniería de software\Código\SistemaCarniceria\GUI\bin\Debug\Controles.dll
 C:\Users\lukit\OneDrive\Escritorio\Recursos UAI\3er Año - 1er Cuatrimestre\Ingeniería de software\Código\SistemaCarniceria\GUI\bin\Debug\Controles.pdb
+C:\Users\lukit\OneDrive\Escritorio\Recursos UAI\3er Año - 1er Cuatrimestre\Ingeniería de software\Código\SistemaCarniceria\GUI\bin\Debug\Mappers.dll
+C:\Users\lukit\OneDrive\Escritorio\Recursos UAI\3er Año - 1er Cuatrimestre\Ingeniería de software\Código\SistemaCarniceria\GUI\bin\Debug\DAL.dll
+C:\Users\lukit\OneDrive\Escritorio\Recursos UAI\3er Año - 1er Cuatrimestre\Ingeniería de software\Código\SistemaCarniceria\GUI\bin\Debug\Mappers.pdb
+C:\Users\lukit\OneDrive\Escritorio\Recursos UAI\3er Año - 1er Cuatrimestre\Ingeniería de software\Código\SistemaCarniceria\GUI\bin\Debug\DAL.pdb

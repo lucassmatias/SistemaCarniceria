@@ -5,28 +5,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BEL;
+using Mappers;
 namespace BLL
 {
     public class bllUsuario : IABMC<belUsuario>
     {
+        Mapper_Usuario map = new Mapper_Usuario();
         public void Alta(belUsuario pItem)
         {
-            throw new NotImplementedException();
+            map.Alta(pItem);
         }
 
-        public void Baja(belUsuario pId)
+        public void Baja(string pId)
         {
-            throw new NotImplementedException();
+            map.Baja(pId);
         }
 
         public List<belUsuario> Consulta()
         {
-            throw new NotImplementedException();
-        }
-
-        public belUsuario Consulta(string pId)
-        {
-            throw new NotImplementedException();
+            return map.Consulta();
         }
 
         public List<belUsuario> ConsultaDesdeHasta(string pStringDesde, string pStringHasta)
@@ -41,7 +38,7 @@ namespace BLL
 
         public void Modificacion(belUsuario pItem)
         {
-            throw new NotImplementedException();
+            map.Modificacion(pItem);
         }
     }
 }

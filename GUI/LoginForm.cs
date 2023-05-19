@@ -16,6 +16,7 @@ namespace GUI
     public partial class LoginForm : Form
     {
         List<belUsuario> ListaUsuario;
+        bllUsuario bllusuario;
         public LoginForm()
         {
             InitializeComponent();
@@ -42,7 +43,12 @@ namespace GUI
                     {
                         MessageBox.Show("Contraseña errónea", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         aux.Intentos -= 1;
-                        if (aux.Intentos == 0) aux.Blocked = true;
+                        if (aux.Intentos == 0)
+                        {
+                            aux.Blocked = true;
+                            bllusuario.Modificacion(aux);
+                            MessageBox.Show("Cuenta bloqueda", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
                     }
                     else
                     {
@@ -52,17 +58,11 @@ namespace GUI
             }
             else{MessageBox.Show("No existe un usuario con ese nombre", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);}
         }
-        private void GenerarUsuarios()
-        {
-            ListaUsuario.Add(new belUsuario("Lucas", CryptoManager.Encrypt("123"), false, 3, "1"));
-            ListaUsuario.Add(new belUsuario("Felipe", CryptoManager.Encrypt("147"), false, 3, "2"));
-            ListaUsuario.Add(new belUsuario("Nicoll", CryptoManager.Encrypt("159"), true, 3, "3"));
-            ListaUsuario.Add(new belUsuario("Franco", CryptoManager.Encrypt("951"), false, 1, "4"));
-        }
+
         private void FormLogIn_Load(object sender, EventArgs e)
         {
-            ListaUsuario = new List<belUsuario>();
-            GenerarUsuarios();
+            bllusuario = new bllUsuario();
+            ListaUsuario = bllusuario.Consulta();
             comboBoxImage1.RetornaComboBox().SelectedIndex = 0;
         }
 

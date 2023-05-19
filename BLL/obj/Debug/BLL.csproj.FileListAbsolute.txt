@@ -13,3 +13,5 @@ C:\Users\lukit\OneDrive\Escritorio\Recursos UAI\3er Año - 1er Cuatrimestre\Inge
 C:\Users\lukit\OneDrive\Escritorio\Recursos UAI\3er Año - 1er Cuatrimestre\Ingeniería de software\Código\SistemaCarniceria\BLL\obj\Debug\BLL.csproj.CopyComplete
 C:\Users\lukit\OneDrive\Escritorio\Recursos UAI\3er Año - 1er Cuatrimestre\Ingeniería de software\Código\SistemaCarniceria\BLL\obj\Debug\BLL.dll
 C:\Users\lukit\OneDrive\Escritorio\Recursos UAI\3er Año - 1er Cuatrimestre\Ingeniería de software\Código\SistemaCarniceria\BLL\obj\Debug\BLL.pdb
+C:\Users\lukit\OneDrive\Escritorio\Recursos UAI\3er Año - 1er Cuatrimestre\Ingeniería de software\Código\SistemaCarniceria\BLL\bin\Debug\DAL.dll
+C:\Users\lukit\OneDrive\Escritorio\Recursos UAI\3er Año - 1er Cuatrimestre\Ingeniería de software\Código\SistemaCarniceria\BLL\bin\Debug\DAL.pdb

@@ -11,11 +11,14 @@ using System.Windows.Forms;
 using Microsoft.VisualBasic;
 using System.Security.Cryptography;
 using Services;
+using BLL;
+
 namespace GUI
 {
     public partial class UsersForm : Form
     {
         List<belUsuario> ListaUsuario;
+        bllUsuario bllUsuario;
         public UsersForm()
         {
             InitializeComponent();
@@ -23,52 +26,83 @@ namespace GUI
 
         private void FormUsuario_Load(object sender, EventArgs e)
         {
-            ListaUsuario = new List<belUsuario>();
-            GenerarUsuarios();
+            bllUsuario = new bllUsuario();
+            ListaUsuario = bllUsuario.Consulta();
             RefreshDataGrid();
         }
         private void RefreshDataGrid()
         {
             UserFilterByName(null, null);
         }
-        private void GenerarUsuarios()
-        {
-            ListaUsuario.Add(new belUsuario("Lucas", CryptoManager.Encrypt("123"), false, 3, "1"));
-            ListaUsuario.Add(new belUsuario("Felipe", CryptoManager.Encrypt("147"), false, 3, "2"));
-            ListaUsuario.Add(new belUsuario("Nicoll", CryptoManager.Encrypt("159"), true, 3, "3"));
-            ListaUsuario.Add(new belUsuario("Franco", CryptoManager.Encrypt("951"), false, 1, "4"));
-        }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            int idAux = 1;
-            if(ListaUsuario.Count > 0) idAux = int.Parse(ListaUsuario.Last<belUsuario>().Id) + 1;
-            ListaUsuario.Add(new belUsuario(textBox1.Text, CryptoManager.Encrypt(textBox2.Text), false, 3, $"{idAux}"));
-            RefreshDataGrid();
+            try
+            {
+                if(textBox1.Text == string.Empty && textBox2.Text == string.Empty)
+                {
+                    throw new Exception("No puede dejar campos vacios");
+                }
+                else
+                {
+                    bllUsuario.Alta(new belUsuario(textBox1.Text, CryptoManager.Encrypt(textBox2.Text)));
+                    ListaUsuario = bllUsuario.Consulta();
+                    RefreshDataGrid();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
-            ListaUsuario.Remove(ListaUsuario.Find(x => x.Id == (dataGridView1.SelectedRows[0].DataBoundItem as belUsuario).Id));
+            bllUsuario.Baja((dataGridView1.SelectedRows[0].DataBoundItem as belUsuario).Id);
+            ListaUsuario = bllUsuario.Consulta();
             RefreshDataGrid();
         }
 
         private void btnModify_Click(object sender, EventArgs e)
         {
-            belUsuario aux = dataGridView1.SelectedRows[0].DataBoundItem as belUsuario;
-            aux.Name = Interaction.InputBox("Nombre", "Modificación", aux.Name);
-            aux.Password = CryptoManager.Encrypt((Interaction.InputBox("Contraseña", "Modificación")));
-            RefreshDataGrid();
+            try
+            {
+                belUsuario aux = dataGridView1.SelectedRows[0].DataBoundItem as belUsuario;
+                string name = Interaction.InputBox("Nombre", "Modificación", aux.Name);
+                string pw = CryptoManager.Encrypt(Interaction.InputBox("Contraseña", "Modificación"));
+                if(name == string.Empty || pw == string.Empty)
+                {
+                    throw new Exception("No puede dejar campos vacios");
+                }
+                else
+                {
+                    aux.Name = name;
+                    aux.Password = pw;
+                    bllUsuario.Modificacion(aux);
+                    ListaUsuario = bllUsuario.Consulta();
+                    RefreshDataGrid();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnUnlock_Click(object sender, EventArgs e)
         {
-            (dataGridView1.SelectedRows[0].DataBoundItem as belUsuario).Blocked = false;
+            belUsuario aux = dataGridView1.SelectedRows[0].DataBoundItem as belUsuario;
+            aux.Blocked = false;
+            bllUsuario.Modificacion(aux);
+            ListaUsuario = bllUsuario.Consulta();
             RefreshDataGrid();
         }
         private void EnableBtnUnlockFunction()
         {
-            btnUnlock.Enabled = (dataGridView1.SelectedRows[0].DataBoundItem as belUsuario).Blocked == true ? true : false; 
+            if(dataGridView1.SelectedRows.Count != 0)
+            {
+                btnUnlock.Enabled = (dataGridView1.SelectedRows[0].DataBoundItem as belUsuario).Blocked == true ? true : false;
+            }       
         }
 
         private void dataGridView1_RowEnter(object sender, DataGridViewCellEventArgs e)
