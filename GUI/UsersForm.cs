@@ -12,6 +12,7 @@ using Microsoft.VisualBasic;
 using System.Security.Cryptography;
 using Services;
 using BLL;
+using Microsoft.VisualBasic.ApplicationServices;
 
 namespace GUI
 {
@@ -48,6 +49,7 @@ namespace GUI
                     bllUsuario.Alta(new belUsuario(textBox1.Text, CryptoManager.Encrypt(textBox2.Text)));
                     ListaUsuario = bllUsuario.Consulta();
                     RefreshDataGrid();
+                    LogManager.Add($"USUARIO - Se creó un nuevo usuario ({textBox1.Text})");
                 }
             }
             catch (Exception ex)
@@ -58,9 +60,17 @@ namespace GUI
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
-            bllUsuario.Baja((dataGridView1.SelectedRows[0].DataBoundItem as belUsuario).Id);
-            ListaUsuario = bllUsuario.Consulta();
-            RefreshDataGrid();
+            try
+            {
+                bllUsuario.Baja((dataGridView1.SelectedRows[0].DataBoundItem as belUsuario).Id);
+                LogManager.Add($"USUARIO - Se eliminó un usuario ({(dataGridView1.SelectedRows[0].DataBoundItem as belUsuario).Id})");
+                ListaUsuario = bllUsuario.Consulta();
+                RefreshDataGrid();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnModify_Click(object sender, EventArgs e)
@@ -81,6 +91,7 @@ namespace GUI
                     bllUsuario.Modificacion(aux);
                     ListaUsuario = bllUsuario.Consulta();
                     RefreshDataGrid();
+                    LogManager.Add($"USUARIO - Se modificó un usuario ({aux.Id})");
                 }
             }
             catch (Exception ex)
@@ -96,6 +107,7 @@ namespace GUI
             bllUsuario.Modificacion(aux);
             ListaUsuario = bllUsuario.Consulta();
             RefreshDataGrid();
+            LogManager.Add($"USUARIO - Se desbloqueó un usuario ({aux.Id})");
         }
         private void EnableBtnUnlockFunction()
         {

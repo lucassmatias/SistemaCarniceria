@@ -27,11 +27,11 @@ namespace GUI
             string inputPassword = textBox2.Text;
             if (ListaUsuario.Exists(x => x.Name == inputUsuario))
             {
-                belUsuario aux = ListaUsuario.Find(x => x.Name == inputUsuario);
-                if (CryptoManager.Compare(inputPassword, aux.Password) == 1 && aux.Blocked == false)
+                belUsuario User = ListaUsuario.Find(x => x.Name == inputUsuario);
+                if (CryptoManager.Compare(inputPassword, User.Password) == 1 && User.Blocked == false)
                 {
                     MainForm formPrincipalInstance = new MainForm();
-                    SessionManager.Login(aux);
+                    SessionManager.Login(User);
                     formPrincipalInstance.SessionManager = SessionManager.GetInstance;
                     this.Hide();
                     formPrincipalInstance.ShowDialog();
@@ -39,20 +39,23 @@ namespace GUI
                 }
                 else
                 {
-                    if(aux.Blocked == false)
+                    if(User.Blocked == false)
                     {
                         MessageBox.Show("Contraseña errónea", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        aux.Intentos -= 1;
-                        if (aux.Intentos == 0)
+                        User.Intentos -= 1;
+                        LogManager.Add($"LOGIN - Contraseña errónea ({User.Name})");
+                        if (User.Intentos == 0)
                         {
-                            aux.Blocked = true;
-                            bllusuario.Modificacion(aux);
+                            User.Blocked = true;
+                            bllusuario.Modificacion(User);
                             MessageBox.Show("Cuenta bloqueda", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            LogManager.Add($"LOGIN - Bloqueo de cuenta por intentos excedidos ({User.Name})");
                         }
                     }
                     else
                     {
                         MessageBox.Show("Cuenta bloqueda", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        LogManager.Add($"LOGIN - Intento de inicio de sesión de cuenta bloqueada ({User.Name})");
                     }
                 }
             }
