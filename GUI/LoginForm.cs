@@ -23,11 +23,12 @@ namespace GUI
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            string inputUsuario = textBox1.Text;
+            ListaUsuario = bllusuario.Consulta();
+            string inputUsername = textBox1.Text;
             string inputPassword = textBox2.Text;
-            if (ListaUsuario.Exists(x => x.Name == inputUsuario))
+            if (ListaUsuario.Exists(x => x.Username == inputUsername))
             {
-                belUsuario User = ListaUsuario.Find(x => x.Name == inputUsuario);
+                    belUsuario User = ListaUsuario.Find(x => x.Username == inputUsername);
                 if (CryptoManager.Compare(inputPassword, User.Password) == 1 && User.Blocked == false)
                 {
                     MainForm formPrincipalInstance = new MainForm();
@@ -35,7 +36,6 @@ namespace GUI
                     formPrincipalInstance.SessionManager = SessionManager.GetInstance;
                     this.Hide();
                     formPrincipalInstance.ShowDialog();
-                    this.Close();
                 }
                 else
                 {
@@ -43,19 +43,19 @@ namespace GUI
                     {
                         MessageBox.Show("Contraseña errónea", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         User.Intentos -= 1;
-                        LogManager.Add($"LOGIN - Contraseña errónea ({User.Name})");
+                        LogManager.Add($"LOGIN - Contraseña errónea ({User.Username})");
                         if (User.Intentos == 0)
                         {
                             User.Blocked = true;
                             bllusuario.Modificacion(User);
                             MessageBox.Show("Cuenta bloqueda", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            LogManager.Add($"LOGIN - Bloqueo de cuenta por intentos excedidos ({User.Name})");
+                            LogManager.Add($"LOGIN - Bloqueo de cuenta por intentos excedidos ({User.Username})");
                         }
                     }
                     else
                     {
                         MessageBox.Show("Cuenta bloqueda", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        LogManager.Add($"LOGIN - Intento de inicio de sesión de cuenta bloqueada ({User.Name})");
+                        LogManager.Add($"LOGIN - Intento de inicio de sesión de cuenta bloqueada ({User.Username})");
                     }
                 }
             }
@@ -65,10 +65,8 @@ namespace GUI
         private void FormLogIn_Load(object sender, EventArgs e)
         {
             bllusuario = new bllUsuario();
-            ListaUsuario = bllusuario.Consulta();
             comboBoxImage1.RetornaComboBox().SelectedIndex = 0;
         }
-
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBox1.Checked) { textBox2.UseSystemPasswordChar = false; }

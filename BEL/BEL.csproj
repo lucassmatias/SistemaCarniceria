@@ -41,6 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="belAve.cs" />
+    <Compile Include="belCarne.cs" />
+    <Compile Include="belCarrito.cs" />
+    <Compile Include="belPorcina.cs" />
+    <Compile Include="belVacuna.cs" />
+    <Compile Include="belCarneCarrito.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="belUsuario.cs" />
   </ItemGroup>

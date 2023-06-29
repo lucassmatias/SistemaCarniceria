@@ -36,20 +36,37 @@ namespace GUI
             UserFilterByName(null, null);
         }
 
+        private bool tbValidation()
+        {
+            bool tbValidation = false;
+            if(tbDNI.Text == string.Empty ||
+                tbUsername.Text == string.Empty ||
+                tbContraseña.Text == string.Empty ||
+                tbNombre.Text == string.Empty ||
+                tbApellido.Text == string.Empty ||
+                tbEmail.Text == string.Empty ||
+                tbRol.Text == string.Empty)
+            {
+                tbValidation = true;
+            }
+            return tbValidation;
+        }
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
             try
             {
-                if(textBox1.Text == string.Empty && textBox2.Text == string.Empty)
+                
+                if(tbValidation())
                 {
                     throw new Exception("No puede dejar campos vacios");
                 }
                 else
                 {
-                    bllUsuario.Alta(new belUsuario(textBox1.Text, CryptoManager.Encrypt(textBox2.Text)));
+                    bllUsuario.Alta(new belUsuario(tbDNI.Text, tbUsername.Text, CryptoManager.Encrypt(tbContraseña.Text), tbNombre.Text, tbApellido.Text, tbEmail.Text, tbRol.Text));
                     ListaUsuario = bllUsuario.Consulta();
                     RefreshDataGrid();
-                    LogManager.Add($"USUARIO - Se creó un nuevo usuario ({textBox1.Text})");
+                    LogManager.Add($"USUARIO - Se creó un nuevo usuario ({tbUsername.Text})");
                 }
             }
             catch (Exception ex)
@@ -78,16 +95,26 @@ namespace GUI
             try
             {
                 belUsuario aux = dataGridView1.SelectedRows[0].DataBoundItem as belUsuario;
-                string name = Interaction.InputBox("Nombre", "Modificación", aux.Name);
+                string dni = Interaction.InputBox("DNI", "Modificación", aux.DNI);
+                string username = Interaction.InputBox("Nombre de usuario", "Modificación", aux.Username);
                 string pw = CryptoManager.Encrypt(Interaction.InputBox("Contraseña", "Modificación"));
-                if(name == string.Empty || pw == string.Empty)
+                string nombre = Interaction.InputBox("Nombre", "Modificación", aux.Nombre);
+                string apellido = Interaction.InputBox("Apellido", "Modificación", aux.Apellido);
+                string rol = Interaction.InputBox("Nombre", "Modificación", aux.Rol);
+                string email = Interaction.InputBox("Nombre", "Modificación", aux.Email);
+                if (tbValidation())
                 {
                     throw new Exception("No puede dejar campos vacios");
                 }
                 else
                 {
-                    aux.Name = name;
+                    aux.DNI = dni;
+                    aux.Username = username;
                     aux.Password = pw;
+                    aux.Nombre = nombre;
+                    aux.Apellido = apellido;
+                    aux.Rol = rol;
+                    aux.Email = email;
                     bllUsuario.Modificacion(aux);
                     ListaUsuario = bllUsuario.Consulta();
                     RefreshDataGrid();
@@ -103,11 +130,18 @@ namespace GUI
         private void btnUnlock_Click(object sender, EventArgs e)
         {
             belUsuario aux = dataGridView1.SelectedRows[0].DataBoundItem as belUsuario;
-            aux.Blocked = false;
+            if (aux.Blocked)
+            {
+                aux.Blocked = false;
+            }
+            else
+            {
+                aux.Blocked = true;
+            }
             bllUsuario.Modificacion(aux);
             ListaUsuario = bllUsuario.Consulta();
             RefreshDataGrid();
-            LogManager.Add($"USUARIO - Se desbloqueó un usuario ({aux.Id})");
+            LogManager.Add($"USUARIO - Cambio el estado de bloqueo de un usuario ({aux.Id})");
         }
         private void EnableBtnUnlockFunction()
         {
@@ -135,7 +169,7 @@ namespace GUI
         }
         private void UserFilterByName(object sender, EventArgs e)
         {
-            List<belUsuario> t = ListaUsuario.Where(x => x.Name.StartsWith(textBox3.Text)).ToList<belUsuario>();
+            List<belUsuario> t = ListaUsuario.Where(x => x.Username.StartsWith(textBox3.Text)).ToList<belUsuario>();
             dataGridView1.DataSource = null; dataGridView1.DataSource = t;
         }
         private void UserFilterByState(object sender, EventArgs e)
@@ -152,6 +186,23 @@ namespace GUI
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             UserFilterByState(null, null);
+        }
+
+        private void btnActive_Click(object sender, EventArgs e)
+        {
+            belUsuario aux = dataGridView1.SelectedRows[0].DataBoundItem as belUsuario;
+            if (aux.Activo)
+            {
+                aux.Blocked = false;
+            }
+            else
+            {
+                aux.Blocked = true;
+            }
+            bllUsuario.Modificacion(aux);
+            ListaUsuario = bllUsuario.Consulta();
+            RefreshDataGrid();
+            LogManager.Add($"USUARIO - Cambio el estado de activo de un usuario ({aux.Id})");
         }
     }
 }

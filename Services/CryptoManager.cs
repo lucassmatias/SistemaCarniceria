@@ -15,7 +15,8 @@ namespace Services
             byte[] byteSourceText = uCode.GetBytes(pString);
             MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
             byte[] result = md5.ComputeHash(byteSourceText);
-            return Convert.ToBase64String(result);
+            string salida = Convert.ToBase64String(result);
+            return salida;
         }
         public static int Compare(string pString, string pStringEncrypted)
         {      

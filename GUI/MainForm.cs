@@ -20,8 +20,6 @@ namespace GUI
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            listBox1.Items.Add(SessionManager.user.Name);
-            listBox1.Items.Add(SessionManager.user.Password);
         }
 
         private void usuarioToolStripMenuItem_Click(object sender, EventArgs e)
@@ -36,6 +34,14 @@ namespace GUI
         {
             SessionManager.Logout();
             this.Close();
+        }
+
+        private void carritoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CartForm cartFormInstance = new CartForm();
+            this.Hide();
+            cartFormInstance.ShowDialog();
+            this.Show();
         }
     }
 }
