@@ -41,6 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mapper_Carne.cs" />
+    <Compile Include="Mapper_Carrito.cs" />
+    <Compile Include="Mapper_CarneCarrito.cs" />
     <Compile Include="Mapper_Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

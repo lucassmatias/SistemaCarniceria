@@ -34,6 +34,8 @@ namespace GUI
         {
             SessionManager.Logout();
             this.Close();
+            LoginForm LoginFormInstance = new LoginForm();
+            LoginFormInstance.ShowDialog();
         }
 
         private void carritoToolStripMenuItem_Click(object sender, EventArgs e)
