@@ -52,6 +52,10 @@
       <Project>{b31dc764-8586-436d-a7db-3a7eb2080905}</Project>
       <Name>BEL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{7a6d0de7-05a1-44db-8876-881e474b0fde}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Interfaces\Interfaces.csproj">
       <Project>{0afad573-1b86-4a93-aacc-670f75f4a098}</Project>
       <Name>Interfaces</Name>

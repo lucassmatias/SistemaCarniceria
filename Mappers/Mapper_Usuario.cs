@@ -9,6 +9,7 @@ using BEL;
 using Interfaces;
 using DAL;
 using System.Data;
+using Services;
 
 namespace Mappers
 {
@@ -55,6 +56,11 @@ namespace Mappers
             p7.Value = pItem.Email;
             p7.SqlDbType = SqlDbType.NVarChar;
             al.Add(p7);
+            SqlParameter p8 = new SqlParameter();
+            p8.ParameterName = "@idi";
+            p8.Value = pItem.Idioma.Id;
+            p8.SqlDbType = SqlDbType.Int;
+            al.Add(p8);
             dao.Escribir(storedProcedure, al);
         }
 
@@ -78,6 +84,7 @@ namespace Mappers
             foreach(DataRow dr in dt.Rows)
             {
                 belUsuario aux = new belUsuario(dr.ItemArray);
+                aux.Idioma = LanguageManager.GetInstance.ConsultaIdiomaCodigo(int.Parse(dr.ItemArray[dr.ItemArray.Length - 1].ToString()));
                 lUsuario.Add(aux);
             }
             return lUsuario;

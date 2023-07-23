@@ -1,0 +1,46 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "6ca45a5b-d899-4c32-8c9b-ddccc82c8721": {
+      "ProjectGuid": "6ca45a5b-d899-4c32-8c9b-ddccc82c8721",
+      "DisplayName": "BLL",
+      "ColorIndex": 0
+    },
+    "3c36e32e-4b78-423a-ac47-2b5f655b8cd5": {
+      "ProjectGuid": "3c36e32e-4b78-423a-ac47-2b5f655b8cd5",
+      "DisplayName": "Mappers",
+      "ColorIndex": 1
+    },
+    "b31dc764-8586-436d-a7db-3a7eb2080905": {
+      "ProjectGuid": "b31dc764-8586-436d-a7db-3a7eb2080905",
+      "DisplayName": "BEL",
+      "ColorIndex": 2
+    },
+    "0afad573-1b86-4a93-aacc-670f75f4a098": {
+      "ProjectGuid": "0afad573-1b86-4a93-aacc-670f75f4a098",
+      "DisplayName": "Interfaces",
+      "ColorIndex": 3
+    },
+    "d55c383c-3f46-4406-ad91-a9f724651d85": {
+      "ProjectGuid": "d55c383c-3f46-4406-ad91-a9f724651d85",
+      "DisplayName": "GUI",
+      "ColorIndex": 4
+    },
+    "6da95c58-201a-4ab8-b284-d7bd43115d0a": {
+      "ProjectGuid": "6da95c58-201a-4ab8-b284-d7bd43115d0a",
+      "DisplayName": "Services",
+      "ColorIndex": 5
+    },
+    "7a6d0de7-05a1-44db-8876-881e474b0fde": {
+      "ProjectGuid": "7a6d0de7-05a1-44db-8876-881e474b0fde",
+      "DisplayName": "DAL",
+      "ColorIndex": 6
+    },
+    "9a717032-881e-46c7-b028-677e7b279d39": {
+      "ProjectGuid": "9a717032-881e-46c7-b028-677e7b279d39",
+      "DisplayName": "Controles",
+      "ColorIndex": 7
+    }
+  },
+  "NextColorIndex": 8
+}

@@ -30,86 +30,94 @@
         {
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.lblUser = new System.Windows.Forms.Label();
+            this.lblPassword = new System.Windows.Forms.Label();
+            this.btnLogin = new System.Windows.Forms.Button();
+            this.cbSee = new System.Windows.Forms.CheckBox();
             this.comboBoxImage1 = new Controles.ComboBoxImage();
             this.SuspendLayout();
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(86, 51);
+            this.textBox1.Location = new System.Drawing.Point(129, 78);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(159, 20);
+            this.textBox1.Size = new System.Drawing.Size(236, 26);
             this.textBox1.TabIndex = 0;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(86, 104);
+            this.textBox2.Location = new System.Drawing.Point(129, 160);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(159, 20);
+            this.textBox2.Size = new System.Drawing.Size(236, 26);
             this.textBox2.TabIndex = 1;
             this.textBox2.UseSystemPasswordChar = true;
             // 
-            // label1
+            // lblUser
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(83, 35);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(43, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Usuario";
+            this.lblUser.AutoSize = true;
+            this.lblUser.Location = new System.Drawing.Point(124, 54);
+            this.lblUser.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblUser.Name = "lblUser";
+            this.lblUser.Size = new System.Drawing.Size(64, 20);
+            this.lblUser.TabIndex = 2;
+            this.lblUser.Text = "Usuario";
             // 
-            // label2
+            // lblPassword
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(83, 88);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(61, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Contraseña";
+            this.lblPassword.AutoSize = true;
+            this.lblPassword.Location = new System.Drawing.Point(124, 135);
+            this.lblPassword.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblPassword.Name = "lblPassword";
+            this.lblPassword.Size = new System.Drawing.Size(92, 20);
+            this.lblPassword.TabIndex = 3;
+            this.lblPassword.Text = "Contraseña";
             // 
-            // button1
+            // btnLogin
             // 
-            this.button1.Location = new System.Drawing.Point(125, 173);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(88, 23);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Iniciar sesión";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnLogin.Location = new System.Drawing.Point(188, 266);
+            this.btnLogin.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnLogin.Name = "btnLogin";
+            this.btnLogin.Size = new System.Drawing.Size(132, 35);
+            this.btnLogin.TabIndex = 4;
+            this.btnLogin.Text = "Iniciar sesión";
+            this.btnLogin.UseVisualStyleBackColor = true;
+            this.btnLogin.Click += new System.EventHandler(this.button1_Click);
             // 
-            // checkBox1
+            // cbSee
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(86, 130);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(42, 17);
-            this.checkBox1.TabIndex = 5;
-            this.checkBox1.Text = "Ver";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.cbSee.AutoSize = true;
+            this.cbSee.Location = new System.Drawing.Point(129, 200);
+            this.cbSee.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cbSee.Name = "cbSee";
+            this.cbSee.Size = new System.Drawing.Size(60, 24);
+            this.cbSee.TabIndex = 5;
+            this.cbSee.Text = "Ver";
+            this.cbSee.UseVisualStyleBackColor = true;
+            this.cbSee.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // comboBoxImage1
             // 
-            this.comboBoxImage1.Location = new System.Drawing.Point(221, 12);
+            this.comboBoxImage1.Location = new System.Drawing.Point(332, 18);
+            this.comboBoxImage1.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.comboBoxImage1.Name = "comboBoxImage1";
-            this.comboBoxImage1.Size = new System.Drawing.Size(100, 23);
+            this.comboBoxImage1.Size = new System.Drawing.Size(150, 35);
             this.comboBoxImage1.TabIndex = 6;
             // 
             // LoginForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(333, 208);
+            this.ClientSize = new System.Drawing.Size(500, 320);
             this.Controls.Add(this.comboBoxImage1);
-            this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.cbSee);
+            this.Controls.Add(this.btnLogin);
+            this.Controls.Add(this.lblPassword);
+            this.Controls.Add(this.lblUser);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "LoginForm";
             this.Text = "FormLogIn";
             this.Load += new System.EventHandler(this.FormLogIn_Load);
@@ -122,10 +130,10 @@
 
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Label lblUser;
+        private System.Windows.Forms.Label lblPassword;
+        private System.Windows.Forms.Button btnLogin;
+        private System.Windows.Forms.CheckBox cbSee;
         private Controles.ComboBoxImage comboBoxImage1;
     }
 }

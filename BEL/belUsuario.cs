@@ -8,7 +8,7 @@ namespace BEL
 {
     public class belUsuario : IEntity
     {
-        public belUsuario(string pDNI, string pName, string pPassword, string pNombre, string pApellido, string pEmail, string pRol)
+        public belUsuario(string pDNI, string pName, string pPassword, string pNombre, string pApellido, string pEmail, string pRol, Idioma pIdioma)
         {
             DNI = pDNI;
             Username = pName;
@@ -20,6 +20,7 @@ namespace BEL
             Email = pEmail;
             Rol = pRol;
             Activo = true;
+            Idioma = pIdioma;
         }
         public belUsuario(object[] array)
         {
@@ -46,5 +47,6 @@ namespace BEL
         public string Rol { get; set; }
         public bool Activo { get; set; }
         public int Intentos { get; set; }
+        public Idioma Idioma { get; set; }
     }
 }

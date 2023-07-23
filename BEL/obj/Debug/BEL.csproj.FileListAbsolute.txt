@@ -7,3 +7,12 @@ C:\Users\lukit\OneDrive\Escritorio\Recursos UAI\3er Año - 1er Cuatrimestre\Inge
 C:\Users\lukit\OneDrive\Escritorio\Recursos UAI\3er Año - 1er Cuatrimestre\Ingeniería de software\Código\SistemaCarniceria\BEL\bin\Debug\Interfaces.dll
 C:\Users\lukit\OneDrive\Escritorio\Recursos UAI\3er Año - 1er Cuatrimestre\Ingeniería de software\Código\SistemaCarniceria\BEL\bin\Debug\Interfaces.pdb
 C:\Users\lukit\OneDrive\Escritorio\Recursos UAI\3er Año - 1er Cuatrimestre\Ingeniería de software\Código\SistemaCarniceria\BEL\obj\Debug\BEL.csproj.CopyComplete
+C:\Users\lukit\OneDrive\Escritorio\SistemaCarniceria-master\BEL\bin\Debug\BEL.dll
+C:\Users\lukit\OneDrive\Escritorio\SistemaCarniceria-master\BEL\bin\Debug\BEL.pdb
+C:\Users\lukit\OneDrive\Escritorio\SistemaCarniceria-master\BEL\bin\Debug\Interfaces.dll
+C:\Users\lukit\OneDrive\Escritorio\SistemaCarniceria-master\BEL\bin\Debug\Interfaces.pdb
+C:\Users\lukit\OneDrive\Escritorio\SistemaCarniceria-master\BEL\obj\Debug\BEL.csproj.AssemblyReference.cache
+C:\Users\lukit\OneDrive\Escritorio\SistemaCarniceria-master\BEL\obj\Debug\BEL.csproj.CoreCompileInputs.cache
+C:\Users\lukit\OneDrive\Escritorio\SistemaCarniceria-master\BEL\obj\Debug\BEL.csproj.CopyComplete
+C:\Users\lukit\OneDrive\Escritorio\SistemaCarniceria-master\BEL\obj\Debug\BEL.dll
+C:\Users\lukit\OneDrive\Escritorio\SistemaCarniceria-master\BEL\obj\Debug\BEL.pdb

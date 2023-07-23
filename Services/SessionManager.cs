@@ -17,7 +17,6 @@ namespace Services
         {
             get
             {
-                if (instance == null) throw new Exception("Sesión no iniciada");
                 return instance;
             }
         }

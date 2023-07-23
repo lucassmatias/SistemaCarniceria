@@ -41,7 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Etiqueta.cs" />
     <Compile Include="IABMC.cs" />
+    <Compile Include="Idioma.cs" />
     <Compile Include="IEntity.cs" />
     <Compile Include="ITraducible.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

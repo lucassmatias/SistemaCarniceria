@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Services;
+using BEL;
 
 namespace Controles
 {
@@ -40,6 +42,21 @@ namespace Controles
         private void cmbImages_SelectedIndexChanged(object sender, EventArgs e)
         {
             ComboBox combo = (ComboBox)sender;
+            LanguageManager lm = LanguageManager.GetInstance;
+            int x = combo.SelectedIndex + 1;
+            if (SessionManager.GetInstance == null)
+            {
+                lm.CambiarIdioma(lm.ConsultaIdiomaCodigo(x));
+            }
+            else
+            {
+                SessionManager sm = SessionManager.GetInstance;
+                if (combo.SelectedIndex >= 0)
+                {
+                    sm.user.Idioma = lm.ConsultaIdiomaCodigo(x);
+                    lm.CambiarIdioma(sm.user.Idioma);
+                }
+            }        
             if(combo.SelectedIndex >= 0)
             {
                 picImage.Image = listImages.Images[combo.SelectedIndex];
