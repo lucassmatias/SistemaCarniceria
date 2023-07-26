@@ -26,12 +26,7 @@ namespace BLL
             return map.Consulta();
         }
 
-        public List<belUsuario> ConsultaDesdeHasta(string pStringDesde, string pStringHasta)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<belUsuario> ConsultaIncremental(string pString)
+        public List<belUsuario> ConsultaCondicional(string pId)
         {
             throw new NotImplementedException();
         }

@@ -38,7 +38,7 @@
             // 
             // picImage
             // 
-            this.picImage.Location = new System.Drawing.Point(61, 156);
+            this.picImage.Location = new System.Drawing.Point(77, 103);
             this.picImage.Name = "picImage";
             this.picImage.Size = new System.Drawing.Size(100, 50);
             this.picImage.TabIndex = 0;
@@ -49,7 +49,7 @@
             this.cmbImages.FormattingEnabled = true;
             this.cmbImages.Location = new System.Drawing.Point(0, 0);
             this.cmbImages.Name = "cmbImages";
-            this.cmbImages.Size = new System.Drawing.Size(98, 21);
+            this.cmbImages.Size = new System.Drawing.Size(99, 21);
             this.cmbImages.TabIndex = 1;
             this.cmbImages.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.cmbImages_DrawItem);
             this.cmbImages.SelectedIndexChanged += new System.EventHandler(this.cmbImages_SelectedIndexChanged);
@@ -69,7 +69,7 @@
             this.Controls.Add(this.cmbImages);
             this.Controls.Add(this.picImage);
             this.Name = "ComboBoxImage";
-            this.Size = new System.Drawing.Size(98, 23);
+            this.Size = new System.Drawing.Size(99, 22);
             this.Resize += new System.EventHandler(this.ComboBoxImage_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.picImage)).EndInit();
             this.ResumeLayout(false);

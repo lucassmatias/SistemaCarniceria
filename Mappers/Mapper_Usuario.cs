@@ -90,12 +90,7 @@ namespace Mappers
             return lUsuario;
         }
 
-        public List<belUsuario> ConsultaDesdeHasta(string pStringDesde, string pStringHasta)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<belUsuario> ConsultaIncremental(string pString)
+        public List<belUsuario> ConsultaCondicional(string pId)
         {
             throw new NotImplementedException();
         }
@@ -154,6 +149,11 @@ namespace Mappers
             p10.Value = pItem.Activo;
             p10.SqlDbType = SqlDbType.Bit;
             al.Add(p10);
+            SqlParameter p11 = new SqlParameter();
+            p11.ParameterName = "@idi";
+            p11.Value = pItem.Idioma.Id;
+            p11.SqlDbType = SqlDbType.Int;
+            al.Add(p11);
             dao.Escribir(storedProcedure, al);
         }
     }

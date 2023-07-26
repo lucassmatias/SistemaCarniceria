@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.menuStripSystem = new System.Windows.Forms.MenuStrip();
             this.sistemaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,8 +48,7 @@
             this.sistemaToolStripMenuItem});
             this.menuStripSystem.Location = new System.Drawing.Point(0, 0);
             this.menuStripSystem.Name = "menuStripSystem";
-            this.menuStripSystem.Padding = new System.Windows.Forms.Padding(9, 3, 0, 3);
-            this.menuStripSystem.Size = new System.Drawing.Size(1200, 35);
+            this.menuStripSystem.Size = new System.Drawing.Size(800, 24);
             this.menuStripSystem.TabIndex = 0;
             this.menuStripSystem.Text = "menuStrip1";
             // 
@@ -59,27 +59,27 @@
             this.cartToolStripMenuItem,
             this.logOutToolStripMenuItem});
             this.sistemaToolStripMenuItem.Name = "sistemaToolStripMenuItem";
-            this.sistemaToolStripMenuItem.Size = new System.Drawing.Size(73, 29);
+            this.sistemaToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
             this.sistemaToolStripMenuItem.Text = "Menu";
             // 
             // userToolStripMenuItem
             // 
             this.userToolStripMenuItem.Name = "userToolStripMenuItem";
-            this.userToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.userToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
             this.userToolStripMenuItem.Text = "Usuario";
             this.userToolStripMenuItem.Click += new System.EventHandler(this.usuarioToolStripMenuItem_Click);
             // 
             // cartToolStripMenuItem
             // 
             this.cartToolStripMenuItem.Name = "cartToolStripMenuItem";
-            this.cartToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.cartToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
             this.cartToolStripMenuItem.Text = "Carrito";
             this.cartToolStripMenuItem.Click += new System.EventHandler(this.carritoToolStripMenuItem_Click);
             // 
             // logOutToolStripMenuItem
             // 
             this.logOutToolStripMenuItem.Name = "logOutToolStripMenuItem";
-            this.logOutToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.logOutToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
             this.logOutToolStripMenuItem.Text = "Log out";
             this.logOutToolStripMenuItem.Click += new System.EventHandler(this.logOutToolStripMenuItem_Click);
             // 
@@ -88,43 +88,43 @@
             this.lblTitle.AccessibleRole = System.Windows.Forms.AccessibleRole.PageTabList;
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.Location = new System.Drawing.Point(162, 68);
-            this.lblTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTitle.Location = new System.Drawing.Point(108, 44);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(832, 82);
+            this.lblTitle.Size = new System.Drawing.Size(562, 55);
             this.lblTitle.TabIndex = 1;
             this.lblTitle.Text = "SISTEMA CARNICERÍA";
             // 
             // comboBoxImage1
             // 
-            this.comboBoxImage1.Location = new System.Drawing.Point(1040, 40);
-            this.comboBoxImage1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.comboBoxImage1.Location = new System.Drawing.Point(693, 26);
             this.comboBoxImage1.Name = "comboBoxImage1";
-            this.comboBoxImage1.Size = new System.Drawing.Size(147, 35);
+            this.comboBoxImage1.Size = new System.Drawing.Size(98, 23);
             this.comboBoxImage1.TabIndex = 2;
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::GUI.Properties.Resources.Imagen1;
-            this.pictureBox1.Location = new System.Drawing.Point(125, 187);
+            this.pictureBox1.Location = new System.Drawing.Point(83, 122);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(930, 346);
+            this.pictureBox1.Size = new System.Drawing.Size(620, 225);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1200, 692);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.comboBoxImage1);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.menuStripSystem);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStripSystem;
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStripSystem.ResumeLayout(false);

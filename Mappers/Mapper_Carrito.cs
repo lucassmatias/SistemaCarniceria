@@ -64,19 +64,14 @@ namespace Mappers
             foreach (DataRow dr in dt.Rows)
             {
                 belCarrito aux = new belCarrito(dr.ItemArray);
-                List<belCarneCarrito> lCarne = map.ConsultaIncremental(aux.Id);
+                List<belCarneCarrito> lCarne = map.ConsultaCondicional(aux.Id);
                 aux.Productos.AddRange(lCarne);
                 lCarrito.Add(aux);
             }
             return lCarrito;
         }
 
-        public List<belCarrito> ConsultaDesdeHasta(string pStringDesde, string pStringHasta)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<belCarrito> ConsultaIncremental(string pString)
+        public List<belCarrito> ConsultaCondicional(string pId)
         {
             throw new NotImplementedException();
         }

@@ -40,6 +40,11 @@ namespace Mappers
             p3.Value = x;
             p3.SqlDbType = SqlDbType.Int;
             al.Add(p3);
+            SqlParameter p4 = new SqlParameter();
+            p4.ParameterName = "@sto";
+            p4.Value = pItem.StockKG;
+            p4.SqlDbType = SqlDbType.Float;
+            al.Add(p4);
             dao.Escribir(storedProcedure, al);
         }
 
@@ -81,18 +86,13 @@ namespace Mappers
             return lCarne;
         }
 
-        public List<belCarne> ConsultaDesdeHasta(string pStringDesde, string pStringHasta)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<belCarne> ConsultaIncremental(string pString)
+        public List<belCarne> ConsultaCondicional(string pId)
         {
             string storedProcedure = "S_CarneListarUno";
             al = new ArrayList();
             SqlParameter p1 = new SqlParameter();
             p1.ParameterName = "@id";
-            p1.Value = pString;
+            p1.Value = int.Parse(pId);
             p1.SqlDbType = SqlDbType.Int;
             al.Add(p1);
             DataTable dt = dao.Leer(storedProcedure, al);
@@ -133,10 +133,15 @@ namespace Mappers
             p2.SqlDbType = SqlDbType.Float;
             al.Add(p2);
             SqlParameter p3 = new SqlParameter();
-            p3.ParameterName = "@id";
-            p3.Value = pItem.Id;
-            p3.SqlDbType = SqlDbType.Int;
+            p3.ParameterName = "@sto";
+            p3.Value = pItem.StockKG;
+            p3.SqlDbType = SqlDbType.Float;
             al.Add(p3);
+            SqlParameter p4 = new SqlParameter();
+            p4.ParameterName = "@id";
+            p4.Value = pItem.Id;
+            p4.SqlDbType = SqlDbType.Int;
+            al.Add(p4);
             dao.Escribir(storedProcedure, al);
         }
     }

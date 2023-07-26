@@ -13,12 +13,14 @@ namespace BEL
             Id = array[0].ToString();
             Nombre = array[1].ToString();
             PrecioKG = decimal.Parse(array[2].ToString());
+            StockKG = decimal.Parse(array[3].ToString());
         }
-        public belAve(string pId, string pNombre, decimal pPrecio)
+        public belAve(string pId, string pNombre, decimal pPrecio, decimal pStock)
         {
             Id = pId;
             Nombre = pNombre;
             PrecioKG = pPrecio;
+            StockKG = pStock;
         }
     }
 }

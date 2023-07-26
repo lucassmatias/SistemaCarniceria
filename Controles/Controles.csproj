@@ -48,6 +48,12 @@
     <Compile Include="ComboBoxImage.Designer.cs">
       <DependentUpon>ComboBoxImage.cs</DependentUpon>
     </Compile>
+    <Compile Include="ComboBoxImageNotEvent.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ComboBoxImageNotEvent.Designer.cs">
+      <DependentUpon>ComboBoxImageNotEvent.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
@@ -55,11 +61,18 @@
     <EmbeddedResource Include="ComboBoxImage.resx">
       <DependentUpon>ComboBoxImage.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ComboBoxImageNotEvent.resx">
+      <DependentUpon>ComboBoxImageNotEvent.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BEL\BEL.csproj">
       <Project>{b31dc764-8586-436d-a7db-3a7eb2080905}</Project>
       <Name>BEL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BLL\BLL.csproj">
+      <Project>{6ca45a5b-d899-4c32-8c9b-ddccc82c8721}</Project>
+      <Name>BLL</Name>
     </ProjectReference>
     <ProjectReference Include="..\Interfaces\Interfaces.csproj">
       <Project>{0afad573-1b86-4a93-aacc-670f75f4a098}</Project>

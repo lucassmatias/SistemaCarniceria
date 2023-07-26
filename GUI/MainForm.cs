@@ -22,11 +22,11 @@ namespace GUI
         CartForm cartFormInstance;
         private void Form1_Load(object sender, EventArgs e)
         {
-            LanguageManager.GetInstance.CambiarIdioma(SessionManager.GetInstance.user.Idioma);
             formUsuarioInstance = new UsersForm();
             cartFormInstance = new CartForm();
             LanguageManager.Suscribir(formUsuarioInstance);
             LanguageManager.Suscribir(cartFormInstance);
+            comboBoxImage1.RetornaComboBox().SelectedIndex = int.Parse(SessionManager.GetInstance.user.Idioma.Id) - 1;
         }
 
         private void usuarioToolStripMenuItem_Click(object sender, EventArgs e)

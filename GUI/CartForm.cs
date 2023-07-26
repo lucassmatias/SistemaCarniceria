@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Interfaces;
-using Services;
+using System.Text.RegularExpressions;
 namespace GUI
 {
     public partial class CartForm : Form, ITraducible
@@ -18,6 +18,7 @@ namespace GUI
         List<belCarne> ListCarne;
         belCarrito belCarrito;
         bllCarrito bllCarrito;
+        bllCarneCarrito bllCarneCarrito;
         public CartForm()
         {
             InitializeComponent();
@@ -28,18 +29,19 @@ namespace GUI
             CargarDGV1(ListCarne);
             belCarrito = new belCarrito();
             bllCarrito = new bllCarrito();
+            bllCarneCarrito = new bllCarneCarrito();
             CargarEvento();
         }
         private void CargarDatos()
         {
-            ListCarne = new List<belCarne>() { new belAve("1","Pollo", 261), new belVacuna("2", "Bife", 300), new belPorcina("3", "Nalga", 410) };
+            ListCarne = new List<belCarne>() { new belAve("1","Pollo", 261, 10), new belVacuna("2", "Bife", 300, 17), new belPorcina("3", "Nalga", 410, 4) };
         }
         private void CargarDGV1(List<belCarne> pList)
         {
             dataGridView1.Rows.Clear();
             foreach (belCarne bel in pList)
             {
-                dataGridView1.Rows.Add(new object[] { bel.Id, bel.Nombre, bel.PrecioKG });
+                dataGridView1.Rows.Add(new object[] { bel.Id, bel.Nombre, bel.PrecioKG, bel.StockKG });
             }
         }
         private void CargarDGV2()
@@ -80,11 +82,11 @@ namespace GUI
         {
             if(CbBird.Checked == false && CbPork.Checked == false && CbBeef.Checked == false)
             {
-                dataGridView1.DataSource = null;
+                dataGridView1.Rows.Clear();
             }
             else
             {
-                belAve orden = new belAve("", "", 0);
+                belAve orden = new belAve("", "", 0, 0);
                 List<belCarne> aux = new List<belCarne>();
                 if (CbBird.Checked)
                 {
@@ -114,28 +116,6 @@ namespace GUI
             }
             tbFiltro.TextChanged += Filtro;
         }
-
-        private void btnCalculate_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (dataGridView1.Rows.Count != 0)
-                {
-                    textBox2.Text = SeleccionarCarne().PrecioKG.ToString();
-                    decimal A;
-                    decimal B;
-                    decimal C;
-                    decimal.TryParse(textBox1.Text, out A);
-                    decimal.TryParse(textBox2.Text, out B);
-                    C = A * B;
-                    textBox3.Text = C.ToString();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
         private belCarne SeleccionarCarne()
         {
             return ListCarne.Find(x => x.Id == dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
@@ -150,8 +130,7 @@ namespace GUI
             {
                 if (dataGridView2.Rows.Count != 0)
                 {
-                    belCarneCarrito aux = SeleccionarCarneCarrito();
-                    belCarrito.Productos.Remove(aux);
+                    bllCarrito.QuitarProducto(belCarrito, SeleccionarCarneCarrito().Id);
                     CargarDGV2();
                 }
             }
@@ -165,14 +144,45 @@ namespace GUI
         {
             try
             {
-                belCarrito.DNI = tbDNI.Text;
-                belCarrito.Nombre = tbNombre.Text;
-                belCarrito.Apellido = tbApellido.Text;
+                if(belCarrito.Productos.Count != 0)
+                {
+                    if (tbValidation())
+                    {
+                        throw new Exception("No puede dejar campos vacios");
+                    }
+                    else
+                    {
+                        bllCarrito.AgregarDatos(belCarrito, tbDNI.Text, tbNombre.Text, tbApellido.Text);
+                        bllCarrito.AgregarImporte(belCarrito);
+                        bllCarrito.Alta(belCarrito);
+                        foreach (belCarneCarrito x in belCarrito.Productos)
+                        {
+                            bllCarneCarrito.Alta(x);
+                        }
+                        bllCarrito.ClearProductos(belCarrito);
+                        CargarDGV2();
+                    }
+                }
+                else
+                {
+                    throw new Exception("El carrito no tiene productos");
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+        private bool tbValidation()
+        {
+            bool tbValidation = false;
+            if (tbDNI.Text == string.Empty ||
+                tbNombre.Text == string.Empty ||
+                tbApellido.Text == string.Empty)        
+            {
+                tbValidation = true;
+            }
+            return tbValidation;
         }
         private void btnCancel_Click(object sender, EventArgs e)
         {
@@ -193,21 +203,23 @@ namespace GUI
             lblName.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "lblName").Texto;
             lblName2.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "lblName").Texto;
             lblNetWeight.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "lblNetWeight").Texto;
-            lblGrossWeight.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "lblGrossWeight").Texto;
-            lblCalculator.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "lblCalculator").Texto;
-            lblBuy.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "lblBuy").Texto;
-            lblQuantity.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "lblQuantity").Texto;
-            lblPrice.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "lblPrice").Texto;
+            lblGrossWeight.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "lblGrossWeight").Texto;          
+            lblBuy.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "lblBuy").Texto;                    
             lblId.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "lblId").Texto;
             lblSurname.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "lblSurname").Texto;
             CbBeef.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "cbBeef").Texto;
             CbPork.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "cbPork").Texto;
             CbBird.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "cbBird").Texto;
             btnAdd.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "btnAdd").Texto;
-            btnCalculate.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "btnCalculate").Texto;
             btnCancel.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "btnCancel").Texto;
             btnRemove.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "btnRemove").Texto;
             btnFinish.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "btnFinish").Texto;
+        }
+
+        private void btnConsult_Click(object sender, EventArgs e)
+        {
+            ConsultForm ConsultFormInstance = new ConsultForm(SeleccionarCarne());
+            ConsultFormInstance.ShowDialog();
         }
     }
 }

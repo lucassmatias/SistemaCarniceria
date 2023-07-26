@@ -12,7 +12,6 @@ namespace Interfaces
         void Baja(string pId);
         void Modificacion(T pItem);
         List<T> Consulta();
-        List<T> ConsultaIncremental(string pString);
-        List<T> ConsultaDesdeHasta(string pStringDesde, string pStringHasta);
+        List<T> ConsultaCondicional(string pId);
     }
 }

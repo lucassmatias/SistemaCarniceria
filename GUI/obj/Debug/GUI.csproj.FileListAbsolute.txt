@@ -58,3 +58,4 @@ C:\Users\lukit\OneDrive\Escritorio\SistemaCarniceria-master\GUI\bin\Debug\Servic
 C:\Users\lukit\OneDrive\Escritorio\SistemaCarniceria-master\GUI\bin\Debug\Mappers.pdb
 C:\Users\lukit\OneDrive\Escritorio\SistemaCarniceria-master\GUI\bin\Debug\DAL.pdb
 C:\Users\lukit\OneDrive\Escritorio\SistemaCarniceria-master\GUI\obj\Debug\GUI.csproj.CopyComplete
+C:\Users\lukit\OneDrive\Escritorio\Recursos UAI\3er Año - 1er Cuatrimestre\Ingeniería de software\Código\SistemaCarniceria\GUI\obj\Debug\GUI.ConsultForm.resources

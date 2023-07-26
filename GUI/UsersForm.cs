@@ -64,7 +64,7 @@ namespace GUI
                 }
                 else
                 {
-                    bllUsuario.Alta(new belUsuario(tbDNI.Text, tbUsername.Text, CryptoManager.Encrypt(tbContraseña.Text), tbNombre.Text, tbApellido.Text, tbEmail.Text, tbRol.Text, LanguageManager.GetInstance.ConsultaIdiomaCodigo(comboBoxImage1.RetornaComboBox().SelectedIndex + 1)));
+                    bllUsuario.Alta(new belUsuario(tbDNI.Text, tbUsername.Text, CryptoManager.Encrypt(tbContraseña.Text), tbNombre.Text, tbApellido.Text, tbEmail.Text, tbRol.Text, LanguageManager.GetInstance.ConsultaIdiomaCodigo(comboBoxImageNotEvent1.RetornaComboBox().SelectedIndex + 1)));
                     ListaUsuario = bllUsuario.Consulta();
                     RefreshDataGrid();
                     //LogManager.Add($"USUARIO - Se creó un nuevo usuario ({tbUsername.Text})");
@@ -175,6 +175,18 @@ namespace GUI
             foreach (belUsuario x in pLista)
             {
                 dataGridView1.Rows.Add(new object[] { x.Id, x.DNI, x.Username, x.Password, x.Blocked, x.Nombre, x.Apellido, x.Email, x.Rol, x.Activo, x.Intentos, x.Idioma.Nombre });
+                if (x.Blocked)
+                {
+                    dataGridView1.Rows[dataGridView1.Rows.Count - 1].DefaultCellStyle.BackColor = Color.IndianRed;
+                }
+                else if (x.Activo == false)
+                {
+                    dataGridView1.Rows[dataGridView1.Rows.Count - 1].DefaultCellStyle.BackColor = Color.LightYellow;
+                }
+                else
+                {
+                    dataGridView1.Rows[dataGridView1.Rows.Count - 1].DefaultCellStyle.BackColor = Color.LightGreen;
+                }
             }
         }
         private void UserFilterByState(object sender, EventArgs e)

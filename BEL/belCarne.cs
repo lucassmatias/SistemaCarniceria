@@ -12,7 +12,7 @@ namespace BEL
         public string Id { get; set; }
         public string Nombre { get; set; }
         public decimal PrecioKG { get; set; }
-
+        public decimal StockKG { get; set; }
         public int CompareTo(belCarne pCarne)
         {
             if(pCarne == null) return 1;

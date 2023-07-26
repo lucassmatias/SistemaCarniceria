@@ -66,31 +66,27 @@ namespace Mappers
             throw new NotImplementedException();
         }
 
-        public List<belCarneCarrito> ConsultaDesdeHasta(string pStringDesde, string pStringHasta)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<belCarneCarrito> ConsultaIncremental(string pString)
+        public List<belCarneCarrito> ConsultaCondicional(string pId)
         {
             Mapper_Carne map = new Mapper_Carne();
             string storedProcedure = "S_ProductoCarrito_Listar";
             al = new ArrayList();
             SqlParameter p1 = new SqlParameter();
             p1.ParameterName = "@codCar";
-            p1.Value = pString;
+            p1.Value = pId;
             p1.SqlDbType = SqlDbType.Int;
             al.Add(p1);
             DataTable dt = dao.Leer(storedProcedure, al);
             List<belCarneCarrito> lCarneCarrito = new List<belCarneCarrito>();
             foreach (DataRow dr in dt.Rows)
             {
-                List<belCarne> listCarne = map.ConsultaIncremental(dr.ItemArray[1].ToString());
+                List<belCarne> listCarne = map.ConsultaCondicional(dr.ItemArray[1].ToString());
                 belCarneCarrito aux = new belCarneCarrito(dr.ItemArray, listCarne[0]);
                 lCarneCarrito.Add(aux);
             }
             return lCarneCarrito;
         }
+
         public void Modificacion(belCarneCarrito pItem)
         {
             throw new NotImplementedException();

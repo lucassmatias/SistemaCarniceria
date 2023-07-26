@@ -53,6 +53,12 @@
     <Compile Include="CartForm.Designer.cs">
       <DependentUpon>CartForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConsultForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsultForm.Designer.cs">
+      <DependentUpon>ConsultForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,6 +87,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="CartForm.resx">
       <DependentUpon>CartForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsultForm.resx">
+      <DependentUpon>ConsultForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

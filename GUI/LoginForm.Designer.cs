@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.lblUser = new System.Windows.Forms.Label();
@@ -39,47 +40,42 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(129, 78);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBox1.Location = new System.Drawing.Point(86, 51);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(236, 26);
+            this.textBox1.Size = new System.Drawing.Size(159, 20);
             this.textBox1.TabIndex = 0;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(129, 160);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBox2.Location = new System.Drawing.Point(86, 104);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(236, 26);
+            this.textBox2.Size = new System.Drawing.Size(159, 20);
             this.textBox2.TabIndex = 1;
             this.textBox2.UseSystemPasswordChar = true;
             // 
             // lblUser
             // 
             this.lblUser.AutoSize = true;
-            this.lblUser.Location = new System.Drawing.Point(124, 54);
-            this.lblUser.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblUser.Location = new System.Drawing.Point(83, 35);
             this.lblUser.Name = "lblUser";
-            this.lblUser.Size = new System.Drawing.Size(64, 20);
+            this.lblUser.Size = new System.Drawing.Size(43, 13);
             this.lblUser.TabIndex = 2;
             this.lblUser.Text = "Usuario";
             // 
             // lblPassword
             // 
             this.lblPassword.AutoSize = true;
-            this.lblPassword.Location = new System.Drawing.Point(124, 135);
-            this.lblPassword.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblPassword.Location = new System.Drawing.Point(83, 88);
             this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(92, 20);
+            this.lblPassword.Size = new System.Drawing.Size(61, 13);
             this.lblPassword.TabIndex = 3;
             this.lblPassword.Text = "Contraseña";
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(188, 266);
-            this.btnLogin.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnLogin.Location = new System.Drawing.Point(125, 173);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(132, 35);
+            this.btnLogin.Size = new System.Drawing.Size(88, 23);
             this.btnLogin.TabIndex = 4;
             this.btnLogin.Text = "Iniciar sesión";
             this.btnLogin.UseVisualStyleBackColor = true;
@@ -88,10 +84,9 @@
             // cbSee
             // 
             this.cbSee.AutoSize = true;
-            this.cbSee.Location = new System.Drawing.Point(129, 200);
-            this.cbSee.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cbSee.Location = new System.Drawing.Point(86, 130);
             this.cbSee.Name = "cbSee";
-            this.cbSee.Size = new System.Drawing.Size(60, 24);
+            this.cbSee.Size = new System.Drawing.Size(42, 17);
             this.cbSee.TabIndex = 5;
             this.cbSee.Text = "Ver";
             this.cbSee.UseVisualStyleBackColor = true;
@@ -99,17 +94,17 @@
             // 
             // comboBoxImage1
             // 
-            this.comboBoxImage1.Location = new System.Drawing.Point(332, 18);
-            this.comboBoxImage1.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
+            this.comboBoxImage1.Location = new System.Drawing.Point(221, 12);
+            this.comboBoxImage1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.comboBoxImage1.Name = "comboBoxImage1";
-            this.comboBoxImage1.Size = new System.Drawing.Size(150, 35);
+            this.comboBoxImage1.Size = new System.Drawing.Size(100, 23);
             this.comboBoxImage1.TabIndex = 6;
             // 
             // LoginForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(500, 320);
+            this.ClientSize = new System.Drawing.Size(333, 208);
             this.Controls.Add(this.comboBoxImage1);
             this.Controls.Add(this.cbSee);
             this.Controls.Add(this.btnLogin);
@@ -117,8 +112,9 @@
             this.Controls.Add(this.lblUser);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "LoginForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormLogIn";
             this.Load += new System.EventHandler(this.FormLogIn_Load);
             this.ResumeLayout(false);

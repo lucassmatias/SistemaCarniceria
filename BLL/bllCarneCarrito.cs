@@ -26,14 +26,9 @@ namespace BLL
             throw new NotImplementedException();
         }
 
-        public List<belCarneCarrito> ConsultaDesdeHasta(string pStringDesde, string pStringHasta)
+        public List<belCarneCarrito> ConsultaCondicional(string pId)
         {
-            throw new NotImplementedException();
-        }
-
-        public List<belCarneCarrito> ConsultaIncremental(string pString)
-        {
-            return map.ConsultaIncremental(pString);
+            return map.ConsultaCondicional(pId);
         }
 
         public void Modificacion(belCarneCarrito pItem)

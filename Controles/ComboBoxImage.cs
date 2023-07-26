@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Services;
 using BEL;
-
+using BLL;
 namespace Controles
 {
     public partial class ComboBoxImage: UserControl
@@ -21,7 +21,7 @@ namespace Controles
             cmbImages.DrawMode = DrawMode.OwnerDrawFixed;
             cmbImages.Items.AddRange(Enumerable.Repeat<string>("", listImages.Images.Count).ToArray());
         }
-
+        bllUsuario a;
         private void cmbImages_DrawItem(object sender, DrawItemEventArgs e)
         {
             string[] items = new string[] { "Español", "English" };
@@ -41,6 +41,7 @@ namespace Controles
 
         private void cmbImages_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if(a == null) a = new bllUsuario();
             ComboBox combo = (ComboBox)sender;
             LanguageManager lm = LanguageManager.GetInstance;
             int x = combo.SelectedIndex + 1;
@@ -55,6 +56,7 @@ namespace Controles
                 {
                     sm.user.Idioma = lm.ConsultaIdiomaCodigo(x);
                     lm.CambiarIdioma(sm.user.Idioma);
+                    a.Modificacion(sm.user);
                 }
             }        
             if(combo.SelectedIndex >= 0)

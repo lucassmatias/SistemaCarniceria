@@ -20,7 +20,28 @@ namespace BLL
         {
             carrito.Productos.Remove(carrito.Productos.Find(x => x.Carne.Id == productoId));
         }
-
+        public void AgregarDatos(belCarrito carrito, string pDNI, string pNombre, string pApellido)
+        {
+            carrito.DNI = pDNI;
+            carrito.Nombre = pNombre;
+            carrito.Apellido = pApellido;
+        }
+        public void AgregarImporte(belCarrito carrito)
+        {
+            decimal importe = 0;
+            foreach(belCarneCarrito x in carrito.Productos)
+            {
+                importe += x.Carne.PrecioKG * x.PrecioNeto;
+            }
+            carrito.ImporteBruto = importe;
+        }
+        public void ClearProductos(belCarrito carrito)
+        {
+            carrito.DNI = "";
+            carrito.Nombre = "";
+            carrito.Apellido = "";
+            carrito.Productos.Clear();
+        }
         public void Alta(belCarrito pItem)
         {
             map.Alta(pItem);
@@ -36,17 +57,12 @@ namespace BLL
             return map.Consulta();
         }
 
-        public List<belCarrito> ConsultaDesdeHasta(string pStringDesde, string pStringHasta)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<belCarrito> ConsultaIncremental(string pString)
-        {
-            throw new NotImplementedException();
-        }
-
         public void Modificacion(belCarrito pItem)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<belCarrito> ConsultaCondicional(string pId)
         {
             throw new NotImplementedException();
         }

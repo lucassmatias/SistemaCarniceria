@@ -22,3 +22,5 @@ C:\Users\lukit\OneDrive\Escritorio\SistemaCarniceria-master\Services\obj\Debug\S
 C:\Users\lukit\OneDrive\Escritorio\SistemaCarniceria-master\Services\obj\Debug\Services.csproj.CopyComplete
 C:\Users\lukit\OneDrive\Escritorio\SistemaCarniceria-master\Services\obj\Debug\Services.dll
 C:\Users\lukit\OneDrive\Escritorio\SistemaCarniceria-master\Services\obj\Debug\Services.pdb
+C:\Users\lukit\OneDrive\Escritorio\Recursos UAI\3er Año - 1er Cuatrimestre\Ingeniería de software\Código\SistemaCarniceria\Services\bin\Debug\DAL.dll
+C:\Users\lukit\OneDrive\Escritorio\Recursos UAI\3er Año - 1er Cuatrimestre\Ingeniería de software\Código\SistemaCarniceria\Services\bin\Debug\DAL.pdb
