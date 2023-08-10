@@ -8,7 +8,7 @@ namespace BEL
 {
     public class belUsuario : IEntity
     {
-        public belUsuario(string pDNI, string pName, string pPassword, string pNombre, string pApellido, string pEmail, string pRol, Idioma pIdioma)
+        public belUsuario(string pDNI, string pName, string pPassword, string pNombre, string pApellido, string pEmail, belPerfil pPerfil, Idioma pIdioma)
         {
             DNI = pDNI;
             Username = pName;
@@ -18,7 +18,7 @@ namespace BEL
             Nombre = pNombre;
             Apellido = pApellido;
             Email = pEmail;
-            Rol = pRol;
+            Perfil = pPerfil;
             Activo = true;
             Idioma = pIdioma;
         }
@@ -29,7 +29,6 @@ namespace BEL
             Apellido = array[2].ToString();
             Username = array[3].ToString();
             Password = array[4].ToString();
-            Rol = array[5].ToString();
             Email = array[6].ToString();
             Blocked = bool.Parse(array[7].ToString());
             Activo = bool.Parse(array[8].ToString());
@@ -44,7 +43,7 @@ namespace BEL
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public string Email { get; set; }
-        public string Rol { get; set; }
+        public belPerfil Perfil { get; set; }
         public bool Activo { get; set; }
         public int Intentos { get; set; }
         public Idioma Idioma { get; set; }

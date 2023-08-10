@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BLL
 {
-    internal class bllCarne : IABMC<belCarne>
+    public class bllCarne : IABMC<belCarne>
     {
         Mapper_Carne map = new Mapper_Carne();
         public void Alta(belCarne pItem)

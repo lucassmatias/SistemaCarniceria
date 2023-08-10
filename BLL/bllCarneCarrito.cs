@@ -33,7 +33,7 @@ namespace BLL
 
         public void Modificacion(belCarneCarrito pItem)
         {
-            throw new NotImplementedException();
+            map.Modificacion(pItem);
         }
     }
 }

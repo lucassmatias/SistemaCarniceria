@@ -11,6 +11,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Interfaces;
 using System.Text.RegularExpressions;
+using Services;
+
 namespace GUI
 {
     public partial class CartForm : Form, ITraducible
@@ -19,22 +21,26 @@ namespace GUI
         belCarrito belCarrito;
         bllCarrito bllCarrito;
         bllCarneCarrito bllCarneCarrito;
+        bllCarne bllCarne;
+        string msgWeightAlert;
+        string msgWeightAlert2;
+        string msgValidateError;
+        string msgSuccesfulCart;
+        string msgCartNoProducts;
         public CartForm()
         {
             InitializeComponent();
         }
         private void CartForm_Load(object sender, EventArgs e)
         {
-            CargarDatos();
-            CargarDGV1(ListCarne);
             belCarrito = new belCarrito();
             bllCarrito = new bllCarrito();
+            bllCarne = new bllCarne();
             bllCarneCarrito = new bllCarneCarrito();
+            ListCarne = bllCarne.Consulta();
+            CargarDGV1(ListCarne);
             CargarEvento();
-        }
-        private void CargarDatos()
-        {
-            ListCarne = new List<belCarne>() { new belAve("1","Pollo", 261, 10), new belVacuna("2", "Bife", 300, 17), new belPorcina("3", "Nalga", 410, 4) };
+            btnRemove.Enabled = false;
         }
         private void CargarDGV1(List<belCarne> pList)
         {
@@ -68,10 +74,33 @@ namespace GUI
             {
                 if(dataGridView1.Rows.Count != 0)
                 {
-                    bllCarrito.AgregarProducto(belCarrito, SeleccionarCarne(), decimal.Parse(tbPesoBruto.Text), decimal.Parse(tbPesoNeto.Text));
-                    CargarDGV2();
-                }
-                
+                    if(!(string.IsNullOrEmpty(tbPesoBruto.Text) || string.IsNullOrEmpty(tbPesoNeto.Text)))
+                    {
+                        if (decimal.Parse(tbPesoBruto.Text) <= SeleccionarCarne().StockKG && decimal.Parse(tbPesoNeto.Text) <= SeleccionarCarne().StockKG)
+                        {
+                            if (decimal.Parse(tbPesoBruto.Text) >= decimal.Parse(tbPesoNeto.Text))
+                            {
+                                bllCarrito.AgregarProducto(belCarrito, SeleccionarCarne(), decimal.Parse(tbPesoBruto.Text), decimal.Parse(tbPesoNeto.Text));
+                                SeleccionarCarne().QuitarStock(decimal.Parse(tbPesoBruto.Text));
+                                CargarDGV2();
+                                CargarDGV1(ListCarne);
+                                btnRemove.Enabled = true;
+                            }
+                            else
+                            {
+                                throw new Exception(msgWeightAlert2);
+                            }
+                        }
+                        else
+                        {
+                            throw new Exception(msgWeightAlert);
+                        }
+                    }
+                    else
+                    {
+                        throw new Exception(msgValidateError);
+                    }
+                }           
             }
             catch (Exception ex)
             {
@@ -130,8 +159,14 @@ namespace GUI
             {
                 if (dataGridView2.Rows.Count != 0)
                 {
-                    bllCarrito.QuitarProducto(belCarrito, SeleccionarCarneCarrito().Id);
+                    ListCarne.Find(x => x.Id == SeleccionarCarneCarrito().Carne.Id).ReponerStock(SeleccionarCarneCarrito().PesoNeto);
+                    bllCarrito.QuitarProducto(belCarrito, SeleccionarCarneCarrito().Carne.Id);
                     CargarDGV2();
+                    CargarDGV1(ListCarne);
+                }
+                else
+                {
+                    btnRemove.Enabled = false;
                 }
             }
             catch (Exception ex)
@@ -148,24 +183,29 @@ namespace GUI
                 {
                     if (tbValidation())
                     {
-                        throw new Exception("No puede dejar campos vacios");
+                        throw new Exception(msgValidateError);
                     }
                     else
                     {
                         bllCarrito.AgregarDatos(belCarrito, tbDNI.Text, tbNombre.Text, tbApellido.Text);
                         bllCarrito.AgregarImporte(belCarrito);
+                        bllCarrito.AgregarID(belCarrito);
                         bllCarrito.Alta(belCarrito);
                         foreach (belCarneCarrito x in belCarrito.Productos)
                         {
                             bllCarneCarrito.Alta(x);
+                            belCarne aux = ListCarne.Find(y => y.Id == x.Carne.Id);
+                            bllCarne.Modificacion(aux);
                         }
                         bllCarrito.ClearProductos(belCarrito);
                         CargarDGV2();
+                        MessageBox.Show(msgSuccesfulCart);
+                        LogManager.Add($"CART - Cart Saved ({belCarrito.Id})", SessionManager.GetInstance.user);
                     }
                 }
                 else
                 {
-                    throw new Exception("El carrito no tiene productos");
+                    throw new Exception(msgCartNoProducts);
                 }
             }
             catch (Exception ex)
@@ -186,6 +226,13 @@ namespace GUI
         }
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            dataGridView1.Rows.Clear();
+            dataGridView2.Rows.Clear();
+            tbPesoBruto.Text = "";
+            tbPesoNeto.Text = "";
+            tbDNI.Text = "";
+            tbNombre.Text = "";
+            tbApellido.Text = "";
             this.Close();
         }
 
@@ -198,7 +245,6 @@ namespace GUI
             clmKGPrice.HeaderText = pIdioma.ListaEtiquetas.Find(x => x.Tag == "clmKGPrice").Texto;
             clmKGPrice2.HeaderText = pIdioma.ListaEtiquetas.Find(x => x.Tag == "clmKGPrice").Texto;
             clmNetWeight.HeaderText = pIdioma.ListaEtiquetas.Find(x => x.Tag == "clmNetWeight").Texto;
-            clmGrossWeight.HeaderText = pIdioma.ListaEtiquetas.Find(x => x.Tag == "clmGrossWeight").Texto;
             lblProducts.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "lblProducts").Texto;
             lblName.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "lblName").Texto;
             lblName2.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "lblName").Texto;
@@ -211,14 +257,23 @@ namespace GUI
             CbPork.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "cbPork").Texto;
             CbBird.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "cbBird").Texto;
             btnAdd.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "btnAdd").Texto;
-            btnCancel.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "btnCancel").Texto;
+            btnClose.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "btnClose").Texto;
             btnRemove.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "btnRemove").Texto;
             btnFinish.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "btnFinish").Texto;
+            btnConsult.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "btnConsult").Texto;
+            msgWeightAlert = pIdioma.ListaEtiquetas.Find(x => x.Tag == "msgWeightAlert1").Texto;
+            msgWeightAlert2 = pIdioma.ListaEtiquetas.Find(x => x.Tag == "msgWeightAlert2").Texto;
+            msgValidateError = pIdioma.ListaEtiquetas.Find(x => x.Tag == "msgValidateError").Texto;
+            msgSuccesfulCart = pIdioma.ListaEtiquetas.Find(x => x.Tag == "msgSuccesfulCart").Texto;
+            msgCartNoProducts = pIdioma.ListaEtiquetas.Find(x => x.Tag == "msgCartNoProducts").Texto;
+            this.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "frmCart").Texto;
         }
 
         private void btnConsult_Click(object sender, EventArgs e)
         {
             ConsultForm ConsultFormInstance = new ConsultForm(SeleccionarCarne());
+            LanguageManager.Suscribir(ConsultFormInstance);
+            LanguageManager.CambiarIdioma(SessionManager.GetInstance.user.Idioma);
             ConsultFormInstance.ShowDialog();
         }
     }

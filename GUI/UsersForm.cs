@@ -21,6 +21,14 @@ namespace GUI
     {
         List<belUsuario> ListaUsuario;
         bllUsuario bllUsuario;
+        bllPerfil BllPerfil;
+        string msgValidateError;
+        string txtdni;
+        string txtusername;
+        string contraseña;
+        string txtnombre;
+        string txtapellido;
+        string modificacion;
         public UsersForm()
         {
             InitializeComponent();
@@ -29,14 +37,34 @@ namespace GUI
         private void FormUsuario_Load(object sender, EventArgs e)
         {
             bllUsuario = new bllUsuario();
+            BllPerfil = new bllPerfil();
             ListaUsuario = bllUsuario.Consulta();
             RefreshDataGrid();
+            HabilitarControles();
         }
         private void RefreshDataGrid()
         {
             UserFilterByName(null, null);
         }
-
+        public void HabilitarControles()
+        {
+            List<belPermiso> lPermiso = new List<belPermiso>();
+            (SessionManager.GetInstance.user.Perfil.Permiso as belPermisoCompuesto).RetornaArrayPermisos(SessionManager.GetInstance.user.Perfil.Permiso as belPermisoCompuesto, lPermiso);
+            foreach (Control control in this.Controls)
+            {
+                if (control is Button && control.Tag != null)
+                {
+                    (control as Button).Enabled = false;
+                    foreach (belPermiso per in lPermiso)
+                    {
+                        if (control.Tag.ToString() == per.Nombre)
+                        {
+                            (control as Button).Enabled = true;
+                        }
+                    }
+                }
+            }
+        }
         private bool tbValidation()
         {
             bool tbValidation = false;
@@ -45,8 +73,7 @@ namespace GUI
                 tbContraseña.Text == string.Empty ||
                 tbNombre.Text == string.Empty ||
                 tbApellido.Text == string.Empty ||
-                tbEmail.Text == string.Empty ||
-                tbRol.Text == string.Empty)
+                tbEmail.Text == string.Empty)
             {
                 tbValidation = true;
             }
@@ -60,14 +87,15 @@ namespace GUI
                 
                 if(tbValidation())
                 {
-                    throw new Exception("No puede dejar campos vacios");
+                    throw new Exception(msgValidateError);
                 }
                 else
                 {
-                    bllUsuario.Alta(new belUsuario(tbDNI.Text, tbUsername.Text, CryptoManager.Encrypt(tbContraseña.Text), tbNombre.Text, tbApellido.Text, tbEmail.Text, tbRol.Text, LanguageManager.GetInstance.ConsultaIdiomaCodigo(comboBoxImageNotEvent1.RetornaComboBox().SelectedIndex + 1)));
+                    belPerfil perfil = BllPerfil.Consulta().Find(x => x.Nombre == "Basico");
+                    bllUsuario.Alta(new belUsuario(tbDNI.Text, tbUsername.Text, CryptoManager.Encrypt(tbContraseña.Text), tbNombre.Text, tbApellido.Text, tbEmail.Text, perfil, LanguageManager.ConsultaIdiomaCodigo(comboBoxImageNotEvent1.RetornaComboBox().SelectedIndex + 1)));
                     ListaUsuario = bllUsuario.Consulta();
                     RefreshDataGrid();
-                    //LogManager.Add($"USUARIO - Se creó un nuevo usuario ({tbUsername.Text})");
+                    LogManager.Add($"USERS - User created ({tbUsername.Text})", SessionManager.GetInstance.user);
                 }
             }
             catch (Exception ex)
@@ -81,7 +109,7 @@ namespace GUI
             try
             {
                 bllUsuario.Baja(SeleccionarUsuario().Id);
-                //LogManager.Add($"USUARIO - Se eliminó un usuario ({(dataGridView1.SelectedRows[0].DataBoundItem as belUsuario).Id})");
+                LogManager.Add($"USERS - User deleted ({(dataGridView1.SelectedRows[0].DataBoundItem as belUsuario).Id})", SessionManager.GetInstance.user);
                 ListaUsuario = bllUsuario.Consulta();
                 RefreshDataGrid();
             }
@@ -96,24 +124,22 @@ namespace GUI
             try
             {
                 belUsuario aux = SeleccionarUsuario();
-                string dni = Interaction.InputBox("DNI", "Modificación", aux.DNI);
-                string username = Interaction.InputBox("Nombre de usuario", "Modificación", aux.Username);
-                string pw = CryptoManager.Encrypt(Interaction.InputBox("Contraseña", "Modificación"));
-                string nombre = Interaction.InputBox("Nombre", "Modificación", aux.Nombre);
-                string apellido = Interaction.InputBox("Apellido", "Modificación", aux.Apellido);
-                string rol = Interaction.InputBox("Nombre", "Modificación", aux.Rol);
-                string email = Interaction.InputBox("Nombre", "Modificación", aux.Email);
+                string dni = Interaction.InputBox(txtdni, modificacion, aux.DNI);
+                string username = Interaction.InputBox(txtusername, modificacion, aux.Username);
+                string pw = CryptoManager.Encrypt(Interaction.InputBox(contraseña, modificacion));
+                string nombre = Interaction.InputBox(txtnombre, modificacion, aux.Nombre);
+                string apellido = Interaction.InputBox(txtapellido, modificacion, aux.Apellido);
+                string email = Interaction.InputBox("email", modificacion, aux.Email);
                 aux.DNI = dni;
                 aux.Username = username;
                 aux.Password = pw;
                 aux.Nombre = nombre;
                 aux.Apellido = apellido;
-                aux.Rol = rol;
                 aux.Email = email;
                 bllUsuario.Modificacion(aux);
                 ListaUsuario = bllUsuario.Consulta();
                 RefreshDataGrid();
-                //LogManager.Add($"USUARIO - Se modificó un usuario ({aux.Id})");
+                LogManager.Add($"USERS - User Modified ({aux.Id})", SessionManager.GetInstance.user);
             }
             catch (Exception ex)
             {
@@ -135,7 +161,7 @@ namespace GUI
             bllUsuario.Modificacion(aux);
             ListaUsuario = bllUsuario.Consulta();
             RefreshDataGrid();
-            //LogManager.Add($"USUARIO - Cambio el estado de bloqueo de un usuario ({aux.Id})");
+            LogManager.Add($"USERS - Changed block status from an user ({aux.Id})", SessionManager.GetInstance.user);
         }
         private void EnableBtnUnlockFunction()
         {
@@ -174,7 +200,7 @@ namespace GUI
             dataGridView1.Rows.Clear();
             foreach (belUsuario x in pLista)
             {
-                dataGridView1.Rows.Add(new object[] { x.Id, x.DNI, x.Username, x.Password, x.Blocked, x.Nombre, x.Apellido, x.Email, x.Rol, x.Activo, x.Intentos, x.Idioma.Nombre });
+                dataGridView1.Rows.Add(new object[] { x.Id, x.DNI, x.Username, x.Password, x.Blocked, x.Nombre, x.Apellido, x.Email, x.Perfil.Nombre, x.Activo, x.Intentos, x.Idioma.Nombre });
                 if (x.Blocked)
                 {
                     dataGridView1.Rows[dataGridView1.Rows.Count - 1].DefaultCellStyle.BackColor = Color.IndianRed;
@@ -207,19 +233,26 @@ namespace GUI
 
         private void btnActive_Click(object sender, EventArgs e)
         {
-            belUsuario aux = SeleccionarUsuario();
-            if (aux.Activo)
+            try
             {
-                aux.Activo = false;
+                belUsuario aux = SeleccionarUsuario();
+                if (aux.Activo)
+                {
+                    aux.Activo = false;
+                }
+                else
+                {
+                    aux.Activo = true;
+                }
+                bllUsuario.Modificacion(aux);
+                ListaUsuario = bllUsuario.Consulta();
+                RefreshDataGrid();
+                LogManager.Add($"USERS - Changed active status from an user ({aux.Id})", SessionManager.GetInstance.user);
             }
-            else
+            catch (Exception ex)
             {
-                aux.Activo = true;
-            }
-            bllUsuario.Modificacion(aux);
-            ListaUsuario = bllUsuario.Consulta();
-            RefreshDataGrid();
-            //LogManager.Add($"USUARIO - Cambio el estado de activo de un usuario ({aux.Id})");
+                MessageBox.Show(ex.Message);
+            }          
         }
 
         public void Update(Idioma pIdioma)
@@ -235,13 +268,14 @@ namespace GUI
             lblName.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "lblName").Texto;
             lblSurname.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "lblSurname").Texto;
             lblEmail.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "lblEmail").Texto;
-            lblRole.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "lblRole").Texto;
             lblLanguage.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "lblLanguage").Texto;
             btnAdd.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "btnAdd").Texto;
+            btnModify.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "btnModify").Texto;
             btnRemove.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "btnRemove").Texto;
             btnUnlock.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "btnUnlock").Texto;
             btnActive.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "btnActive").Texto;
             btnClose.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "btnClose").Texto;
+            btnProfile.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "btnProfile").Texto;
             clmId.HeaderText = pIdioma.ListaEtiquetas.Find(x => x.Tag == "clmId").Texto;
             clmUniqueId.HeaderText = pIdioma.ListaEtiquetas.Find(x => x.Tag == "clmUniqueId").Texto;
             clmUsername.HeaderText = pIdioma.ListaEtiquetas.Find(x => x.Tag == "clmUsername").Texto;
@@ -254,6 +288,25 @@ namespace GUI
             clmActive.HeaderText = pIdioma.ListaEtiquetas.Find(x => x.Tag == "clmActive").Texto;
             clmTrys.HeaderText = pIdioma.ListaEtiquetas.Find(x => x.Tag == "clmTrys").Texto;
             clmLanguage.HeaderText = pIdioma.ListaEtiquetas.Find(x => x.Tag == "clmLanguage").Texto;
+            msgValidateError = pIdioma.ListaEtiquetas.Find(x => x.Tag == "msgValidateError").Texto;
+            txtdni = pIdioma.ListaEtiquetas.Find(x => x.Tag == "clmId").Texto;
+            txtusername = pIdioma.ListaEtiquetas.Find(x => x.Tag == "clmUsername").Texto;
+            contraseña = pIdioma.ListaEtiquetas.Find(x => x.Tag == "clmPassword").Texto;
+            txtnombre = pIdioma.ListaEtiquetas.Find(x => x.Tag == "clmName").Texto;
+            txtapellido = pIdioma.ListaEtiquetas.Find(x => x.Tag == "clmSurname").Texto;
+            modificacion = pIdioma.ListaEtiquetas.Find(x => x.Tag == "txtModification").Texto;
+            this.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "frmUser").Texto;
+        }
+
+        private void btnProfile_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            ProfileForm Profilef = new ProfileForm(SeleccionarUsuario());
+            LanguageManager.Suscribir(Profilef);
+            LanguageManager.CambiarIdioma(SessionManager.GetInstance.user.Idioma);
+            Profilef.ShowDialog();
+            CargarDGV(bllUsuario.Consulta());
+            this.Show();
         }
     }
 }

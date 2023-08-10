@@ -30,6 +30,8 @@ namespace GUI
             lblQuantity.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "lblQuantity").Texto;
             lblPrice.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "lblPrice").Texto;
             btnCalculate.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "btnCalculate").Texto;
+            btnClose.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "btnClose").Texto;
+            this.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "frmConsult").Texto;
         }
 
         private void btnCalculate_Click(object sender, EventArgs e)

@@ -31,12 +31,17 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.menuStripSystem = new System.Windows.Forms.MenuStrip();
             this.sistemaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.userToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.adminToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.userToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.productoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.idiomaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.registroDeVentasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.comboBoxImage1 = new Controles.ComboBoxImage();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.comboBoxImage1 = new Controles.ComboBoxImage();
             this.menuStripSystem.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -45,7 +50,8 @@
             // 
             this.menuStripSystem.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStripSystem.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.sistemaToolStripMenuItem});
+            this.sistemaToolStripMenuItem,
+            this.adminToolStripMenuItem});
             this.menuStripSystem.Location = new System.Drawing.Point(0, 0);
             this.menuStripSystem.Name = "menuStripSystem";
             this.menuStripSystem.Size = new System.Drawing.Size(800, 24);
@@ -55,26 +61,28 @@
             // sistemaToolStripMenuItem
             // 
             this.sistemaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.userToolStripMenuItem,
             this.cartToolStripMenuItem,
+            this.saleToolStripMenuItem,
             this.logOutToolStripMenuItem});
             this.sistemaToolStripMenuItem.Name = "sistemaToolStripMenuItem";
             this.sistemaToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
             this.sistemaToolStripMenuItem.Text = "Menu";
             // 
-            // userToolStripMenuItem
-            // 
-            this.userToolStripMenuItem.Name = "userToolStripMenuItem";
-            this.userToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
-            this.userToolStripMenuItem.Text = "Usuario";
-            this.userToolStripMenuItem.Click += new System.EventHandler(this.usuarioToolStripMenuItem_Click);
-            // 
             // cartToolStripMenuItem
             // 
             this.cartToolStripMenuItem.Name = "cartToolStripMenuItem";
             this.cartToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
+            this.cartToolStripMenuItem.Tag = "MenuCart";
             this.cartToolStripMenuItem.Text = "Carrito";
             this.cartToolStripMenuItem.Click += new System.EventHandler(this.carritoToolStripMenuItem_Click);
+            // 
+            // saleToolStripMenuItem
+            // 
+            this.saleToolStripMenuItem.Name = "saleToolStripMenuItem";
+            this.saleToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
+            this.saleToolStripMenuItem.Tag = "MenuSale";
+            this.saleToolStripMenuItem.Text = "Venta";
+            this.saleToolStripMenuItem.Click += new System.EventHandler(this.saleToolStripMenuItem_Click);
             // 
             // logOutToolStripMenuItem
             // 
@@ -83,16 +91,67 @@
             this.logOutToolStripMenuItem.Text = "Log out";
             this.logOutToolStripMenuItem.Click += new System.EventHandler(this.logOutToolStripMenuItem_Click);
             // 
+            // adminToolStripMenuItem
+            // 
+            this.adminToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.userToolStripMenuItem,
+            this.productoToolStripMenuItem,
+            this.idiomaToolStripMenuItem,
+            this.registroDeVentasToolStripMenuItem});
+            this.adminToolStripMenuItem.Name = "adminToolStripMenuItem";
+            this.adminToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
+            this.adminToolStripMenuItem.Text = "Admin";
+            // 
+            // userToolStripMenuItem
+            // 
+            this.userToolStripMenuItem.Name = "userToolStripMenuItem";
+            this.userToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.userToolStripMenuItem.Tag = "MenuUser";
+            this.userToolStripMenuItem.Text = "Usuario";
+            this.userToolStripMenuItem.Click += new System.EventHandler(this.usuarioToolStripMenuItem_Click_1);
+            // 
+            // productoToolStripMenuItem
+            // 
+            this.productoToolStripMenuItem.Name = "productoToolStripMenuItem";
+            this.productoToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.productoToolStripMenuItem.Tag = "MenuInventory";
+            this.productoToolStripMenuItem.Text = "Inventario";
+            // 
+            // idiomaToolStripMenuItem
+            // 
+            this.idiomaToolStripMenuItem.Name = "idiomaToolStripMenuItem";
+            this.idiomaToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.idiomaToolStripMenuItem.Tag = "MenuLanguage";
+            this.idiomaToolStripMenuItem.Text = "Idioma";
+            // 
+            // registroDeVentasToolStripMenuItem
+            // 
+            this.registroDeVentasToolStripMenuItem.Name = "registroDeVentasToolStripMenuItem";
+            this.registroDeVentasToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.registroDeVentasToolStripMenuItem.Tag = "MenuRegister";
+            this.registroDeVentasToolStripMenuItem.Text = "Registros";
+            // 
             // lblTitle
             // 
             this.lblTitle.AccessibleRole = System.Windows.Forms.AccessibleRole.PageTabList;
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.Location = new System.Drawing.Point(108, 44);
+            this.lblTitle.Location = new System.Drawing.Point(170, 52);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(562, 55);
             this.lblTitle.TabIndex = 1;
             this.lblTitle.Text = "SISTEMA CARNICERÍA";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::GUI.Properties.Resources.Imagen1;
+            this.pictureBox1.Location = new System.Drawing.Point(83, 122);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(620, 225);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.TabStop = false;
             // 
             // comboBoxImage1
             // 
@@ -100,17 +159,6 @@
             this.comboBoxImage1.Name = "comboBoxImage1";
             this.comboBoxImage1.Size = new System.Drawing.Size(98, 23);
             this.comboBoxImage1.TabIndex = 2;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::GUI.Properties.Resources.Imagen1;
-            this.pictureBox1.Location = new System.Drawing.Point(83, 122);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(620, 225);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 3;
-            this.pictureBox1.TabStop = false;
             // 
             // MainForm
             // 
@@ -139,12 +187,17 @@
 
         private System.Windows.Forms.MenuStrip menuStripSystem;
         private System.Windows.Forms.ToolStripMenuItem sistemaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem userToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem logOutToolStripMenuItem;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.ToolStripMenuItem cartToolStripMenuItem;
         private Controles.ComboBoxImage comboBoxImage1;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ToolStripMenuItem saleToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem adminToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem userToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem productoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem idiomaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem registroDeVentasToolStripMenuItem;
     }
 }
 

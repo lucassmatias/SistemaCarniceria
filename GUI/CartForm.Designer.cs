@@ -30,6 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CartForm));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.clmId2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmName2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmKGPrice2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmStock = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tbFiltro = new System.Windows.Forms.TextBox();
             this.CbBeef = new System.Windows.Forms.CheckBox();
             this.CbPork = new System.Windows.Forms.CheckBox();
@@ -40,12 +44,12 @@
             this.clmName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmKGPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmNetWeight = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmGrossWeight = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmNetPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblBuy = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
             this.btnFinish = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
             this.tbPesoBruto = new System.Windows.Forms.TextBox();
             this.tbPesoNeto = new System.Windows.Forms.TextBox();
             this.lblGrossWeight = new System.Windows.Forms.Label();
@@ -58,10 +62,6 @@
             this.lblName2 = new System.Windows.Forms.Label();
             this.lblSurname = new System.Windows.Forms.Label();
             this.btnConsult = new System.Windows.Forms.Button();
-            this.clmId2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmName2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmKGPrice2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmStock = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
@@ -85,6 +85,37 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(319, 471);
             this.dataGridView1.TabIndex = 0;
+            // 
+            // clmId2
+            // 
+            this.clmId2.FillWeight = 59.04607F;
+            this.clmId2.HeaderText = "Id";
+            this.clmId2.MinimumWidth = 8;
+            this.clmId2.Name = "clmId2";
+            this.clmId2.ReadOnly = true;
+            // 
+            // clmName2
+            // 
+            this.clmName2.FillWeight = 109.5632F;
+            this.clmName2.HeaderText = "Nombre";
+            this.clmName2.MinimumWidth = 8;
+            this.clmName2.Name = "clmName2";
+            this.clmName2.ReadOnly = true;
+            // 
+            // clmKGPrice2
+            // 
+            this.clmKGPrice2.FillWeight = 121.8274F;
+            this.clmKGPrice2.HeaderText = "PrecioKG";
+            this.clmKGPrice2.MinimumWidth = 8;
+            this.clmKGPrice2.Name = "clmKGPrice2";
+            this.clmKGPrice2.ReadOnly = true;
+            // 
+            // clmStock
+            // 
+            this.clmStock.FillWeight = 109.5632F;
+            this.clmStock.HeaderText = "Stock";
+            this.clmStock.Name = "clmStock";
+            this.clmStock.ReadOnly = true;
             // 
             // tbFiltro
             // 
@@ -149,7 +180,7 @@
             this.clmName,
             this.clmKGPrice,
             this.clmNetWeight,
-            this.clmGrossWeight});
+            this.clmNetPrice});
             this.dataGridView2.Location = new System.Drawing.Point(501, 67);
             this.dataGridView2.MultiSelect = false;
             this.dataGridView2.Name = "dataGridView2";
@@ -187,13 +218,13 @@
             this.clmNetWeight.Name = "clmNetWeight";
             this.clmNetWeight.ReadOnly = true;
             // 
-            // clmGrossWeight
+            // clmNetPrice
             // 
-            this.clmGrossWeight.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.clmGrossWeight.HeaderText = "PrecioNeto";
-            this.clmGrossWeight.MinimumWidth = 8;
-            this.clmGrossWeight.Name = "clmGrossWeight";
-            this.clmGrossWeight.ReadOnly = true;
+            this.clmNetPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.clmNetPrice.HeaderText = "PrecioNeto";
+            this.clmNetPrice.MinimumWidth = 8;
+            this.clmNetPrice.Name = "clmNetPrice";
+            this.clmNetPrice.ReadOnly = true;
             // 
             // lblBuy
             // 
@@ -238,16 +269,16 @@
             this.btnFinish.UseVisualStyleBackColor = true;
             this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
             // 
-            // btnCancel
+            // btnClose
             // 
-            this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.Location = new System.Drawing.Point(12, 544);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(114, 41);
-            this.btnCancel.TabIndex = 13;
-            this.btnCancel.Text = "Cancelar";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.Location = new System.Drawing.Point(12, 544);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(114, 41);
+            this.btnClose.TabIndex = 13;
+            this.btnClose.Text = "Salir";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // tbPesoBruto
             // 
@@ -355,42 +386,11 @@
             this.btnConsult.UseVisualStyleBackColor = true;
             this.btnConsult.Click += new System.EventHandler(this.btnConsult_Click);
             // 
-            // clmId2
-            // 
-            this.clmId2.FillWeight = 59.04607F;
-            this.clmId2.HeaderText = "Id";
-            this.clmId2.MinimumWidth = 8;
-            this.clmId2.Name = "clmId2";
-            this.clmId2.ReadOnly = true;
-            // 
-            // clmName2
-            // 
-            this.clmName2.FillWeight = 109.5632F;
-            this.clmName2.HeaderText = "Nombre";
-            this.clmName2.MinimumWidth = 8;
-            this.clmName2.Name = "clmName2";
-            this.clmName2.ReadOnly = true;
-            // 
-            // clmKGPrice2
-            // 
-            this.clmKGPrice2.FillWeight = 121.8274F;
-            this.clmKGPrice2.HeaderText = "PrecioKG";
-            this.clmKGPrice2.MinimumWidth = 8;
-            this.clmKGPrice2.Name = "clmKGPrice2";
-            this.clmKGPrice2.ReadOnly = true;
-            // 
-            // clmStock
-            // 
-            this.clmStock.FillWeight = 109.5632F;
-            this.clmStock.HeaderText = "Stock";
-            this.clmStock.Name = "clmStock";
-            this.clmStock.ReadOnly = true;
-            // 
             // CartForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1207, 649);
+            this.ClientSize = new System.Drawing.Size(1207, 592);
             this.Controls.Add(this.btnConsult);
             this.Controls.Add(this.lblSurname);
             this.Controls.Add(this.lblName2);
@@ -403,7 +403,7 @@
             this.Controls.Add(this.lblGrossWeight);
             this.Controls.Add(this.tbPesoNeto);
             this.Controls.Add(this.tbPesoBruto);
-            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnFinish);
             this.Controls.Add(this.btnRemove);
             this.Controls.Add(this.btnAdd);
@@ -440,7 +440,7 @@
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnRemove;
         private System.Windows.Forms.Button btnFinish;
-        private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.TextBox tbPesoBruto;
         private System.Windows.Forms.TextBox tbPesoNeto;
         private System.Windows.Forms.Label lblGrossWeight;
@@ -452,15 +452,15 @@
         private System.Windows.Forms.Label lblId;
         private System.Windows.Forms.Label lblName2;
         private System.Windows.Forms.Label lblSurname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmKGPrice;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmNetWeight;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmGrossWeight;
         private System.Windows.Forms.Button btnConsult;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmId2;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmName2;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmKGPrice2;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmStock;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmKGPrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmNetWeight;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmNetPrice;
     }
 }

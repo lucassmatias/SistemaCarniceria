@@ -17,6 +17,7 @@ namespace Mappers
     {
         ArrayList al;
         DAO dao = new DAO();
+        Mapper_Perfil map = new Mapper_Perfil();
         public void Alta(belUsuario pItem)
         {
             string storedProcedure = "S_Usuario_Crear";
@@ -47,20 +48,15 @@ namespace Mappers
             p5.SqlDbType = SqlDbType.NVarChar;
             al.Add(p5);
             SqlParameter p6 = new SqlParameter();
-            p6.ParameterName = "@rol";
-            p6.Value = pItem.Rol;
+            p6.ParameterName = "@ema";
+            p6.Value = pItem.Email;
             p6.SqlDbType = SqlDbType.NVarChar;
             al.Add(p6);
             SqlParameter p7 = new SqlParameter();
-            p7.ParameterName = "@ema";
-            p7.Value = pItem.Email;
-            p7.SqlDbType = SqlDbType.NVarChar;
+            p7.ParameterName = "@idi";
+            p7.Value = pItem.Idioma.Id;
+            p7.SqlDbType = SqlDbType.Int;
             al.Add(p7);
-            SqlParameter p8 = new SqlParameter();
-            p8.ParameterName = "@idi";
-            p8.Value = pItem.Idioma.Id;
-            p8.SqlDbType = SqlDbType.Int;
-            al.Add(p8);
             dao.Escribir(storedProcedure, al);
         }
 
@@ -84,7 +80,8 @@ namespace Mappers
             foreach(DataRow dr in dt.Rows)
             {
                 belUsuario aux = new belUsuario(dr.ItemArray);
-                aux.Idioma = LanguageManager.GetInstance.ConsultaIdiomaCodigo(int.Parse(dr.ItemArray[dr.ItemArray.Length - 1].ToString()));
+                aux.Idioma = LanguageManager.ConsultaIdiomaCodigo(int.Parse(dr.ItemArray[dr.ItemArray.Length - 1].ToString()));
+                aux.Perfil = map.Consulta().Find(x => x.Id == dr[5].ToString());
                 lUsuario.Add(aux);
             }
             return lUsuario;
@@ -131,8 +128,8 @@ namespace Mappers
             al.Add(p6);
             SqlParameter p7 = new SqlParameter();
             p7.ParameterName = "@rol";
-            p7.Value = pItem.Rol;
-            p7.SqlDbType = SqlDbType.NVarChar;
+            p7.Value = pItem.Perfil.Id;
+            p7.SqlDbType = SqlDbType.Int;
             al.Add(p7);
             SqlParameter p8 = new SqlParameter();
             p8.ParameterName = "@ema";

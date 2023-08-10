@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using Services;
 using BEL;
 using BLL;
+using Interfaces;
+
 namespace Controles
 {
     public partial class ComboBoxImage: UserControl
@@ -43,19 +45,18 @@ namespace Controles
         {
             if(a == null) a = new bllUsuario();
             ComboBox combo = (ComboBox)sender;
-            LanguageManager lm = LanguageManager.GetInstance;
             int x = combo.SelectedIndex + 1;
             if (SessionManager.GetInstance == null)
             {
-                lm.CambiarIdioma(lm.ConsultaIdiomaCodigo(x));
+                LanguageManager.CambiarIdioma(LanguageManager.ConsultaIdiomaCodigo(x));
             }
             else
             {
                 SessionManager sm = SessionManager.GetInstance;
                 if (combo.SelectedIndex >= 0)
                 {
-                    sm.user.Idioma = lm.ConsultaIdiomaCodigo(x);
-                    lm.CambiarIdioma(sm.user.Idioma);
+                    sm.user.Idioma = LanguageManager.ConsultaIdiomaCodigo(x);
+                    LanguageManager.CambiarIdioma(sm.user.Idioma);
                     a.Modificacion(sm.user);
                 }
             }        

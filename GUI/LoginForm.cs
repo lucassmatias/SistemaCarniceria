@@ -18,6 +18,9 @@ namespace GUI
     {
         List<belUsuario> ListaUsuario;
         bllUsuario bllusuario;
+        string msgBlockedAccount;
+        string msgWrongPassword;
+        string msgNoExistAccount;
         public LoginForm()
         {
             InitializeComponent();
@@ -37,6 +40,7 @@ namespace GUI
                     formPrincipalInstance.SessionManager = SessionManager.GetInstance;
                     this.Hide();
                     LanguageManager.Suscribir(formPrincipalInstance);
+                    LogManager.Add("LOGIN - Login", User);
                     formPrincipalInstance.ShowDialog();
                     this.Close();
                 }
@@ -44,31 +48,29 @@ namespace GUI
                 {
                     if(User.Blocked == false)
                     {
-                        MessageBox.Show("Contraseña errónea", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show(msgWrongPassword, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         User.Intentos -= 1;
-                       // LogManager.Add($"LOGIN - Contraseña errónea ({User.Username})");
+                        LogManager.Add("LOGIN - Incorrect password", User);
                         if (User.Intentos == 0)
                         {
                             User.Blocked = true;
                             bllusuario.Modificacion(User);
-                            MessageBox.Show("Cuenta bloqueda", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                           // LogManager.Add($"LOGIN - Bloqueo de cuenta por intentos excedidos ({User.Username})");
+                            MessageBox.Show(msgBlockedAccount, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            LogManager.Add("LOGIN - Account blocking for missed attempts", User);
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Cuenta bloqueda", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        //LogManager.Add($"LOGIN - Intento de inicio de sesión de cuenta bloqueada ({User.Username})");
+                        MessageBox.Show(msgBlockedAccount, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        LogManager.Add("LOGIN - Blocked account login attempt", User);
                     }
                 }
             }
-            else{MessageBox.Show("No existe un usuario con ese nombre", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);}
+            else{MessageBox.Show(msgNoExistAccount, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);}
         }
-
         private void FormLogIn_Load(object sender, EventArgs e)
         {
             bllusuario = new bllUsuario();
-            LanguageManager.CrearInstancia();
             LanguageManager.Suscribir(this);
             comboBoxImage1.RetornaComboBox().SelectedIndex = 0;
         }
@@ -84,6 +86,10 @@ namespace GUI
             lblPassword.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "lblPassword").Texto;
             cbSee.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "cbSee").Texto;
             btnLogin.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "btnLogin").Texto;
+            msgBlockedAccount = pIdioma.ListaEtiquetas.Find(x => x.Tag == "msgBlockedAccount").Texto;
+            msgWrongPassword = pIdioma.ListaEtiquetas.Find(x => x.Tag == "msgWrongPassword").Texto;
+            msgNoExistAccount = pIdioma.ListaEtiquetas.Find(x => x.Tag == "msgNoExistAccount").Texto;
+            this.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "frmLogin").Texto;
         }
     }
 }

@@ -44,6 +44,9 @@
     <Compile Include="bllCarne.cs" />
     <Compile Include="bllCarneCarrito.cs" />
     <Compile Include="bllCarrito.cs" />
+    <Compile Include="bllPerfil.cs" />
+    <Compile Include="bllPermiso.cs" />
+    <Compile Include="bllTicket.cs" />
     <Compile Include="bllUsuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

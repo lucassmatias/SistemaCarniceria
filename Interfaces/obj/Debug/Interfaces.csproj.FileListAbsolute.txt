@@ -10,3 +10,9 @@ C:\Users\lukit\OneDrive\Escritorio\SistemaCarniceria-master\Interfaces\obj\Debug
 C:\Users\lukit\OneDrive\Escritorio\SistemaCarniceria-master\Interfaces\obj\Debug\Interfaces.csproj.CoreCompileInputs.cache
 C:\Users\lukit\OneDrive\Escritorio\SistemaCarniceria-master\Interfaces\obj\Debug\Interfaces.dll
 C:\Users\lukit\OneDrive\Escritorio\SistemaCarniceria-master\Interfaces\obj\Debug\Interfaces.pdb
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Interfaces\bin\Debug\Interfaces.dll
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Interfaces\bin\Debug\Interfaces.pdb
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Interfaces\obj\Debug\Interfaces.csproj.AssemblyReference.cache
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Interfaces\obj\Debug\Interfaces.csproj.CoreCompileInputs.cache
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Interfaces\obj\Debug\Interfaces.dll
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Interfaces\obj\Debug\Interfaces.pdb

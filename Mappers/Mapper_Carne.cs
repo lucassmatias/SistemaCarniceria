@@ -29,7 +29,7 @@ namespace Mappers
             SqlParameter p2 = new SqlParameter();
             p2.ParameterName = "@pkg";
             p2.Value = pItem.PrecioKG;
-            p2.SqlDbType = SqlDbType.Float;
+            p2.SqlDbType = SqlDbType.Decimal;
             al.Add(p2);
             SqlParameter p3 = new SqlParameter();
             p3.ParameterName = "@tipo";
@@ -43,7 +43,7 @@ namespace Mappers
             SqlParameter p4 = new SqlParameter();
             p4.ParameterName = "@sto";
             p4.Value = pItem.StockKG;
-            p4.SqlDbType = SqlDbType.Float;
+            p4.SqlDbType = SqlDbType.Decimal;
             al.Add(p4);
             dao.Escribir(storedProcedure, al);
         }
@@ -88,7 +88,7 @@ namespace Mappers
 
         public List<belCarne> ConsultaCondicional(string pId)
         {
-            string storedProcedure = "S_CarneListarUno";
+            string storedProcedure = "S_Carne_ListarUno";
             al = new ArrayList();
             SqlParameter p1 = new SqlParameter();
             p1.ParameterName = "@id";
@@ -130,7 +130,7 @@ namespace Mappers
             SqlParameter p2 = new SqlParameter();
             p2.ParameterName = "@pre";
             p2.Value = pItem.PrecioKG;
-            p2.SqlDbType = SqlDbType.Float;
+            p2.SqlDbType = SqlDbType.Decimal;
             al.Add(p2);
             SqlParameter p3 = new SqlParameter();
             p3.ParameterName = "@sto";
@@ -140,7 +140,7 @@ namespace Mappers
             SqlParameter p4 = new SqlParameter();
             p4.ParameterName = "@id";
             p4.Value = pItem.Id;
-            p4.SqlDbType = SqlDbType.Int;
+            p4.SqlDbType = SqlDbType.Decimal;
             al.Add(p4);
             dao.Escribir(storedProcedure, al);
         }

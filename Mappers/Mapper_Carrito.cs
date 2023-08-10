@@ -28,18 +28,23 @@ namespace Mappers
             SqlParameter p2 = new SqlParameter();
             p2.ParameterName = "@nom";
             p2.Value = pItem.Nombre;
-            p2.SqlDbType = SqlDbType.VarChar;
+            p2.SqlDbType = SqlDbType.NVarChar;
             al.Add(p2);
             SqlParameter p3 = new SqlParameter();
             p3.ParameterName = "@ape";
             p3.Value = pItem.Apellido;
-            p3.SqlDbType = SqlDbType.VarChar;
+            p3.SqlDbType = SqlDbType.NVarChar;
             al.Add(p3);
             SqlParameter p4 = new SqlParameter();
             p4.ParameterName = "@tot";
             p4.Value = pItem.ImporteBruto;
-            p4.SqlDbType = SqlDbType.Float;
+            p4.SqlDbType = SqlDbType.Decimal;
             al.Add(p4);
+            SqlParameter p5 = new SqlParameter();
+            p5.ParameterName = "@cod";
+            p5.Value = pItem.Id;
+            p5.SqlDbType = SqlDbType.Int;
+            al.Add(p5);
             dao.Escribir(storedProcedure, al);
         }
 
@@ -65,7 +70,10 @@ namespace Mappers
             {
                 belCarrito aux = new belCarrito(dr.ItemArray);
                 List<belCarneCarrito> lCarne = map.ConsultaCondicional(aux.Id);
-                aux.Productos.AddRange(lCarne);
+                foreach(belCarneCarrito cc in lCarne)
+                {
+                    aux.Productos.Add(cc);
+                }
                 lCarrito.Add(aux);
             }
             return lCarrito;

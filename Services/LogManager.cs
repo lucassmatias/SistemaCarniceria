@@ -1,7 +1,13 @@
-﻿using System;
+﻿using BEL;
+using DAL;
+using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,35 +15,48 @@ namespace Services
 {
     public class LogManager
     {
-        private static string Path = @"C:\Users\lukit\OneDrive\Escritorio\Recursos UAI\3er Año - 1er Cuatrimestre\Ingeniería de software\Código\LogSistema.txt";
-        public static void Add(string sLog)
+        static DAO dao = new DAO();
+        public static void Add(string sLog, belUsuario pUsuario = null)
         {
-            CreateDirectory();
-            string cadena;
-            using (StreamReader sr = new StreamReader(Path))
+            ArrayList al = new ArrayList();
+            SqlParameter p1 = new SqlParameter();
+            p1.ParameterName = "@fec";
+            p1.Value = DateTime.Now;
+            p1.SqlDbType = SqlDbType.DateTime;
+            al.Add(p1);
+            SqlParameter p2 = new SqlParameter();
+            p2.ParameterName = "@txt";
+            p2.Value = sLog;
+            p2.SqlDbType = SqlDbType.NVarChar;
+            al.Add(p2);
+            string storedProcedure = "";
+            if(pUsuario != null)
             {
-                cadena = sr.ReadToEnd();
-                sr.Close();
+                storedProcedure = "S_Bitacora_Crear";
+                SqlParameter p3 = new SqlParameter();
+                p3.ParameterName = "@user";
+                p3.Value = pUsuario.Username;
+                p3.SqlDbType = SqlDbType.NVarChar;
+                al.Add(p3);
+                dao.Escribir(storedProcedure, al);
             }
-            using (StreamWriter sw = new StreamWriter(Path))
+            else
             {
-                sw.Write(cadena + DateTime.Now + " - " + sLog + Environment.NewLine);
-                sw.Close();
+                storedProcedure = "S_Bitacora_CrearSinUsuario";
+                dao.Escribir(storedProcedure, al);
             }
         }
-        private static void CreateDirectory()
+        public static List<Array> RetornaBitacora()
         {
-            try
+            List<Array> lBitacora = new List<Array>();
+            string storedProcedure = "S_Bitacora_Listar";
+            DataTable dt = dao.Leer(storedProcedure);
+            foreach(DataRow dr in dt.Rows )
             {
-                if (Directory.Exists(Path))
-                {
-                    Directory.CreateDirectory(Path);
-                }
+                Array aux = dr.ItemArray;
+                lBitacora.Add(aux);
             }
-            catch (DirectoryNotFoundException ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
+            return lBitacora;
+        } 
     }
 }

@@ -57,11 +57,9 @@
             this.lblName = new System.Windows.Forms.Label();
             this.lblSurname = new System.Windows.Forms.Label();
             this.lblEmail = new System.Windows.Forms.Label();
-            this.lblRole = new System.Windows.Forms.Label();
             this.tbNombre = new System.Windows.Forms.TextBox();
             this.tbApellido = new System.Windows.Forms.TextBox();
             this.tbEmail = new System.Windows.Forms.TextBox();
-            this.tbRol = new System.Windows.Forms.TextBox();
             this.btnActive = new System.Windows.Forms.Button();
             this.rbActive = new System.Windows.Forms.RadioButton();
             this.rbAll = new System.Windows.Forms.RadioButton();
@@ -70,6 +68,7 @@
             this.lblUserM = new System.Windows.Forms.Label();
             this.lblLanguage = new System.Windows.Forms.Label();
             this.comboBoxImageNotEvent1 = new Controles.ComboBoxImageNotEvent();
+            this.btnProfile = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -227,6 +226,7 @@
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(117, 39);
             this.btnAdd.TabIndex = 5;
+            this.btnAdd.Tag = "UserAdd";
             this.btnAdd.Text = "Agregar";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
@@ -238,6 +238,7 @@
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(117, 39);
             this.btnRemove.TabIndex = 6;
+            this.btnRemove.Tag = "UserRemove";
             this.btnRemove.Text = "Eliminar";
             this.btnRemove.UseVisualStyleBackColor = true;
             this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
@@ -249,6 +250,7 @@
             this.btnModify.Name = "btnModify";
             this.btnModify.Size = new System.Drawing.Size(117, 39);
             this.btnModify.TabIndex = 7;
+            this.btnModify.Tag = "UserModify";
             this.btnModify.Text = "Modificar";
             this.btnModify.UseVisualStyleBackColor = true;
             this.btnModify.Click += new System.EventHandler(this.btnModify_Click);
@@ -260,6 +262,7 @@
             this.btnUnlock.Name = "btnUnlock";
             this.btnUnlock.Size = new System.Drawing.Size(159, 50);
             this.btnUnlock.TabIndex = 8;
+            this.btnUnlock.Tag = "UserUnlock";
             this.btnUnlock.Text = "Des/bloquear";
             this.btnUnlock.UseVisualStyleBackColor = true;
             this.btnUnlock.Click += new System.EventHandler(this.btnUnlock_Click);
@@ -330,15 +333,6 @@
             this.lblEmail.TabIndex = 15;
             this.lblEmail.Text = "Email";
             // 
-            // lblRole
-            // 
-            this.lblRole.AutoSize = true;
-            this.lblRole.Location = new System.Drawing.Point(11, 394);
-            this.lblRole.Name = "lblRole";
-            this.lblRole.Size = new System.Drawing.Size(23, 13);
-            this.lblRole.TabIndex = 16;
-            this.lblRole.Text = "Rol";
-            // 
             // tbNombre
             // 
             this.tbNombre.Location = new System.Drawing.Point(93, 317);
@@ -360,13 +354,6 @@
             this.tbEmail.Size = new System.Drawing.Size(141, 20);
             this.tbEmail.TabIndex = 19;
             // 
-            // tbRol
-            // 
-            this.tbRol.Location = new System.Drawing.Point(93, 391);
-            this.tbRol.Name = "tbRol";
-            this.tbRol.Size = new System.Drawing.Size(141, 20);
-            this.tbRol.TabIndex = 20;
-            // 
             // btnActive
             // 
             this.btnActive.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -374,6 +361,7 @@
             this.btnActive.Name = "btnActive";
             this.btnActive.Size = new System.Drawing.Size(156, 50);
             this.btnActive.TabIndex = 21;
+            this.btnActive.Tag = "UserActivate";
             this.btnActive.Text = "Des/activar";
             this.btnActive.UseVisualStyleBackColor = true;
             this.btnActive.Click += new System.EventHandler(this.btnActive_Click);
@@ -411,6 +399,9 @@
             // 
             // tbDNI
             // 
+            this.tbDNI.BackColor = System.Drawing.Color.White;
+            this.tbDNI.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbDNI.ForeColor = System.Drawing.SystemColors.MenuText;
             this.tbDNI.Location = new System.Drawing.Point(93, 248);
             this.tbDNI.Name = "tbDNI";
             this.tbDNI.Size = new System.Drawing.Size(141, 20);
@@ -429,7 +420,7 @@
             // lblLanguage
             // 
             this.lblLanguage.AutoSize = true;
-            this.lblLanguage.Location = new System.Drawing.Point(12, 415);
+            this.lblLanguage.Location = new System.Drawing.Point(12, 389);
             this.lblLanguage.Name = "lblLanguage";
             this.lblLanguage.Size = new System.Drawing.Size(38, 13);
             this.lblLanguage.TabIndex = 28;
@@ -437,16 +428,28 @@
             // 
             // comboBoxImageNotEvent1
             // 
-            this.comboBoxImageNotEvent1.Location = new System.Drawing.Point(93, 414);
+            this.comboBoxImageNotEvent1.Location = new System.Drawing.Point(93, 389);
             this.comboBoxImageNotEvent1.Name = "comboBoxImageNotEvent1";
             this.comboBoxImageNotEvent1.Size = new System.Drawing.Size(108, 22);
             this.comboBoxImageNotEvent1.TabIndex = 29;
+            // 
+            // btnProfile
+            // 
+            this.btnProfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnProfile.Location = new System.Drawing.Point(253, 383);
+            this.btnProfile.Name = "btnProfile";
+            this.btnProfile.Size = new System.Drawing.Size(117, 39);
+            this.btnProfile.TabIndex = 30;
+            this.btnProfile.Text = "Perfiles";
+            this.btnProfile.UseVisualStyleBackColor = true;
+            this.btnProfile.Click += new System.EventHandler(this.btnProfile_Click);
             // 
             // UsersForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(828, 445);
+            this.Controls.Add(this.btnProfile);
             this.Controls.Add(this.comboBoxImageNotEvent1);
             this.Controls.Add(this.lblLanguage);
             this.Controls.Add(this.lblUserM);
@@ -455,11 +458,9 @@
             this.Controls.Add(this.rbAll);
             this.Controls.Add(this.rbActive);
             this.Controls.Add(this.btnActive);
-            this.Controls.Add(this.tbRol);
             this.Controls.Add(this.tbEmail);
             this.Controls.Add(this.tbApellido);
             this.Controls.Add(this.tbNombre);
-            this.Controls.Add(this.lblRole);
             this.Controls.Add(this.lblEmail);
             this.Controls.Add(this.lblSurname);
             this.Controls.Add(this.lblName);
@@ -505,11 +506,9 @@
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.Label lblSurname;
         private System.Windows.Forms.Label lblEmail;
-        private System.Windows.Forms.Label lblRole;
         private System.Windows.Forms.TextBox tbNombre;
         private System.Windows.Forms.TextBox tbApellido;
         private System.Windows.Forms.TextBox tbEmail;
-        private System.Windows.Forms.TextBox tbRol;
         private System.Windows.Forms.Button btnActive;
         private System.Windows.Forms.RadioButton rbActive;
         private System.Windows.Forms.RadioButton rbAll;
@@ -530,5 +529,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmTrys;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmLanguage;
         private Controles.ComboBoxImageNotEvent comboBoxImageNotEvent1;
+        private System.Windows.Forms.Button btnProfile;
     }
 }

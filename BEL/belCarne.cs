@@ -23,5 +23,13 @@ namespace BEL
         {
             return (pCarne1.Nombre).CompareTo(pCarne2.Nombre);
         }
+        public void QuitarStock(decimal pStock)
+        {
+            this.StockKG -= pStock;
+        }
+        public void ReponerStock(decimal pStock)
+        {
+            this.StockKG += pStock;
+        }
     }
 }

@@ -31,9 +31,23 @@ namespace BLL
             decimal importe = 0;
             foreach(belCarneCarrito x in carrito.Productos)
             {
-                importe += x.Carne.PrecioKG * x.PrecioNeto;
+                importe += x.Carne.PrecioKG * x.PesoBruto;
             }
             carrito.ImporteBruto = importe;
+        }
+        public void AgregarID(belCarrito carrito)
+        {
+            List<belCarrito> aux = map.Consulta();
+            if(aux.Count != 0)
+            {
+                string LastId = aux[aux.Count + 1].Id;
+                int LastIDPlus = int.Parse(LastId) + 1;
+                carrito.Id = LastIDPlus.ToString();
+            }
+            else
+            {
+                carrito.Id = "1";
+            }
         }
         public void ClearProductos(belCarrito carrito)
         {

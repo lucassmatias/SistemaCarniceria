@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Security.Policy;
+using System.Security.Cryptography;
 
 namespace Mappers
 {
@@ -19,7 +20,7 @@ namespace Mappers
         DAO dao = new DAO();
         public void Alta(belCarneCarrito pItem)
         {
-            string storedProcedure = "S_ProductoCarrito_Crear";
+            string storedProcedure = "S_CarneCarrito_Crear";
             al = new ArrayList();
             SqlParameter p1 = new SqlParameter();
             p1.ParameterName = "@codCar";
@@ -34,17 +35,17 @@ namespace Mappers
             SqlParameter p3 = new SqlParameter();
             p3.ParameterName = "@pebru";
             p3.Value = pItem.PesoBruto;
-            p3.SqlDbType = SqlDbType.Float;
+            p3.SqlDbType = SqlDbType.Decimal;
             al.Add(p3);
             SqlParameter p4 = new SqlParameter();
             p4.ParameterName = "@penet";
             p4.Value = pItem.PesoNeto;
-            p4.SqlDbType = SqlDbType.Float;
+            p4.SqlDbType = SqlDbType.Decimal;
             al.Add(p4);
             SqlParameter p5 = new SqlParameter();
             p5.ParameterName = "@prenet";
             p5.Value = pItem.PrecioNeto;
-            p5.SqlDbType = SqlDbType.Float;
+            p5.SqlDbType = SqlDbType.Decimal;
             al.Add(p5);
             dao.Escribir(storedProcedure, al);
         }
@@ -69,7 +70,7 @@ namespace Mappers
         public List<belCarneCarrito> ConsultaCondicional(string pId)
         {
             Mapper_Carne map = new Mapper_Carne();
-            string storedProcedure = "S_ProductoCarrito_Listar";
+            string storedProcedure = "S_CarneCarrito_Listar";
             al = new ArrayList();
             SqlParameter p1 = new SqlParameter();
             p1.ParameterName = "@codCar";
@@ -89,7 +90,14 @@ namespace Mappers
 
         public void Modificacion(belCarneCarrito pItem)
         {
-            throw new NotImplementedException();
+            string storedProcedure = "S_CarneCarrito_CambiarCodigo";
+            al = new ArrayList();
+            SqlParameter p1 = new SqlParameter();
+            p1.ParameterName = "@cod";
+            p1.Value = pItem.Id;
+            p1.SqlDbType = SqlDbType.Int;
+            al.Add(p1);
+            dao.Escribir(storedProcedure, al);
         }
     }
 }
