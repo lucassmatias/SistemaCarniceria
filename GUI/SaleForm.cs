@@ -12,7 +12,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using ServiceClasses;
 namespace GUI
 {
     public partial class SaleForm : Form, ITraducible
@@ -25,6 +25,7 @@ namespace GUI
         string msgPriceError;
         string msgDeviceNoConnected;
         string msgSuccesfulSale;
+        string msgCartRemoved;
         public SaleForm()
         {
             InitializeComponent();
@@ -48,7 +49,7 @@ namespace GUI
             ListCarrito = BllCarrito.Consulta();
             foreach (belCarrito x in ListCarrito)
             {
-                listBox1.Items.Add($"{x.DNI}, {x.Nombre}");
+                listBox1.Items.Add($"{x.Id}:{x.DNI}, {x.Nombre}");
             }
         }
         private belCarrito SeleccionarCarrito()
@@ -57,14 +58,14 @@ namespace GUI
             if(listBox1.SelectedIndex != -1)
             {
                 string dni = listBox1.Items[listBox1.SelectedIndex].ToString();
-                dni = dni.Split(',')[0];
-                return ListCarrito.Find(x => x.DNI == dni);
+                dni = dni.Split(':')[0];
+                return ListCarrito.Find(x => x.Id == dni);
             }
             else
             {
                 string dni = listBox1.Items[0].ToString();
-                dni = dni.Split(',')[0];
-                return ListCarrito.Find(x => x.DNI == dni);
+                dni = dni.Split(':')[0];
+                return ListCarrito.Find(x => x.Id == dni);
             }
         }
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -85,8 +86,9 @@ namespace GUI
             }
             dataGridView1.Rows.Add(new object[] { "", "", "", "", cart.ImporteBruto});
         }
-        public void Update(Idioma pIdioma)
+        public void Update(string pCodigoIdioma)
         {
+            Idioma pIdioma = LanguageManager.ListaIdioma.Find(x => x.Id == pCodigoIdioma);
             lblSale.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "lblSale").Texto;
             gbPayMethod.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "gbPayMethod").Texto;
             rbCash.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "rbCash").Texto;
@@ -103,6 +105,8 @@ namespace GUI
             msgDeviceNoConnected = pIdioma.ListaEtiquetas.Find(x => x.Tag == "msgDeviceNoConnected").Texto;
             msgSuccesfulSale = pIdioma.ListaEtiquetas.Find(x => x.Tag == "msgSuccesfulSale").Texto;
             this.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "frmSale").Texto;
+            msgCartRemoved = pIdioma.ListaEtiquetas.Find(x => x.Tag == "msgCartRemoved").Texto;
+            btnRemove.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "btnRemove").Texto;
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -131,13 +135,14 @@ namespace GUI
                         BllTicket.Alta(ticket);
                         foreach (belCarneCarrito cc in ticket.ListaCarne)
                         {
+                            string codigo = cc.Id;
                             cc.Id = ticket.Id;
-                            BllCarneCarrito.Modificacion(cc);
+                            BllCarneCarrito.ModificaciónCarneCarrito(cc, codigo);
                         }
                         BllCarrito.Baja(SeleccionarCarrito().Id);
                         CargarListBox();
                         MessageBox.Show(msgSuccesfulSale);
-                        LogManager.Add($"SALES - Made a sale ({ticket.Id})", SessionManager.GetInstance.user);
+                        LogManager.AgregarLogEvento($"SALES - Made a sale ({ticket.Id})", 2, SessionManager.GetInstance.user);
                         textBox1.Text = "";
                         textBox2.Text = "";
                     }
@@ -185,6 +190,24 @@ namespace GUI
                 e.Handled = !char.IsDigit(e.KeyChar);
             }
             
+        }
+
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                belCarrito carrito = SeleccionarCarrito();
+                BllCarrito.Baja(carrito.Id);
+                BllCarneCarrito.Baja(carrito.Id);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                MessageBox.Show(msgCartRemoved);
+            }
         }
     }
 }

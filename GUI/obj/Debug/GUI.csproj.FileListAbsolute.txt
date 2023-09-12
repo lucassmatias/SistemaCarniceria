@@ -77,7 +77,6 @@ C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\GUI\bin\Debug\Servic
 C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\GUI\bin\Debug\Mappers.pdb
 C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\GUI\bin\Debug\DAL.pdb
 C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\GUI\obj\Debug\GUI.csproj.AssemblyReference.cache
-C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\GUI\obj\Debug\GUI.csproj.SuggestedBindingRedirects.cache
 C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\GUI\obj\Debug\GUI.CartForm.resources
 C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\GUI\obj\Debug\GUI.ConsultForm.resources
 C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\GUI\obj\Debug\GUI.MainForm.resources
@@ -91,3 +90,9 @@ C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\GUI\obj\Debug\GUI.cs
 C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\GUI\obj\Debug\GUI.exe
 C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\GUI\obj\Debug\GUI.pdb
 C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\GUI\obj\Debug\GUI.ProfileForm.resources
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\GUI\bin\Debug\ServiceClasses.dll
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\GUI\bin\Debug\ServiceClasses.pdb
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\GUI\obj\Debug\GUI.LanguageForm.resources
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\GUI\obj\Debug\GUI.LogForm.resources
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\GUI\obj\Debug\GUI.ProductForm.resources
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\GUI\obj\Debug\GUI.BackupForm.resources

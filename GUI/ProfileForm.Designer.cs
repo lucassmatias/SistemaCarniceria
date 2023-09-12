@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Permisos");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Permisos");
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.lblProfiles = new System.Windows.Forms.Label();
             this.listBox2 = new System.Windows.Forms.ListBox();
@@ -43,6 +43,7 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.lblActualProfile = new System.Windows.Forms.Label();
             this.lblProfileName = new System.Windows.Forms.Label();
+            this.btnPermissionDelete = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listBox1
@@ -86,11 +87,11 @@
             // 
             this.treeView1.Location = new System.Drawing.Point(412, 68);
             this.treeView1.Name = "treeView1";
-            treeNode1.BackColor = System.Drawing.Color.Transparent;
-            treeNode1.Name = "Permisos";
-            treeNode1.Text = "Permisos";
+            treeNode2.BackColor = System.Drawing.Color.Transparent;
+            treeNode2.Name = "Permisos";
+            treeNode2.Text = "Permisos";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1});
+            treeNode2});
             this.treeView1.Size = new System.Drawing.Size(239, 290);
             this.treeView1.TabIndex = 7;
             // 
@@ -166,7 +167,7 @@
             // btnClose
             // 
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.Location = new System.Drawing.Point(533, 429);
+            this.btnClose.Location = new System.Drawing.Point(535, 429);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(140, 34);
             this.btnClose.TabIndex = 14;
@@ -194,11 +195,24 @@
             this.lblProfileName.TabIndex = 16;
             this.lblProfileName.Text = "Nombre perfil";
             // 
+            // btnPermissionDelete
+            // 
+            this.btnPermissionDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPermissionDelete.Location = new System.Drawing.Point(184, 404);
+            this.btnPermissionDelete.Name = "btnPermissionDelete";
+            this.btnPermissionDelete.Size = new System.Drawing.Size(140, 34);
+            this.btnPermissionDelete.TabIndex = 17;
+            this.btnPermissionDelete.Tag = "PermissionDelete";
+            this.btnPermissionDelete.Text = "Eliminar Permiso";
+            this.btnPermissionDelete.UseVisualStyleBackColor = true;
+            this.btnPermissionDelete.Click += new System.EventHandler(this.btnPermissionDelete_Click);
+            // 
             // ProfileForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(687, 475);
+            this.Controls.Add(this.btnPermissionDelete);
             this.Controls.Add(this.lblProfileName);
             this.Controls.Add(this.lblActualProfile);
             this.Controls.Add(this.btnClose);
@@ -235,5 +249,6 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Label lblActualProfile;
         private System.Windows.Forms.Label lblProfileName;
+        private System.Windows.Forms.Button btnPermissionDelete;
     }
 }

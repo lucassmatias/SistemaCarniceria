@@ -40,7 +40,7 @@ namespace BLL
             List<belCarrito> aux = map.Consulta();
             if(aux.Count != 0)
             {
-                string LastId = aux[aux.Count + 1].Id;
+                string LastId = aux[aux.Count - 1].Id;
                 int LastIDPlus = int.Parse(LastId) + 1;
                 carrito.Id = LastIDPlus.ToString();
             }

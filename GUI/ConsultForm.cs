@@ -9,7 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BEL;
 using Interfaces;
-
+using Services;
+using ServiceClasses;
 namespace GUI
 {
     public partial class ConsultForm : Form, ITraducible
@@ -24,8 +25,9 @@ namespace GUI
             lblStock.Text = $"Stock: {pCarne.StockKG} Kg";
         }
 
-        public void Update(Idioma pIdioma)
+        public void Update(string pCodigoIdioma)
         {
+            Idioma pIdioma = LanguageManager.ListaIdioma.Find(x => x.Id == pCodigoIdioma);
             lblCalculator.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "lblCalculator").Texto;
             lblQuantity.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "lblQuantity").Texto;
             lblPrice.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "lblPrice").Texto;

@@ -46,6 +46,7 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.lblPaid = new System.Windows.Forms.Label();
             this.lblChange = new System.Windows.Forms.Label();
+            this.btnRemove = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.gbPayMethod.SuspendLayout();
             this.SuspendLayout();
@@ -211,11 +212,23 @@
             this.lblChange.TabIndex = 13;
             this.lblChange.Text = "Pasivo";
             // 
+            // btnRemove
+            // 
+            this.btnRemove.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRemove.Location = new System.Drawing.Point(587, 315);
+            this.btnRemove.Name = "btnRemove";
+            this.btnRemove.Size = new System.Drawing.Size(206, 43);
+            this.btnRemove.TabIndex = 14;
+            this.btnRemove.Text = "Eliminar";
+            this.btnRemove.UseVisualStyleBackColor = true;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
+            // 
             // SaleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(805, 534);
+            this.Controls.Add(this.btnRemove);
             this.Controls.Add(this.lblChange);
             this.Controls.Add(this.lblPaid);
             this.Controls.Add(this.textBox2);
@@ -258,5 +271,6 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label lblPaid;
         private System.Windows.Forms.Label lblChange;
+        private System.Windows.Forms.Button btnRemove;
     }
 }

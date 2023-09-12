@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Interfaces;
+using ServiceClasses;
 namespace BEL
 {
     public class belUsuario : IEntity
     {
-        public belUsuario(string pDNI, string pName, string pPassword, string pNombre, string pApellido, string pEmail, belPerfil pPerfil, Idioma pIdioma)
+        public belUsuario(string pDNI, string pName, string pPassword, string pNombre, string pApellido, string pEmail, Perfil pPerfil, Idioma pIdioma)
         {
             DNI = pDNI;
             Username = pName;
@@ -43,7 +44,7 @@ namespace BEL
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public string Email { get; set; }
-        public belPerfil Perfil { get; set; }
+        public Perfil Perfil { get; set; }
         public bool Activo { get; set; }
         public int Intentos { get; set; }
         public Idioma Idioma { get; set; }

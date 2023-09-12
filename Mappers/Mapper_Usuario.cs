@@ -11,13 +11,13 @@ using DAL;
 using System.Data;
 using Services;
 
+
 namespace Mappers
 {
     public class Mapper_Usuario : IABMC<belUsuario>
     {
         ArrayList al;
         DAO dao = new DAO();
-        Mapper_Perfil map = new Mapper_Perfil();
         public void Alta(belUsuario pItem)
         {
             string storedProcedure = "S_Usuario_Crear";
@@ -80,8 +80,8 @@ namespace Mappers
             foreach(DataRow dr in dt.Rows)
             {
                 belUsuario aux = new belUsuario(dr.ItemArray);
-                aux.Idioma = LanguageManager.ConsultaIdiomaCodigo(int.Parse(dr.ItemArray[dr.ItemArray.Length - 1].ToString()));
-                aux.Perfil = map.Consulta().Find(x => x.Id == dr[5].ToString());
+                aux.Idioma = LanguageManager.Idioma(dr.ItemArray[dr.ItemArray.Length - 1].ToString());
+                aux.Perfil = ProfileManager.ListaPerfil.Find(x => x.Id == dr[5].ToString());
                 lUsuario.Add(aux);
             }
             return lUsuario;

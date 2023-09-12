@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using Services;
 using BEL;
 using BLL;
-using Interfaces;
+using ServiceClasses;
 
 namespace Controles
 {
@@ -48,15 +48,15 @@ namespace Controles
             int x = combo.SelectedIndex + 1;
             if (SessionManager.GetInstance == null)
             {
-                LanguageManager.CambiarIdioma(LanguageManager.ConsultaIdiomaCodigo(x));
+                LanguageManager.CambiarIdioma(x.ToString());
             }
             else
             {
                 SessionManager sm = SessionManager.GetInstance;
                 if (combo.SelectedIndex >= 0)
                 {
-                    sm.user.Idioma = LanguageManager.ConsultaIdiomaCodigo(x);
-                    LanguageManager.CambiarIdioma(sm.user.Idioma);
+                    sm.user.Idioma = LanguageManager.ListaIdioma.Find(y => y.Id == x.ToString());
+                    LanguageManager.CambiarIdioma(sm.user.Idioma.Id);
                     a.Modificacion(sm.user);
                 }
             }        

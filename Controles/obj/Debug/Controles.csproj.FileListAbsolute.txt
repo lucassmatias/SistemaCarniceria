@@ -59,3 +59,5 @@ C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Controles\obj\Debug\
 C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Controles\obj\Debug\Controles.csproj.CopyComplete
 C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Controles\obj\Debug\Controles.dll
 C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Controles\obj\Debug\Controles.pdb
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Controles\bin\Debug\ServiceClasses.dll
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Controles\bin\Debug\ServiceClasses.pdb

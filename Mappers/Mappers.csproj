@@ -44,8 +44,6 @@
     <Compile Include="Mapper_Carne.cs" />
     <Compile Include="Mapper_Carrito.cs" />
     <Compile Include="Mapper_CarneCarrito.cs" />
-    <Compile Include="Mapper_Perfil.cs" />
-    <Compile Include="Mapper_Permiso.cs" />
     <Compile Include="Mapper_Ticket.cs" />
     <Compile Include="Mapper_Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -62,6 +60,10 @@
     <ProjectReference Include="..\Interfaces\Interfaces.csproj">
       <Project>{0afad573-1b86-4a93-aacc-670f75f4a098}</Project>
       <Name>Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ServiceClasses\ServiceClasses.csproj">
+      <Project>{c8fed1b6-8039-488c-9c68-d0085c8c196c}</Project>
+      <Name>ServiceClasses</Name>
     </ProjectReference>
     <ProjectReference Include="..\Services\Services.csproj">
       <Project>{6da95c58-201a-4ab8-b284-d7bd43115d0a}</Project>

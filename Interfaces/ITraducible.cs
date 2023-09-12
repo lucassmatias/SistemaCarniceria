@@ -8,6 +8,6 @@ namespace Interfaces
 {
     public interface ITraducible
     {
-        void Update(Idioma pIdioma);
+        void Update(string pCodigoIdioma);
     }
 }

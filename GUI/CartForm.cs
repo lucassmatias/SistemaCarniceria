@@ -12,7 +12,7 @@ using System.Windows.Forms;
 using Interfaces;
 using System.Text.RegularExpressions;
 using Services;
-
+using ServiceClasses;
 namespace GUI
 {
     public partial class CartForm : Form, ITraducible
@@ -27,6 +27,7 @@ namespace GUI
         string msgValidateError;
         string msgSuccesfulCart;
         string msgCartNoProducts;
+        Dictionary<string, decimal> RegistroStock;
         public CartForm()
         {
             InitializeComponent();
@@ -41,6 +42,16 @@ namespace GUI
             CargarDGV1(ListCarne);
             CargarEvento();
             btnRemove.Enabled = false;
+            RegistroStock = new Dictionary<string, decimal>();
+            CacheStock();
+        }
+        private void CacheStock()
+        {
+            RegistroStock.Clear();
+            foreach (belCarne carne in ListCarne)
+            {
+                RegistroStock.Add(carne.Id, carne.StockKG);
+            }
         }
         private void CargarDGV1(List<belCarne> pList)
         {
@@ -115,7 +126,7 @@ namespace GUI
             }
             else
             {
-                belAve orden = new belAve("", "", 0, 0);
+                belAve orden = new belAve("", 0, 0);
                 List<belCarne> aux = new List<belCarne>();
                 if (CbBird.Checked)
                 {
@@ -196,11 +207,14 @@ namespace GUI
                             bllCarneCarrito.Alta(x);
                             belCarne aux = ListCarne.Find(y => y.Id == x.Carne.Id);
                             bllCarne.Modificacion(aux);
+                            RegistroStock.TryGetValue(aux.Id, out decimal stockAnterior);
+                            LogManager.AgregarLogCambio(aux, stockAnterior, aux.StockKG, 1);
                         }
                         bllCarrito.ClearProductos(belCarrito);
                         CargarDGV2();
                         MessageBox.Show(msgSuccesfulCart);
-                        LogManager.Add($"CART - Cart Saved ({belCarrito.Id})", SessionManager.GetInstance.user);
+                        LogManager.AgregarLogEvento($"CART - Cart Saved ({belCarrito.Id})", 2,SessionManager.GetInstance.user);
+                        CacheStock();
                     }
                 }
                 else
@@ -236,8 +250,9 @@ namespace GUI
             this.Close();
         }
 
-        public void Update(Idioma pIdioma)
+        public void Update(string pCodigoIdioma)
         {
+            Idioma pIdioma = LanguageManager.ListaIdioma.Find(x => x.Id == pCodigoIdioma);
             clmId.HeaderText = pIdioma.ListaEtiquetas.Find(x => x.Tag == "clmId").Texto;
             clmId2.HeaderText = pIdioma.ListaEtiquetas.Find(x => x.Tag == "clmId").Texto;
             clmName.HeaderText = pIdioma.ListaEtiquetas.Find(x => x.Tag == "clmName").Texto;
@@ -273,7 +288,7 @@ namespace GUI
         {
             ConsultForm ConsultFormInstance = new ConsultForm(SeleccionarCarne());
             LanguageManager.Suscribir(ConsultFormInstance);
-            LanguageManager.CambiarIdioma(SessionManager.GetInstance.user.Idioma);
+            LanguageManager.CambiarIdioma(SessionManager.GetInstance.user.Idioma.Id);
             ConsultFormInstance.ShowDialog();
         }
     }

@@ -49,3 +49,5 @@ C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\BLL\obj\Debug\BLL.cs
 C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\BLL\obj\Debug\BLL.csproj.CopyComplete
 C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\BLL\obj\Debug\BLL.dll
 C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\BLL\obj\Debug\BLL.pdb
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\BLL\bin\Debug\ServiceClasses.dll
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\BLL\bin\Debug\ServiceClasses.pdb

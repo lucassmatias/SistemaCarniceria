@@ -17,17 +17,15 @@ namespace DAL
         public DataTable Leer(string pStoredProcedure, ArrayList pParams = null)
         {
             cs = new SqlConnectionStringBuilder();
-            cs.DataSource = "DESKTOP-6TI9OOE\\SQLEXPRESS";
+            cs.DataSource = "zaskao\\SQLEXPRESS";
             cs.InitialCatalog = "dbCarniceria";
             cs.IntegratedSecurity = true;
             SqlConnection con = new SqlConnection();
             con.ConnectionString = cs.ConnectionString;
-
             DataTable dt = new DataTable();
             SqlDataAdapter da;
             com = new SqlCommand(pStoredProcedure, con);
             com.CommandType = CommandType.StoredProcedure;
-
             try
             {
                 con.Open();
@@ -61,12 +59,11 @@ namespace DAL
         public int Escribir(string pStoredProcedure, ArrayList pParams = null)
         {
             cs = new SqlConnectionStringBuilder();
-            cs.DataSource = "DESKTOP-6TI9OOE\\SQLEXPRESS";
+            cs.DataSource = "zaskao\\SQLEXPRESS";
             cs.InitialCatalog = "dbCarniceria";
             cs.IntegratedSecurity = true;
             SqlConnection con = new SqlConnection();
             con.ConnectionString = cs.ConnectionString;
-
             try
             {
                 con.Open();

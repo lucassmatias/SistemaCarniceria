@@ -15,9 +15,8 @@ namespace BEL
             PrecioKG = decimal.Parse(array[2].ToString());
             StockKG = decimal.Parse(array[4].ToString());
         }
-        public belPorcina(string pId, string pNombre, decimal pPrecio, decimal pStock)
+        public belPorcina(string pNombre, decimal pPrecio, decimal pStock)
         {
-            Id = pId;
             Nombre = pNombre;
             PrecioKG = pPrecio;
             StockKG = pStock;

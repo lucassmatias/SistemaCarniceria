@@ -78,6 +78,10 @@
       <Project>{0afad573-1b86-4a93-aacc-670f75f4a098}</Project>
       <Name>Interfaces</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ServiceClasses\ServiceClasses.csproj">
+      <Project>{c8fed1b6-8039-488c-9c68-d0085c8c196c}</Project>
+      <Name>ServiceClasses</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Services\Services.csproj">
       <Project>{6da95c58-201a-4ab8-b284-d7bd43115d0a}</Project>
       <Name>Services</Name>

@@ -12,6 +12,7 @@ namespace BEL
         public belCarneCarrito(object[] array, belCarne pCarne)
         {
             Carne = pCarne;
+            Id = array[0].ToString();
             PesoBruto = decimal.Parse(array[2].ToString());
             PesoNeto = decimal.Parse(array[3].ToString());
             PrecioNeto = decimal.Parse(array[4].ToString());

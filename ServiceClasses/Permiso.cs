@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BEL
 {
-    public abstract class belPermiso : IEntity
+    public abstract class Permiso : IEntity
     {
         public string Id { get;set; }
         public string Nombre { get; set; }

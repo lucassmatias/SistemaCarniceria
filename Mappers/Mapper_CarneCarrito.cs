@@ -90,6 +90,10 @@ namespace Mappers
 
         public void Modificacion(belCarneCarrito pItem)
         {
+            throw new NotImplementedException();
+        }
+        public void ModificacionCarneCarrito(belCarneCarrito pItem, string pCodigoAnterior)
+        {
             string storedProcedure = "S_CarneCarrito_CambiarCodigo";
             al = new ArrayList();
             SqlParameter p1 = new SqlParameter();
@@ -97,6 +101,11 @@ namespace Mappers
             p1.Value = pItem.Id;
             p1.SqlDbType = SqlDbType.Int;
             al.Add(p1);
+            SqlParameter p2 = new SqlParameter();
+            p2.ParameterName = "@codAnt";
+            p2.Value = pCodigoAnterior;
+            p2.SqlDbType = SqlDbType.Int;
+            al.Add(p2);
             dao.Escribir(storedProcedure, al);
         }
     }

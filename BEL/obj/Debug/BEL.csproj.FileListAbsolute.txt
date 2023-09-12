@@ -25,3 +25,5 @@ C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\BEL\obj\Debug\BEL.cs
 C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\BEL\obj\Debug\BEL.csproj.CopyComplete
 C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\BEL\obj\Debug\BEL.dll
 C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\BEL\obj\Debug\BEL.pdb
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\BEL\bin\Debug\ServiceClasses.dll
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\BEL\bin\Debug\ServiceClasses.pdb

@@ -12,6 +12,7 @@ using BLL;
 using Services;
 using Controles;
 using Interfaces;
+using ServiceClasses;
 namespace GUI
 {
     public partial class LoginForm : Form, ITraducible
@@ -24,6 +25,8 @@ namespace GUI
         public LoginForm()
         {
             InitializeComponent();
+            LanguageManager.InicializarServicio();
+            ProfileManager.InicializarServicio();
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -40,7 +43,11 @@ namespace GUI
                     formPrincipalInstance.SessionManager = SessionManager.GetInstance;
                     this.Hide();
                     LanguageManager.Suscribir(formPrincipalInstance);
-                    LogManager.Add("LOGIN - Login", User);
+                    LogManager.AgregarLogEvento("LOGIN - Login", 1,User);
+                    Idioma pIdioma = LanguageManager.Idioma((comboBoxImage1.RetornaComboBox().SelectedIndex + 1).ToString());
+                    User.Idioma = pIdioma;
+                    bllusuario.Modificacion(User);
+                    LanguageManager.CambiarIdioma(User.Idioma.Id);
                     formPrincipalInstance.ShowDialog();
                     this.Close();
                 }
@@ -50,19 +57,19 @@ namespace GUI
                     {
                         MessageBox.Show(msgWrongPassword, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         User.Intentos -= 1;
-                        LogManager.Add("LOGIN - Incorrect password", User);
+                        LogManager.AgregarLogEvento("LOGIN - Incorrect password", 2, User);
                         if (User.Intentos == 0)
                         {
                             User.Blocked = true;
                             bllusuario.Modificacion(User);
                             MessageBox.Show(msgBlockedAccount, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            LogManager.Add("LOGIN - Account blocking for missed attempts", User);
+                            LogManager.AgregarLogEvento("LOGIN - Account blocking for missed attempts",3, User);
                         }
                     }
                     else
                     {
                         MessageBox.Show(msgBlockedAccount, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        LogManager.Add("LOGIN - Blocked account login attempt", User);
+                        LogManager.AgregarLogEvento("LOGIN - Blocked account login attempt",3, User);
                     }
                 }
             }
@@ -80,8 +87,9 @@ namespace GUI
             else { textBox2.UseSystemPasswordChar = true; }
         }
 
-        public void Update(Idioma pIdioma)
+        public void Update(string pCodigoIdioma)
         {
+            Idioma pIdioma = LanguageManager.ListaIdioma.Find(x => x.Id == pCodigoIdioma);
             lblUser.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "lblUser").Texto;
             lblPassword.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "lblPassword").Texto;
             cbSee.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "cbSee").Texto;

@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace BEL
 {
-    public class belPermisoSimple : belPermiso
+    public class PermisoSimple : Permiso
     {
-        public belPermisoSimple(string pNombre)
+        public PermisoSimple(string pNombre)
         {
             Nombre = pNombre;
         }
-        public belPermisoSimple(object[] array)
+        public PermisoSimple(object[] array)
         {
             Id = array[0].ToString();
             Nombre = array[1].ToString();

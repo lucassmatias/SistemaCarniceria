@@ -44,6 +44,7 @@
     <Compile Include="CryptoManager.cs" />
     <Compile Include="LanguageManager.cs" />
     <Compile Include="LogManager.cs" />
+    <Compile Include="ProfileManager.cs" />
     <Compile Include="SessionManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -59,6 +60,10 @@
     <ProjectReference Include="..\Interfaces\Interfaces.csproj">
       <Project>{0afad573-1b86-4a93-aacc-670f75f4a098}</Project>
       <Name>Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ServiceClasses\ServiceClasses.csproj">
+      <Project>{c8fed1b6-8039-488c-9c68-d0085c8c196c}</Project>
+      <Name>ServiceClasses</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

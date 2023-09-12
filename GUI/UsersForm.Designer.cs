@@ -65,10 +65,10 @@
             this.rbAll = new System.Windows.Forms.RadioButton();
             this.lblId = new System.Windows.Forms.Label();
             this.tbDNI = new System.Windows.Forms.TextBox();
-            this.lblUserM = new System.Windows.Forms.Label();
             this.lblLanguage = new System.Windows.Forms.Label();
-            this.comboBoxImageNotEvent1 = new Controles.ComboBoxImageNotEvent();
             this.btnProfile = new System.Windows.Forms.Button();
+            this.comboBoxImageNotEvent1 = new Controles.ComboBoxImageNotEvent();
+            this.lblUserM = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -76,7 +76,7 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clmUniqueId,
@@ -107,6 +107,7 @@
             this.clmUniqueId.MinimumWidth = 8;
             this.clmUniqueId.Name = "clmUniqueId";
             this.clmUniqueId.ReadOnly = true;
+            this.clmUniqueId.Width = 49;
             // 
             // clmId
             // 
@@ -114,6 +115,7 @@
             this.clmId.MinimumWidth = 8;
             this.clmId.Name = "clmId";
             this.clmId.ReadOnly = true;
+            this.clmId.Width = 41;
             // 
             // clmUsername
             // 
@@ -121,6 +123,7 @@
             this.clmUsername.MinimumWidth = 8;
             this.clmUsername.Name = "clmUsername";
             this.clmUsername.ReadOnly = true;
+            this.clmUsername.Width = 68;
             // 
             // clmPassword
             // 
@@ -128,6 +131,7 @@
             this.clmPassword.MinimumWidth = 8;
             this.clmPassword.Name = "clmPassword";
             this.clmPassword.ReadOnly = true;
+            this.clmPassword.Width = 86;
             // 
             // clmBlocked
             // 
@@ -135,6 +139,7 @@
             this.clmBlocked.MinimumWidth = 8;
             this.clmBlocked.Name = "clmBlocked";
             this.clmBlocked.ReadOnly = true;
+            this.clmBlocked.Width = 52;
             // 
             // clmName
             // 
@@ -142,6 +147,7 @@
             this.clmName.MinimumWidth = 8;
             this.clmName.Name = "clmName";
             this.clmName.ReadOnly = true;
+            this.clmName.Width = 69;
             // 
             // clmSurname
             // 
@@ -149,6 +155,7 @@
             this.clmSurname.MinimumWidth = 8;
             this.clmSurname.Name = "clmSurname";
             this.clmSurname.ReadOnly = true;
+            this.clmSurname.Width = 69;
             // 
             // clmEmail
             // 
@@ -156,6 +163,7 @@
             this.clmEmail.MinimumWidth = 8;
             this.clmEmail.Name = "clmEmail";
             this.clmEmail.ReadOnly = true;
+            this.clmEmail.Width = 57;
             // 
             // clmRole
             // 
@@ -163,6 +171,7 @@
             this.clmRole.MinimumWidth = 8;
             this.clmRole.Name = "clmRole";
             this.clmRole.ReadOnly = true;
+            this.clmRole.Width = 48;
             // 
             // clmActive
             // 
@@ -172,6 +181,7 @@
             this.clmActive.ReadOnly = true;
             this.clmActive.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.clmActive.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.clmActive.Width = 62;
             // 
             // clmTrys
             // 
@@ -179,6 +189,7 @@
             this.clmTrys.MinimumWidth = 8;
             this.clmTrys.Name = "clmTrys";
             this.clmTrys.ReadOnly = true;
+            this.clmTrys.Width = 70;
             // 
             // clmLanguage
             // 
@@ -186,6 +197,7 @@
             this.clmLanguage.MinimumWidth = 8;
             this.clmLanguage.Name = "clmLanguage";
             this.clmLanguage.ReadOnly = true;
+            this.clmLanguage.Width = 63;
             // 
             // tbUsername
             // 
@@ -407,16 +419,6 @@
             this.tbDNI.Size = new System.Drawing.Size(141, 20);
             this.tbDNI.TabIndex = 25;
             // 
-            // lblUserM
-            // 
-            this.lblUserM.AutoSize = true;
-            this.lblUserM.Font = new System.Drawing.Font("Sylfaen", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUserM.Location = new System.Drawing.Point(12, 22);
-            this.lblUserM.Name = "lblUserM";
-            this.lblUserM.Size = new System.Drawing.Size(384, 42);
-            this.lblUserM.TabIndex = 26;
-            this.lblUserM.Text = "GESTIÓN DE USUARIOS";
-            // 
             // lblLanguage
             // 
             this.lblLanguage.AutoSize = true;
@@ -425,13 +427,6 @@
             this.lblLanguage.Size = new System.Drawing.Size(38, 13);
             this.lblLanguage.TabIndex = 28;
             this.lblLanguage.Text = "Idioma";
-            // 
-            // comboBoxImageNotEvent1
-            // 
-            this.comboBoxImageNotEvent1.Location = new System.Drawing.Point(93, 389);
-            this.comboBoxImageNotEvent1.Name = "comboBoxImageNotEvent1";
-            this.comboBoxImageNotEvent1.Size = new System.Drawing.Size(108, 22);
-            this.comboBoxImageNotEvent1.TabIndex = 29;
             // 
             // btnProfile
             // 
@@ -444,15 +439,32 @@
             this.btnProfile.UseVisualStyleBackColor = true;
             this.btnProfile.Click += new System.EventHandler(this.btnProfile_Click);
             // 
+            // comboBoxImageNotEvent1
+            // 
+            this.comboBoxImageNotEvent1.Location = new System.Drawing.Point(93, 389);
+            this.comboBoxImageNotEvent1.Name = "comboBoxImageNotEvent1";
+            this.comboBoxImageNotEvent1.Size = new System.Drawing.Size(108, 22);
+            this.comboBoxImageNotEvent1.TabIndex = 29;
+            // 
+            // lblUserM
+            // 
+            this.lblUserM.AutoSize = true;
+            this.lblUserM.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUserM.Location = new System.Drawing.Point(12, 9);
+            this.lblUserM.Name = "lblUserM";
+            this.lblUserM.Size = new System.Drawing.Size(222, 55);
+            this.lblUserM.TabIndex = 31;
+            this.lblUserM.Text = "Usuarios";
+            // 
             // UsersForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(828, 445);
+            this.Controls.Add(this.lblUserM);
             this.Controls.Add(this.btnProfile);
             this.Controls.Add(this.comboBoxImageNotEvent1);
             this.Controls.Add(this.lblLanguage);
-            this.Controls.Add(this.lblUserM);
             this.Controls.Add(this.tbDNI);
             this.Controls.Add(this.lblId);
             this.Controls.Add(this.rbAll);
@@ -514,7 +526,6 @@
         private System.Windows.Forms.RadioButton rbAll;
         private System.Windows.Forms.Label lblId;
         private System.Windows.Forms.TextBox tbDNI;
-        private System.Windows.Forms.Label lblUserM;
         private System.Windows.Forms.Label lblLanguage;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmUniqueId;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmId;
@@ -530,5 +541,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmLanguage;
         private Controles.ComboBoxImageNotEvent comboBoxImageNotEvent1;
         private System.Windows.Forms.Button btnProfile;
+        private System.Windows.Forms.Label lblUserM;
     }
 }

@@ -43,3 +43,5 @@ C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Mappers\obj\Debug\Ma
 C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Mappers\obj\Debug\Mappers.csproj.CopyComplete
 C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Mappers\obj\Debug\Mappers.dll
 C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Mappers\obj\Debug\Mappers.pdb
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Mappers\bin\Debug\ServiceClasses.dll
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Mappers\bin\Debug\ServiceClasses.pdb

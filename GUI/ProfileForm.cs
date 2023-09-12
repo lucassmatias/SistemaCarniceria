@@ -14,16 +14,12 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using ServiceClasses;
 namespace GUI
 {
     public partial class ProfileForm : Form, ITraducible
     {
-        List<belPermiso> lPermisos;
-        List<belPerfil> lPerfiles;
         bllUsuario BllUsuario;
-        bllPermiso BllPermiso;
-        bllPerfil BllPerfil;
         string msgInsertPermissionName;
         string msgInsertProfileName;
         string msgNonSelectedPermission;
@@ -33,10 +29,6 @@ namespace GUI
         {
             InitializeComponent();
             usuario = pUsuario;
-            BllPermiso = new bllPermiso();
-            lPermisos = BllPermiso.Consulta();
-            BllPerfil = new bllPerfil();
-            lPerfiles = BllPerfil.Consulta();
             BllUsuario = new bllUsuario();
             lblProfileName.Text = pUsuario.Perfil.Nombre;
             ActualizarListBoxPermisos();
@@ -45,8 +37,9 @@ namespace GUI
             HabilitarControles();
         }
 
-        public void Update(Idioma pIdioma)
+        public void Update(string pCodigoIdioma)
         {
+            Idioma pIdioma = LanguageManager.ListaIdioma.Find(x => x.Id == pCodigoIdioma);
             lblActualProfile.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "lblActualProfile").Texto;
             lblProfiles.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "lblProfiles").Texto;
             lblPermissions.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "lblPermissions").Texto;
@@ -66,14 +59,14 @@ namespace GUI
 
         public void HabilitarControles()
         {
-            List<belPermiso> lPermiso = new List<belPermiso>();
-            (SessionManager.GetInstance.user.Perfil.Permiso as belPermisoCompuesto).RetornaArrayPermisos(SessionManager.GetInstance.user.Perfil.Permiso as belPermisoCompuesto, lPermiso);
+            List<Permiso> lPermiso = new List<Permiso>();
+            (SessionManager.GetInstance.user.Perfil.Permiso as PermisoCompuesto).RellenaArrayPermisos(SessionManager.GetInstance.user.Perfil.Permiso as PermisoCompuesto, lPermiso);
             foreach(Control control in this.Controls)
             {
                 if(control is Button && control.Tag != null)
                 {
                     (control as Button).Enabled = false;
-                    foreach (belPermiso per in lPermiso)
+                    foreach (Permiso per in lPermiso)
                     {
                         if(control.Tag.ToString() == per.Nombre)
                         {
@@ -88,29 +81,29 @@ namespace GUI
         {
             if(treeView1.SelectedNode != null) 
             {
-                belPermiso permiso;
+                Permiso permiso;
                 string nombre = Interaction.InputBox(msgInsertPermissionName);
                 if (rbLeaf.Checked)
                 {
-                    permiso = new belPermisoSimple(nombre);
+                    permiso = new PermisoSimple(nombre);
                 }
                 else
                 {
-                    permiso = new belPermisoCompuesto(nombre);
+                    permiso = new PermisoCompuesto(nombre);
                 }
                 if (treeView1.SelectedNode.Name == "Permisos")
                 {
-                    belPermisoCompuesto per = lPermisos[0] as belPermisoCompuesto;
+                    PermisoCompuesto per = ProfileManager.PermisoRaiz;
                     per.AgregarPermiso(permiso);
-                    BllPermiso.AltaConRelacion(permiso);
+                    ProfileManager.AltaPermisoConRelacion(permiso);
                 }
                 else
                 {
-                    belPermisoCompuesto per = (lPermisos[0] as belPermisoCompuesto).BuscarPermisoNombre(treeView1.SelectedNode.Text, lPermisos[0] as belPermisoCompuesto, null) as belPermisoCompuesto;
+                    PermisoCompuesto per = ProfileManager.PermisoRaiz.BuscarPermisoNombre(treeView1.SelectedNode.Text, ProfileManager.PermisoRaiz) as PermisoCompuesto;
                     per.AgregarPermiso(permiso);
-                    BllPermiso.AltaConRelacion(permiso, per);
+                    ProfileManager.AltaPermisoConRelacion(permiso, per);
                 }
-                LogManager.Add($"PROFILES - Permission Created ({permiso.Nombre})", SessionManager.GetInstance.user);
+                LogManager.AgregarLogEvento($"PROFILES - Permission Created ({permiso.Nombre})", 2,SessionManager.GetInstance.user);
                 ActualizarTreeView();
                 ActualizarListBoxPermisos();
             }
@@ -125,19 +118,19 @@ namespace GUI
             TreeNode aux = new TreeNode("Permisos");
             aux.Name = "Permisos";
             treeView1.Nodes.Add(aux);
-            ActualizarTreeViewRecursiva(lPermisos[0] as belPermisoCompuesto, aux);
+            ActualizarTreeViewRecursiva(ProfileManager.PermisoRaiz, aux);
         }
-        private void ActualizarTreeViewRecursiva(belPermisoCompuesto raiz, TreeNode nraiz)
+        private void ActualizarTreeViewRecursiva(PermisoCompuesto raiz, TreeNode nraiz)
         {
-            foreach(belPermiso per in raiz.ListaPermiso)
+            foreach(Permiso per in raiz.ListaPermiso)
             {
                 TreeNode aux = new TreeNode(per.Nombre);
                 aux.Name = per.Nombre;
                 nraiz.Nodes.Add(aux);
-                if(per is belPermisoCompuesto)
+                if(per is PermisoCompuesto)
                 {
                     nraiz = aux;
-                    ActualizarTreeViewRecursiva(per as belPermisoCompuesto, nraiz);
+                    ActualizarTreeViewRecursiva(per as PermisoCompuesto, nraiz);
                     nraiz = aux.Parent;
                 }
             }
@@ -145,11 +138,11 @@ namespace GUI
         private void ActualizarListBoxPermisos()
         {
             listBox2.Items.Clear();
-            ActualizarListBoxPermisosRecursiva(lPermisos[0] as belPermisoCompuesto);
+            ActualizarListBoxPermisosRecursiva(ProfileManager.PermisoRaiz);
         }
-        private void ActualizarListBoxPermisosRecursiva(belPermisoCompuesto raiz)
+        private void ActualizarListBoxPermisosRecursiva(PermisoCompuesto raiz)
         {         
-            foreach (belPermiso per in raiz.ListaPermiso)
+            foreach (Permiso per in raiz.ListaPermiso)
             {
                 if(listBox2.FindString(per.Nombre) >= 0)
                 {
@@ -158,9 +151,9 @@ namespace GUI
                 else
                 {
                     listBox2.Items.Add(per.Nombre.ToString());
-                    if (per is belPermisoCompuesto)
+                    if (per is PermisoCompuesto)
                     {
-                        ActualizarListBoxPermisosRecursiva((belPermisoCompuesto)per);
+                        ActualizarListBoxPermisosRecursiva((PermisoCompuesto)per);
                     }
                 }
             }
@@ -168,7 +161,7 @@ namespace GUI
         private void ActualizarListBoxPerfiles()
         {
             listBox1.Items.Clear();
-            foreach(belPerfil per in lPerfiles)
+            foreach(Perfil per in ProfileManager.ListaPerfil)
             {
                 listBox1.Items.Add(per.Nombre);
             }
@@ -182,12 +175,11 @@ namespace GUI
                     throw new Exception(msgNonSelectedPermission);
                 }
                 string nombre = Interaction.InputBox(msgInsertProfileName);
-                belPermiso permiso = (lPermisos[0] as belPermisoCompuesto).BuscarPermisoNombre(listBox2.Text, lPermisos[0] as belPermisoCompuesto, null);
-                belPerfil perfil = new belPerfil(nombre, permiso);
-                BllPerfil.Alta(perfil);
-                lPerfiles = BllPerfil.Consulta();
+                Permiso permiso = ProfileManager.PermisoRaiz.BuscarPermisoNombre(listBox2.Text, ProfileManager.PermisoRaiz);
+                Perfil perfil = new Perfil(nombre, permiso);
+                ProfileManager.AltaPerfil(perfil);
                 ActualizarListBoxPerfiles();
-                LogManager.Add($"PROFILES - Profile Created ({perfil.Nombre})", SessionManager.GetInstance.user);
+                LogManager.AgregarLogEvento($"PROFILES - Profile Created ({perfil.Nombre})", 2, SessionManager.GetInstance.user);
             }
             catch (Exception ex)
             {
@@ -197,11 +189,18 @@ namespace GUI
 
         private void btnRemoveProfile_Click(object sender, EventArgs e)
         {
-            belPerfil aux = lPerfiles.Find(x => x.Nombre == listBox1.Text);
-            BllPerfil.Baja(aux.Id);
-            lPerfiles = BllPerfil.Consulta();
+            Perfil aux = ProfileManager.ListaPerfil.Find(x => x.Nombre == listBox1.Text);
+            ProfileManager.BajaPerfil(aux.Id);
+            List<belUsuario> lUsuario = BllUsuario.Consulta();
+            if(lUsuario.Exists(x => x.Perfil == aux))
+            {
+                belUsuario usuario = lUsuario.Find(x => x.Perfil == aux);
+                usuario.Perfil = ProfileManager.ListaPerfil.Find(x => x.Nombre == "Basico");
+                BllUsuario.Modificacion(usuario);
+            }
             ActualizarListBoxPerfiles();
-            LogManager.Add($"PROFILES - Profile Removed ({aux.Nombre})", SessionManager.GetInstance.user);
+            HabilitarControles();
+            LogManager.AgregarLogEvento($"PROFILES - Profile Removed ({aux.Nombre})", 3, SessionManager.GetInstance.user);
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -213,11 +212,39 @@ namespace GUI
 
         private void btnAssignProfile_Click(object sender, EventArgs e)
         {
-            belPerfil aux = lPerfiles.Find(x => x.Nombre == listBox1.Text);
+            Perfil aux = ProfileManager.ListaPerfil.Find(x => x.Nombre == listBox1.Text);
             usuario.Perfil = aux;
             lblProfileName.Text = usuario.Perfil.Nombre;
             BllUsuario.Modificacion(usuario);
-            LogManager.Add($"PROFILES - Profile Assigned ({aux.Nombre} to {usuario.Username})", SessionManager.GetInstance.user);
+            HabilitarControles();
+            LogManager.AgregarLogEvento($"PROFILES - Profile Assigned ({aux.Nombre} to {usuario.Username})", 2, SessionManager.GetInstance.user);
+        }
+
+        private void btnPermissionDelete_Click(object sender, EventArgs e)
+        {
+            string nombre = listBox2.Text;
+            Permiso permiso = ProfileManager.PermisoRaiz.BuscarPermisoNombre(nombre, ProfileManager.PermisoRaiz);
+            ProfileManager.BajaPermiso(permiso.Id);
+            RecursivaEliminarPermiso(permiso as PermisoCompuesto);
+            ActualizarListBoxPermisos();
+            ActualizarTreeView();
+            ActualizarListBoxPerfiles();
+            HabilitarControles();
+            LogManager.AgregarLogEvento($"PROFILES - Permission deleted ({nombre}))", 3, SessionManager.GetInstance.user);
+        }
+        private void RecursivaEliminarPermiso(PermisoCompuesto pPermisoActual)
+        {
+            if(pPermisoActual.ListaPermiso.Count > 0)
+            {
+                foreach (Permiso per in pPermisoActual.ListaPermiso)
+                {
+                    ProfileManager.BajaPermiso(per.Id);
+                    if (per is PermisoCompuesto)
+                    {
+                        RecursivaEliminarPermiso(per as PermisoCompuesto);
+                    }
+                }
+            }
         }
     }
 }
