@@ -27,13 +27,9 @@ namespace GUI
             InitializeComponent();
             bllCarne carne = new bllCarne();
             List<belCarne> listc = carne.Consulta();
-            foreach(belCarne b in listc)
+            if (listc.Count > 0)
             {
-                VerificatorManager.AltaDVH((IEntity)b);
-            }
-            if(listc.Count > 0 )
-            {
-                if (!VerificatorManager.CompararTotalDVH(listc.ToList<IEntity>())) { MessageBox.Show("Error"); }
+                if (!VerificatorManager.CompararTotalDVH(listc.ToList<IEntity>())) { MessageBox.Show("Error de consistencia de la base de datos", "", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Error); btnLogin.Enabled = false; }
             }
             LanguageManager.InicializarServicio();
             ProfileManager.InicializarServicio();

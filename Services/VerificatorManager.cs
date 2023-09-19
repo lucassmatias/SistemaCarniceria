@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Services
 {
-    public class VerificatorManager
+    public static class VerificatorManager
     {
         static DAO dao = new DAO();
         public static string GenerarDVH(IEntity entity)
@@ -50,20 +50,20 @@ namespace Services
             string TotalDB = dao.Leer(storedProcedure).Rows[0].ItemArray[0].ToString(); 
             return Total1 == TotalDB ? true : false;
         }
-        public static void AltaDVH(IEntity pCarne)
+        public static void AltaDVH(IEntity entity)
         {
-            string dvh = GenerarDVH(pCarne);
+            string dvh = GenerarDVH(entity);
             bool existeCarne = false;
             string storedProcedure = "S_DVH_RetornaCodigos";
             DataTable dt = dao.Leer(storedProcedure);
             foreach(DataRow dr in dt.Rows)
             {
-                if (dr.ItemArray[0].ToString() == pCarne.Id) { existeCarne = true; }
+                if (dr.ItemArray[0].ToString() == entity.Id) { existeCarne = true; }
             }
             ArrayList al = new ArrayList();
             SqlParameter p1 = new SqlParameter();
             p1.ParameterName = "@id";
-            p1.Value = pCarne.Id;
+            p1.Value = entity.Id;
             p1.SqlDbType = SqlDbType.Int;
             al.Add(p1);
             SqlParameter p2 = new SqlParameter();

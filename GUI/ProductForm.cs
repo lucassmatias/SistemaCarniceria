@@ -45,6 +45,7 @@ namespace GUI
                         VerificatorManager.AltaDVH(carne);
                         LogManager.AgregarLogEvento($"PRODUCTS - Product Modified ({carne.Id})", 1, SessionManager.GetInstance.user);
                         listCarne = BllCarne.Consulta();
+                        VerificatorManager.ModificarTotalDVH(listCarne.ToList<IEntity>());
                         RefrescarCarne();
                     }
                     else
@@ -87,6 +88,7 @@ namespace GUI
                 LogManager.AgregarLogEvento($"PRODUCTS - Product deleted ({row.Cells[0].Value.ToString()})", 1, SessionManager.GetInstance.user);
                 listCarne = BllCarne.Consulta();
                 VerificatorManager.BajaDVH(row.Cells[0].Value.ToString());
+                VerificatorManager.ModificarTotalDVH(listCarne.ToList<IEntity>());
                 RefrescarCarne();
             }
             catch (Exception ex)
@@ -127,6 +129,7 @@ namespace GUI
                     VerificatorManager.AltaDVH(carne);
                     LogManager.AgregarLogEvento($"PRODUCTS - Product added ({carne.Nombre})", 1, SessionManager.GetInstance.user);
                     listCarne = BllCarne.Consulta();
+                    VerificatorManager.ModificarTotalDVH(listCarne.ToList<IEntity>());
                     RefrescarCarne();
                 }
                 else

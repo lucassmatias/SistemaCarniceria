@@ -15,7 +15,7 @@ namespace GUI
 {
     public partial class BackupForm : Form
     {
-        string path = @"C:\Users\lukit\OneDrive\Escritorio\Codigo"; 
+        string path = string.Empty;
         string conexion = "Data Source=zaskao\\SQLEXPRESS;Initial Catalog=dbCarniceria;Integrated Security=True";
         public BackupForm()
         {
@@ -27,7 +27,9 @@ namespace GUI
             using (SqlConnection con = new SqlConnection(conexion))
             {
                 con.Open();
-                path += $"\\Backup\\SistemaCarniceria={DateTime.Now.Day}-{DateTime.Now.Month}-{DateTime.Now.Year}={DateTime.Now.Hour}-{DateTime.Now.Minute}-{DateTime.Now.Second}.bak";
+                path += $"\\SistemaCarniceria={DateTime.Now.Day}-" +
+                    $"{DateTime.Now.Month}-{DateTime.Now.Year}=" +
+                    $"{DateTime.Now.Hour}-{DateTime.Now.Minute}-{DateTime.Now.Second}.bak";
                 SqlCommand Comando = new SqlCommand("backup database [dbCarniceria] to disk = @path", con);
                 Comando.Parameters.AddWithValue("path", path);
                 Comando.ExecuteNonQuery();
@@ -36,21 +38,41 @@ namespace GUI
 
         private void btnRestoreBackup_Click(object sender, EventArgs e)
         {
-            using (SqlConnection con = new SqlConnection(conexion))
+            try
             {
-                con.Open();
-                int index = path.IndexOf("Backup");
-                string cadena = path.Substring(index);
-                SqlCommand command = new SqlCommand("alter database [dbCarniceria] set offline with rollback immediate", con);
-                command.ExecuteNonQuery();
+                openFileDialog1.ShowDialog();
+                string filePath = openFileDialog1.FileName;
+                if (filePath.Split('.')[1] != "bak") { throw new Exception("Archivo no es formato bak"); }
+                using (SqlConnection con = new SqlConnection(conexion))
+                {
+                    con.Open();
+                    SqlCommand command = new SqlCommand("alter database [dbCarniceria] set offline with rollback immediate", con);
+                    command.ExecuteNonQuery();
 
-                command = new SqlCommand("restore database [dbCarniceria] from disk = @path", con);
-                command.Parameters.AddWithValue("path", cadena);
-                command.ExecuteNonQuery();
+                    command = new SqlCommand("restore database [dbCarniceria] from disk = @path", con);
+                    command.Parameters.AddWithValue("path", filePath);
+                    command.ExecuteNonQuery();
 
-                command = new SqlCommand("alter database [dbCarniceria] set online", con);
-                command.ExecuteNonQuery();
+                    command = new SqlCommand("alter database [dbCarniceria] set online", con);
+                    command.ExecuteNonQuery();
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            folderBrowserDialog1.ShowDialog();
+            path = folderBrowserDialog1.SelectedPath.ToString();
+            textBox1.Text = path;
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
