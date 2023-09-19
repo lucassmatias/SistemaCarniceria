@@ -25,6 +25,16 @@ namespace GUI
         public LoginForm()
         {
             InitializeComponent();
+            bllCarne carne = new bllCarne();
+            List<belCarne> listc = carne.Consulta();
+            foreach(belCarne b in listc)
+            {
+                VerificatorManager.AltaDVH((IEntity)b);
+            }
+            if(listc.Count > 0 )
+            {
+                if (!VerificatorManager.CompararTotalDVH(listc.ToList<IEntity>())) { MessageBox.Show("Error"); }
+            }
             LanguageManager.InicializarServicio();
             ProfileManager.InicializarServicio();
         }
