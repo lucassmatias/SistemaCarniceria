@@ -38,12 +38,12 @@
             this.userToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.productoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.idiomaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.registroDeVentasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.bitacoraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.lblTitle = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.comboBoxImage1 = new Controles.ComboBoxImage();
             this.backupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bitacoraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bitácoraDeEventosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lblTitle = new System.Windows.Forms.Label();
+            this.comboBoxImage1 = new Controles.ComboBoxImage();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.menuStripSystem.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -73,7 +73,7 @@
             // cartToolStripMenuItem
             // 
             this.cartToolStripMenuItem.Name = "cartToolStripMenuItem";
-            this.cartToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
+            this.cartToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.cartToolStripMenuItem.Tag = "MenuCart";
             this.cartToolStripMenuItem.Text = "Carrito";
             this.cartToolStripMenuItem.Click += new System.EventHandler(this.carritoToolStripMenuItem_Click);
@@ -81,7 +81,7 @@
             // saleToolStripMenuItem
             // 
             this.saleToolStripMenuItem.Name = "saleToolStripMenuItem";
-            this.saleToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
+            this.saleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saleToolStripMenuItem.Tag = "MenuSale";
             this.saleToolStripMenuItem.Text = "Venta";
             this.saleToolStripMenuItem.Click += new System.EventHandler(this.saleToolStripMenuItem_Click);
@@ -89,7 +89,7 @@
             // logOutToolStripMenuItem
             // 
             this.logOutToolStripMenuItem.Name = "logOutToolStripMenuItem";
-            this.logOutToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
+            this.logOutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.logOutToolStripMenuItem.Text = "Log out";
             this.logOutToolStripMenuItem.Click += new System.EventHandler(this.logOutToolStripMenuItem_Click);
             // 
@@ -99,9 +99,9 @@
             this.userToolStripMenuItem,
             this.productoToolStripMenuItem,
             this.idiomaToolStripMenuItem,
-            this.registroDeVentasToolStripMenuItem,
+            this.backupToolStripMenuItem,
             this.bitacoraToolStripMenuItem,
-            this.backupToolStripMenuItem});
+            this.bitácoraDeEventosToolStripMenuItem});
             this.adminToolStripMenuItem.Name = "adminToolStripMenuItem";
             this.adminToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
             this.adminToolStripMenuItem.Text = "Admin";
@@ -109,7 +109,7 @@
             // userToolStripMenuItem
             // 
             this.userToolStripMenuItem.Name = "userToolStripMenuItem";
-            this.userToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.userToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.userToolStripMenuItem.Tag = "MenuUser";
             this.userToolStripMenuItem.Text = "Usuario";
             this.userToolStripMenuItem.Click += new System.EventHandler(this.usuarioToolStripMenuItem_Click_1);
@@ -117,7 +117,7 @@
             // productoToolStripMenuItem
             // 
             this.productoToolStripMenuItem.Name = "productoToolStripMenuItem";
-            this.productoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.productoToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.productoToolStripMenuItem.Tag = "MenuInventory";
             this.productoToolStripMenuItem.Text = "Inventario";
             this.productoToolStripMenuItem.Click += new System.EventHandler(this.productoToolStripMenuItem_Click);
@@ -125,25 +125,34 @@
             // idiomaToolStripMenuItem
             // 
             this.idiomaToolStripMenuItem.Name = "idiomaToolStripMenuItem";
-            this.idiomaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.idiomaToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.idiomaToolStripMenuItem.Tag = "MenuLanguage";
             this.idiomaToolStripMenuItem.Text = "Idioma";
             this.idiomaToolStripMenuItem.Click += new System.EventHandler(this.idiomaToolStripMenuItem_Click);
             // 
-            // registroDeVentasToolStripMenuItem
+            // backupToolStripMenuItem
             // 
-            this.registroDeVentasToolStripMenuItem.Name = "registroDeVentasToolStripMenuItem";
-            this.registroDeVentasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.registroDeVentasToolStripMenuItem.Tag = "MenuRegister";
-            this.registroDeVentasToolStripMenuItem.Text = "Registros";
+            this.backupToolStripMenuItem.Name = "backupToolStripMenuItem";
+            this.backupToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.backupToolStripMenuItem.Tag = "MenuBackup";
+            this.backupToolStripMenuItem.Text = "Backup";
+            this.backupToolStripMenuItem.Click += new System.EventHandler(this.backupToolStripMenuItem_Click);
             // 
             // bitacoraToolStripMenuItem
             // 
             this.bitacoraToolStripMenuItem.Name = "bitacoraToolStripMenuItem";
-            this.bitacoraToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.bitacoraToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.bitacoraToolStripMenuItem.Tag = "MenuLog";
-            this.bitacoraToolStripMenuItem.Text = "Bitacora";
+            this.bitacoraToolStripMenuItem.Text = "Bitacora de cambios";
             this.bitacoraToolStripMenuItem.Click += new System.EventHandler(this.bitacoraToolStripMenuItem_Click);
+            // 
+            // bitácoraDeEventosToolStripMenuItem
+            // 
+            this.bitácoraDeEventosToolStripMenuItem.Name = "bitácoraDeEventosToolStripMenuItem";
+            this.bitácoraDeEventosToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.bitácoraDeEventosToolStripMenuItem.Tag = "MenuEvent";
+            this.bitácoraDeEventosToolStripMenuItem.Text = "Bitácora de eventos";
+            this.bitácoraDeEventosToolStripMenuItem.Click += new System.EventHandler(this.bitácoraDeEventosToolStripMenuItem_Click);
             // 
             // lblTitle
             // 
@@ -157,6 +166,13 @@
             this.lblTitle.Text = "SISTEMA CARNICERÍA";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // comboBoxImage1
+            // 
+            this.comboBoxImage1.Location = new System.Drawing.Point(693, 26);
+            this.comboBoxImage1.Name = "comboBoxImage1";
+            this.comboBoxImage1.Size = new System.Drawing.Size(98, 23);
+            this.comboBoxImage1.TabIndex = 2;
+            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::GUI.Properties.Resources.Imagen1;
@@ -167,20 +183,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
-            // 
-            // comboBoxImage1
-            // 
-            this.comboBoxImage1.Location = new System.Drawing.Point(693, 26);
-            this.comboBoxImage1.Name = "comboBoxImage1";
-            this.comboBoxImage1.Size = new System.Drawing.Size(98, 23);
-            this.comboBoxImage1.TabIndex = 2;
-            // 
-            // backupToolStripMenuItem
-            // 
-            this.backupToolStripMenuItem.Name = "backupToolStripMenuItem";
-            this.backupToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.backupToolStripMenuItem.Text = "Backup";
-            this.backupToolStripMenuItem.Click += new System.EventHandler(this.backupToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -219,9 +221,9 @@
         private System.Windows.Forms.ToolStripMenuItem userToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem productoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem idiomaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem registroDeVentasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem bitacoraToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem backupToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem bitácoraDeEventosToolStripMenuItem;
     }
 }
 

@@ -22,6 +22,8 @@ namespace GUI
         string msgBlockedAccount;
         string msgWrongPassword;
         string msgNoExistAccount;
+        string msgConsistentError;
+        bool blockSystem = true;
         public LoginForm()
         {
             InitializeComponent();
@@ -29,7 +31,7 @@ namespace GUI
             List<belCarne> listc = carne.Consulta();
             if (listc.Count > 0)
             {
-                if (!VerificatorManager.CompararTotalDVH(listc.ToList<IEntity>())) { MessageBox.Show("Error de consistencia de la base de datos", "", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Error); btnLogin.Enabled = false; }
+                if (!VerificatorManager.CompararTotalDVH(listc.ToList<IEntity>())) { blockSystem = true; }
             }
             LanguageManager.InicializarServicio();
             ProfileManager.InicializarServicio();
@@ -44,18 +46,36 @@ namespace GUI
                     belUsuario User = ListaUsuario.Find(x => x.Username == inputUsername);
                 if (CryptoManager.Compare(inputPassword, User.Password) == 1 && User.Blocked == false)
                 {
-                    MainForm formPrincipalInstance = new MainForm();
-                    SessionManager.Login(User);
-                    formPrincipalInstance.SessionManager = SessionManager.GetInstance;
-                    this.Hide();
-                    LanguageManager.Suscribir(formPrincipalInstance);
-                    LogManager.AgregarLogEvento("LOGIN - Login", 1,User);
-                    Idioma pIdioma = LanguageManager.Idioma((comboBoxImage1.RetornaComboBox().SelectedIndex + 1).ToString());
-                    User.Idioma = pIdioma;
-                    bllusuario.Modificacion(User);
-                    LanguageManager.CambiarIdioma(User.Idioma.Id);
-                    formPrincipalInstance.ShowDialog();
-                    this.Close();
+                    if (blockSystem)
+                    {
+                        if(User.Perfil.Nombre == "Admin")
+                        {
+                            Login();
+                        }
+                        else
+                        {
+                            MessageBox.Show(msgConsistentError);
+                        }
+                    }
+                    else
+                    {
+                        Login();
+                    }
+                    void Login()
+                    {
+                        MainForm formPrincipalInstance = new MainForm();
+                        SessionManager.Login(User);
+                        formPrincipalInstance.SessionManager = SessionManager.GetInstance;
+                        LanguageManager.Suscribir(formPrincipalInstance);
+                        LogManager.AgregarLogEvento("LOGIN - Login", 1, User);
+                        Idioma pIdioma = LanguageManager.Idioma((comboBoxImage1.RetornaComboBox().SelectedIndex + 1).ToString());
+                        User.Idioma = pIdioma;
+                        bllusuario.Modificacion(User);
+                        LanguageManager.CambiarIdioma(User.Idioma.Id);
+                        this.Hide();
+                        formPrincipalInstance.ShowDialog();
+                        this.Close();
+                    }
                 }
                 else
                 {
@@ -103,6 +123,7 @@ namespace GUI
             msgBlockedAccount = pIdioma.ListaEtiquetas.Find(x => x.Tag == "msgBlockedAccount").Texto;
             msgWrongPassword = pIdioma.ListaEtiquetas.Find(x => x.Tag == "msgWrongPassword").Texto;
             msgNoExistAccount = pIdioma.ListaEtiquetas.Find(x => x.Tag == "msgNoExistAccount").Texto;
+            msgConsistentError = pIdioma.ListaEtiquetas.Find(x => x.Tag == "msgConsistentError").Texto;
             this.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "frmLogin").Texto;
         }
     }

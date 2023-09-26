@@ -332,6 +332,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.lblProduct);
             this.Name = "ProductForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ProductForm";
             this.Load += new System.EventHandler(this.ProductForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

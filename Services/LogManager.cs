@@ -52,7 +52,7 @@ namespace Services
                 dao.Escribir(storedProcedure, al);
             }
         }
-        public static void AgregarLogCambio(belCarne carne, decimal ePrevio, decimal ePosterior, int operacion)
+        public static void AgregarLogCambio(belCarne carne, decimal ePrevio, decimal ePosterior, int operacion, belUsuario pUsuario)
         {
             string storedProcedure = "S_Cambio_Crear";
             decimal diferencia = ePrevio - ePosterior;
@@ -88,6 +88,11 @@ namespace Services
             p6.Value = operacion;
             p6.SqlDbType = SqlDbType.Int;
             al.Add(p6);
+            SqlParameter p7 = new SqlParameter();
+            p7.ParameterName = "@usu";
+            p7.Value = pUsuario.Id;
+            p7.SqlDbType = SqlDbType.Int;
+            al.Add(p7);
             dao.Escribir(storedProcedure, al);
         }
         public static List<Array> RetornaBitacoraEvento()

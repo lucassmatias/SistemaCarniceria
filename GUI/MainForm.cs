@@ -71,7 +71,6 @@ namespace GUI
             logOutToolStripMenuItem.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "tsLogout").Texto;
             saleToolStripMenuItem.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "tsSale").Texto;
             idiomaToolStripMenuItem.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "tsLanguage").Texto;
-            registroDeVentasToolStripMenuItem.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "tsRegisters").Texto;
             productoToolStripMenuItem.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "tsInventory").Texto;
             lblTitle.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "lblTitle").Texto;
             this.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "frmMain").Texto;
@@ -139,6 +138,14 @@ namespace GUI
             BackupForm bk = new BackupForm();
             this.Hide();
             bk.ShowDialog();
+            this.Show();
+        }
+
+        private void bitácoraDeEventosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            EventForm ev = new EventForm();
+            this.Hide();
+            ev.ShowDialog();
             this.Show();
         }
     }

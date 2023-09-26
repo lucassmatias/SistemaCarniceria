@@ -24,15 +24,26 @@ namespace GUI
 
         private void btnCreateBackup_Click(object sender, EventArgs e)
         {
-            using (SqlConnection con = new SqlConnection(conexion))
+            try
             {
-                con.Open();
-                path += $"\\SistemaCarniceria={DateTime.Now.Day}-" +
-                    $"{DateTime.Now.Month}-{DateTime.Now.Year}=" +
-                    $"{DateTime.Now.Hour}-{DateTime.Now.Minute}-{DateTime.Now.Second}.bak";
-                SqlCommand Comando = new SqlCommand("backup database [dbCarniceria] to disk = @path", con);
-                Comando.Parameters.AddWithValue("path", path);
-                Comando.ExecuteNonQuery();
+                if(textBox1.Text == string.Empty ) { throw new Exception("Ruta no especificada."); }
+                else
+                {
+                    using (SqlConnection con = new SqlConnection(conexion))
+                    {
+                        con.Open();
+                        path += $"\\SistemaCarniceria={DateTime.Now.Day}-" +
+                            $"{DateTime.Now.Month}-{DateTime.Now.Year}=" +
+                            $"{DateTime.Now.Hour}-{DateTime.Now.Minute}-{DateTime.Now.Second}.bak";
+                        SqlCommand Comando = new SqlCommand("backup database [dbCarniceria] to disk = @path", con);
+                        Comando.Parameters.AddWithValue("path", path);
+                        Comando.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 

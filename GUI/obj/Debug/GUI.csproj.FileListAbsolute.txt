@@ -96,3 +96,4 @@ C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\GUI\obj\Debug\GUI.La
 C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\GUI\obj\Debug\GUI.LogForm.resources
 C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\GUI\obj\Debug\GUI.ProductForm.resources
 C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\GUI\obj\Debug\GUI.BackupForm.resources
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\GUI\obj\Debug\GUI.EventForm.resources

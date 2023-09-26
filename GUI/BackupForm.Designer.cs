@@ -119,6 +119,7 @@
             this.Controls.Add(this.btnRestoreBackup);
             this.Controls.Add(this.btnCreateBackup);
             this.Name = "BackupForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "BackupForm";
             this.ResumeLayout(false);
             this.PerformLayout();

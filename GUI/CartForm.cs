@@ -96,6 +96,8 @@ namespace GUI
                                 CargarDGV2();
                                 CargarDGV1(ListCarne);
                                 btnRemove.Enabled = true;
+                                VerificatorManager.AltaDVH(SeleccionarCarne());
+                                VerificatorManager.ModificarTotalDVH(ListCarne.ToList<IEntity>());
                             }
                             else
                             {
@@ -174,6 +176,8 @@ namespace GUI
                     bllCarrito.QuitarProducto(belCarrito, SeleccionarCarneCarrito().Carne.Id);
                     CargarDGV2();
                     CargarDGV1(ListCarne);
+                    VerificatorManager.AltaDVH(SeleccionarCarne());
+                    VerificatorManager.ModificarTotalDVH(ListCarne.ToList<IEntity>());
                 }
                 else
                 {
@@ -208,7 +212,9 @@ namespace GUI
                             belCarne aux = ListCarne.Find(y => y.Id == x.Carne.Id);
                             bllCarne.Modificacion(aux);
                             RegistroStock.TryGetValue(aux.Id, out decimal stockAnterior);
-                            LogManager.AgregarLogCambio(aux, stockAnterior, aux.StockKG, 1);
+                            LogManager.AgregarLogCambio(aux, stockAnterior, aux.StockKG, 1, SessionManager.GetInstance.user);
+                            VerificatorManager.AltaDVH(SeleccionarCarne());
+                            VerificatorManager.ModificarTotalDVH(ListCarne.ToList<IEntity>());
                         }
                         bllCarrito.ClearProductos(belCarrito);
                         CargarDGV2();
