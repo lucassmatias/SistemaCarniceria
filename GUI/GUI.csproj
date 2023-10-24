@@ -54,11 +54,23 @@
     <Compile Include="BackupForm.Designer.cs">
       <DependentUpon>BackupForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="BuyRequestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BuyRequestForm.Designer.cs">
+      <DependentUpon>BuyRequestForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="CartForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CartForm.Designer.cs">
       <DependentUpon>CartForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CartSelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CartSelectForm.Designer.cs">
+      <DependentUpon>CartSelectForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ConsultForm.cs">
       <SubType>Form</SubType>
@@ -66,11 +78,11 @@
     <Compile Include="ConsultForm.Designer.cs">
       <DependentUpon>ConsultForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="EventForm.cs">
+    <Compile Include="ChangesForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EventForm.Designer.cs">
-      <DependentUpon>EventForm.cs</DependentUpon>
+    <Compile Include="ChangesForm.Designer.cs">
+      <DependentUpon>ChangesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="LanguageForm.cs">
       <SubType>Form</SubType>
@@ -108,6 +120,24 @@
     <Compile Include="ProfileForm.Designer.cs">
       <DependentUpon>ProfileForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ProvidersForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProvidersForm.Designer.cs">
+      <DependentUpon>ProvidersForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="QuoteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QuoteForm.Designer.cs">
+      <DependentUpon>QuoteForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="QuoteRequestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QuoteRequestForm.Designer.cs">
+      <DependentUpon>QuoteRequestForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SaleForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -125,14 +155,20 @@
     <EmbeddedResource Include="BackupForm.resx">
       <DependentUpon>BackupForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BuyRequestForm.resx">
+      <DependentUpon>BuyRequestForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CartForm.resx">
       <DependentUpon>CartForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CartSelectForm.resx">
+      <DependentUpon>CartSelectForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsultForm.resx">
       <DependentUpon>ConsultForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EventForm.resx">
-      <DependentUpon>EventForm.cs</DependentUpon>
+    <EmbeddedResource Include="ChangesForm.resx">
+      <DependentUpon>ChangesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LanguageForm.resx">
       <DependentUpon>LanguageForm.cs</DependentUpon>
@@ -151,6 +187,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ProfileForm.resx">
       <DependentUpon>ProfileForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProvidersForm.resx">
+      <DependentUpon>ProvidersForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QuoteForm.resx">
+      <DependentUpon>QuoteForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QuoteRequestForm.resx">
+      <DependentUpon>QuoteRequestForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SaleForm.resx">
       <DependentUpon>SaleForm.cs</DependentUpon>

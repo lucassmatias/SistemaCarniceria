@@ -43,6 +43,7 @@ namespace Services
             }
             return CryptoManager.Encrypt(dvt);
         }
+        #region
         public static bool CompararTotalDVH(List<IEntity> pList)
         {
             string Total1 = GenerarTotalDVH(pList);
@@ -107,3 +108,4 @@ namespace Services
         }
     }
 }
+#endregion

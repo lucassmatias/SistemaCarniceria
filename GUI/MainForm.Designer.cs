@@ -44,6 +44,7 @@
             this.lblTitle = new System.Windows.Forms.Label();
             this.comboBoxImage1 = new Controles.ComboBoxImage();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.buyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripSystem.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -65,6 +66,7 @@
             this.sistemaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cartToolStripMenuItem,
             this.saleToolStripMenuItem,
+            this.buyToolStripMenuItem,
             this.logOutToolStripMenuItem});
             this.sistemaToolStripMenuItem.Name = "sistemaToolStripMenuItem";
             this.sistemaToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
@@ -184,6 +186,14 @@
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             // 
+            // buyToolStripMenuItem
+            // 
+            this.buyToolStripMenuItem.Name = "buyToolStripMenuItem";
+            this.buyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.buyToolStripMenuItem.Tag = "MenuBuy";
+            this.buyToolStripMenuItem.Text = "Compra";
+            this.buyToolStripMenuItem.Click += new System.EventHandler(this.buyToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -224,6 +234,7 @@
         private System.Windows.Forms.ToolStripMenuItem bitacoraToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem backupToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem bitácoraDeEventosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem buyToolStripMenuItem;
     }
 }
 

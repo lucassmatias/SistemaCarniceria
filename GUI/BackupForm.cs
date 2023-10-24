@@ -21,7 +21,6 @@ namespace GUI
         {
             InitializeComponent();
         }
-
         private void btnCreateBackup_Click(object sender, EventArgs e)
         {
             try
@@ -38,6 +37,7 @@ namespace GUI
                         SqlCommand Comando = new SqlCommand("backup database [dbCarniceria] to disk = @path", con);
                         Comando.Parameters.AddWithValue("path", path);
                         Comando.ExecuteNonQuery();
+                        MessageBox.Show("Backup creado exitosamente!");
                     }
                 }
             }
@@ -46,14 +46,13 @@ namespace GUI
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void btnRestoreBackup_Click(object sender, EventArgs e)
         {
             try
             {
                 openFileDialog1.ShowDialog();
                 string filePath = openFileDialog1.FileName;
-                if (filePath.Split('.')[1] != "bak") { throw new Exception("Archivo no es formato bak"); }
+                if (filePath.Split('.')[1] != "bak") { throw new Exception("Archivo no es formato backup"); }
                 using (SqlConnection con = new SqlConnection(conexion))
                 {
                     con.Open();
@@ -64,23 +63,29 @@ namespace GUI
                     command.Parameters.AddWithValue("path", filePath);
                     command.ExecuteNonQuery();
 
-                    command = new SqlCommand("alter database [dbCarniceria] set online", con);
-                    command.ExecuteNonQuery();
+                    MessageBox.Show("Backup restaurado exitosamente!");
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+            finally
+            {
+                using(SqlConnection con = new SqlConnection(conexion))
+                {
+                    con.Open();
+                    SqlCommand command = new SqlCommand("alter database [dbCarniceria] set online", con);
+                    command.ExecuteNonQuery();
+                }              
+            }
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void btnExamine_Click(object sender, EventArgs e)
         {
             folderBrowserDialog1.ShowDialog();
             path = folderBrowserDialog1.SelectedPath.ToString();
             textBox1.Text = path;
         }
-
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();

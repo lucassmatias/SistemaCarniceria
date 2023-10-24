@@ -46,6 +46,7 @@ namespace GUI
                         LogManager.AgregarLogEvento($"PRODUCTS - Product Modified ({carne.Id})", 1, SessionManager.GetInstance.user);
                         listCarne = BllCarne.Consulta();
                         VerificatorManager.ModificarTotalDVH(listCarne.ToList<IEntity>());
+                        LogManager.AgregarLogCambio(carne, SessionManager.GetInstance.user);
                         RefrescarCarne();
                     }
                     else

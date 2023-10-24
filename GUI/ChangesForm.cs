@@ -14,9 +14,9 @@ using Interfaces;
 
 namespace GUI
 {
-    public partial class EventForm : Form
+    public partial class ChangesForm : Form
     {
-        public EventForm()
+        public ChangesForm()
         {
             InitializeComponent();
         }
@@ -24,21 +24,33 @@ namespace GUI
         bllCarne bllcarne;
         private void btnRollback_Click(object sender, EventArgs e)
         {
-            DataGridViewRow dr = dataGridView1.SelectedRows[0];
-            decimal diff = decimal.Parse(dr.Cells[4].Value.ToString());
-            string operacion = dr.Cells[6].Value.ToString();
-            string carne = dr.Cells[1].Value.ToString();
-            if (operacion == "Venta" || operacion == "Reposicion")
+            try
             {
-                belCarne belCarne = listCarne.Find(x => x.Nombre == carne);
-                belCarne.ReponerStock(diff);
+                DataGridViewRow dr = dataGridView1.SelectedRows[0];
+                string carneId = dr.Cells[1].Value.ToString();
+                belCarne belCarne = listCarne.Find(x => x.Id == carneId);
+                belCarne.Nombre = dr.Cells[2].Value.ToString();
+                belCarne.PrecioKG = decimal.Parse(dr.Cells[3].Value.ToString());
+                belCarne.StockKG = decimal.Parse(dr.Cells[5].Value.ToString());
                 bllcarne.Modificacion(belCarne);
-                LogManager.BajaLogica(dr.Cells[0].Value.ToString());
+                foreach(DataGridViewRow dgvr in dataGridView1.Rows)
+                {
+                    if (dgvr.Cells[1].Value.ToString() == carneId)
+                    {
+                        LogManager.CambiarEstado(dgvr.Cells[0].Value.ToString(), false);
+                    }
+                }
+                LogManager.CambiarEstado(dr.Cells[0].Value.ToString(), true);
                 VerificatorManager.AltaDVH(belCarne);
                 VerificatorManager.ModificarTotalDVH(listCarne.ToList<IEntity>());
+                LogManager.AgregarLogEvento($"LOG - Prev state changed ({belCarne.Nombre})", 2, SessionManager.GetInstance.user);
+                listCarne = null; listCarne = bllcarne.Consulta();
+                CargarLogCambio();
             }
-            CargarLogCambio();
-            LogManager.AgregarLogEvento("LOG - Operation Cancelled", 2, SessionManager.GetInstance.user);
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }          
         }
         private void Habilitarbtn()
         {

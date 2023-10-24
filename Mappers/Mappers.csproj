@@ -44,6 +44,8 @@
     <Compile Include="Mapper_Carne.cs" />
     <Compile Include="Mapper_Carrito.cs" />
     <Compile Include="Mapper_CarneCarrito.cs" />
+    <Compile Include="Mapper_Cotizacion.cs" />
+    <Compile Include="Mapper_Proveedor.cs" />
     <Compile Include="Mapper_Ticket.cs" />
     <Compile Include="Mapper_Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

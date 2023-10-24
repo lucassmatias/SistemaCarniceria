@@ -26,6 +26,7 @@ namespace GUI
         LanguageForm languageFormInstance;
         LogForm logFormInstance;
         ProductForm productFormInstance;
+        ProvidersForm providersFormInstance;
         private void Form1_Load(object sender, EventArgs e)
         {
             MostrarControles();
@@ -35,6 +36,7 @@ namespace GUI
             languageFormInstance = new LanguageForm();
             logFormInstance = new LogForm();
             productFormInstance = new ProductForm();
+            providersFormInstance = new ProvidersForm();
             LanguageManager.Suscribir(userFormInstance);
             LanguageManager.Suscribir(cartFormInstance);
             LanguageManager.Suscribir(saleFormInstance);
@@ -121,8 +123,9 @@ namespace GUI
 
         private void bitacoraToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            ChangesForm ev = new ChangesForm();
             this.Hide();
-            logFormInstance.ShowDialog();
+            ev.ShowDialog();
             this.Show();
         }
 
@@ -143,9 +146,15 @@ namespace GUI
 
         private void bitácoraDeEventosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            EventForm ev = new EventForm();
             this.Hide();
-            ev.ShowDialog();
+            logFormInstance.ShowDialog();
+            this.Show();
+        }
+
+        private void buyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            providersFormInstance.ShowDialog();
             this.Show();
         }
     }

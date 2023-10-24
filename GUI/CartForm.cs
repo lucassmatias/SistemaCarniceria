@@ -212,7 +212,6 @@ namespace GUI
                             belCarne aux = ListCarne.Find(y => y.Id == x.Carne.Id);
                             bllCarne.Modificacion(aux);
                             RegistroStock.TryGetValue(aux.Id, out decimal stockAnterior);
-                            LogManager.AgregarLogCambio(aux, stockAnterior, aux.StockKG, 1, SessionManager.GetInstance.user);
                             VerificatorManager.AltaDVH(SeleccionarCarne());
                             VerificatorManager.ModificarTotalDVH(ListCarne.ToList<IEntity>());
                         }

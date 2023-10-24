@@ -27,12 +27,12 @@ namespace GUI
         public LoginForm()
         {
             InitializeComponent();
-            bllCarne carne = new bllCarne();
-            List<belCarne> listc = carne.Consulta();
-            if (listc.Count > 0)
-            {
-                if (!VerificatorManager.CompararTotalDVH(listc.ToList<IEntity>())) { blockSystem = true; }
-            }
+            //bllCarne carne = new bllCarne();
+            //List<belCarne> listc = carne.Consulta();
+            //if (listc.Count > 0)
+            //{
+            //    if (!VerificatorManager.CompararTotalDVH(listc.ToList<IEntity>())) { blockSystem = true; }
+            //}
             LanguageManager.InicializarServicio();
             ProfileManager.InicializarServicio();
         }

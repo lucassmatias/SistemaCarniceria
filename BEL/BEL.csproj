@@ -44,6 +44,10 @@
     <Compile Include="belAve.cs" />
     <Compile Include="belCarne.cs" />
     <Compile Include="belCarrito.cs" />
+    <Compile Include="belCotizacion.cs" />
+    <Compile Include="belPedidoCompra.cs" />
+    <Compile Include="belPedidoCompraCarne.cs" />
+    <Compile Include="belProveedor.cs" />
     <Compile Include="belTicket.cs" />
     <Compile Include="belPorcina.cs" />
     <Compile Include="belVacuna.cs" />

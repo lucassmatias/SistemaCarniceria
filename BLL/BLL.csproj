@@ -44,6 +44,8 @@
     <Compile Include="bllCarne.cs" />
     <Compile Include="bllCarneCarrito.cs" />
     <Compile Include="bllCarrito.cs" />
+    <Compile Include="bllCotizacion.cs" />
+    <Compile Include="bllProveedor.cs" />
     <Compile Include="bllTicket.cs" />
     <Compile Include="bllUsuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

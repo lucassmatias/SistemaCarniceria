@@ -1,6 +1,6 @@
 ﻿namespace GUI
 {
-    partial class EventForm
+    partial class ChangesForm
     {
         /// <summary>
         /// Required designer variable.
@@ -31,14 +31,14 @@
             this.lblChanges = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.clmId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmMeatId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmMeat = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmPreEstate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmPostEstate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmDifference = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmDate2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmOperation = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmUser2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmCasualty = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.clmPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmStock = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmUsername = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmActive = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.btnRollback = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -62,14 +62,14 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clmId,
+            this.clmMeatId,
             this.clmMeat,
-            this.clmPreEstate,
-            this.clmPostEstate,
-            this.clmDifference,
-            this.clmDate2,
-            this.clmOperation,
-            this.clmUser2,
-            this.clmCasualty});
+            this.clmPrice,
+            this.clmType,
+            this.clmStock,
+            this.clmDate,
+            this.clmUsername,
+            this.clmActive});
             this.dataGridView1.Location = new System.Drawing.Point(12, 52);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
@@ -85,53 +85,53 @@
             this.clmId.Name = "clmId";
             this.clmId.ReadOnly = true;
             // 
+            // clmMeatId
+            // 
+            this.clmMeatId.HeaderText = "Codigo Carne";
+            this.clmMeatId.Name = "clmMeatId";
+            this.clmMeatId.ReadOnly = true;
+            // 
             // clmMeat
             // 
             this.clmMeat.HeaderText = "Carne";
             this.clmMeat.Name = "clmMeat";
             this.clmMeat.ReadOnly = true;
             // 
-            // clmPreEstate
+            // clmPrice
             // 
-            this.clmPreEstate.HeaderText = "Estado previo";
-            this.clmPreEstate.Name = "clmPreEstate";
-            this.clmPreEstate.ReadOnly = true;
+            this.clmPrice.HeaderText = "Precio";
+            this.clmPrice.Name = "clmPrice";
+            this.clmPrice.ReadOnly = true;
             // 
-            // clmPostEstate
+            // clmType
             // 
-            this.clmPostEstate.HeaderText = "Estado posterior";
-            this.clmPostEstate.Name = "clmPostEstate";
-            this.clmPostEstate.ReadOnly = true;
+            this.clmType.HeaderText = "Tipo";
+            this.clmType.Name = "clmType";
+            this.clmType.ReadOnly = true;
             // 
-            // clmDifference
+            // clmStock
             // 
-            this.clmDifference.HeaderText = "Diferencia";
-            this.clmDifference.Name = "clmDifference";
-            this.clmDifference.ReadOnly = true;
+            this.clmStock.HeaderText = "Stock";
+            this.clmStock.Name = "clmStock";
+            this.clmStock.ReadOnly = true;
             // 
-            // clmDate2
+            // clmDate
             // 
-            this.clmDate2.HeaderText = "Fecha";
-            this.clmDate2.Name = "clmDate2";
-            this.clmDate2.ReadOnly = true;
+            this.clmDate.HeaderText = "Fecha";
+            this.clmDate.Name = "clmDate";
+            this.clmDate.ReadOnly = true;
             // 
-            // clmOperation
+            // clmUsername
             // 
-            this.clmOperation.HeaderText = "Operacion";
-            this.clmOperation.Name = "clmOperation";
-            this.clmOperation.ReadOnly = true;
+            this.clmUsername.HeaderText = "Usuario";
+            this.clmUsername.Name = "clmUsername";
+            this.clmUsername.ReadOnly = true;
             // 
-            // clmUser2
+            // clmActive
             // 
-            this.clmUser2.HeaderText = "Usuario";
-            this.clmUser2.Name = "clmUser2";
-            this.clmUser2.ReadOnly = true;
-            // 
-            // clmCasualty
-            // 
-            this.clmCasualty.HeaderText = "Baja";
-            this.clmCasualty.Name = "clmCasualty";
-            this.clmCasualty.ReadOnly = true;
+            this.clmActive.HeaderText = "Activo";
+            this.clmActive.Name = "clmActive";
+            this.clmActive.ReadOnly = true;
             // 
             // btnRollback
             // 
@@ -140,7 +140,7 @@
             this.btnRollback.Name = "btnRollback";
             this.btnRollback.Size = new System.Drawing.Size(130, 37);
             this.btnRollback.TabIndex = 42;
-            this.btnRollback.Text = "Deshacer";
+            this.btnRollback.Text = "Cargar";
             this.btnRollback.UseVisualStyleBackColor = true;
             this.btnRollback.Click += new System.EventHandler(this.btnRollback_Click);
             // 
@@ -155,7 +155,7 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // EventForm
+            // ChangesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -164,7 +164,7 @@
             this.Controls.Add(this.btnRollback);
             this.Controls.Add(this.lblChanges);
             this.Controls.Add(this.dataGridView1);
-            this.Name = "EventForm";
+            this.Name = "ChangesForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "EventForm";
             this.Load += new System.EventHandler(this.EventForm_Load);
@@ -178,16 +178,16 @@
 
         private System.Windows.Forms.Label lblChanges;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmMeat;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmPreEstate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmPostEstate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmDifference;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmDate2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmOperation;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmUser2;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn clmCasualty;
         private System.Windows.Forms.Button btnRollback;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmMeatId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmMeat;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmPrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmStock;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmUsername;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn clmActive;
     }
 }

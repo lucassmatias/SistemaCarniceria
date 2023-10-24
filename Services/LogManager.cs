@@ -52,41 +52,39 @@ namespace Services
                 dao.Escribir(storedProcedure, al);
             }
         }
-        public static void AgregarLogCambio(belCarne carne, decimal ePrevio, decimal ePosterior, int operacion, belUsuario pUsuario)
+        public static void AgregarLogCambio(belCarne carne, belUsuario pUsuario)
         {
-            string storedProcedure = "S_Cambio_Crear";
-            decimal diferencia = ePrevio - ePosterior;
-            if(diferencia < 0) { diferencia = diferencia * -1; }
+            string storedProcedure = "S_CambioCarne_Crear";
             ArrayList al = new ArrayList();
             SqlParameter p1 = new SqlParameter();
-            p1.ParameterName = "@car";
+            p1.ParameterName = "@cod";
             p1.Value = carne.Id;
             p1.SqlDbType = SqlDbType.Int;
             al.Add(p1);
             SqlParameter p2 = new SqlParameter();
-            p2.ParameterName = "@pre";
-            p2.Value = ePrevio;
-            p2.SqlDbType = SqlDbType.Decimal;
+            p2.ParameterName = "@nom";
+            p2.Value = carne.Nombre;
+            p2.SqlDbType = SqlDbType.VarChar;
             al.Add(p2);
             SqlParameter p3 = new SqlParameter();
-            p3.ParameterName = "@pos";
-            p3.Value = ePosterior;
+            p3.ParameterName = "@pre";
+            p3.Value = carne.PrecioKG;
             p3.SqlDbType = SqlDbType.Decimal;
             al.Add(p3);
             SqlParameter p4 = new SqlParameter();
-            p4.ParameterName = "@dif";
-            p4.Value = diferencia;
-            p4.SqlDbType = SqlDbType.Decimal;
+            p4.ParameterName = "@tip";
+            p4.Value = DevolverIntCarne(carne);
+            p4.SqlDbType = SqlDbType.Int;
             al.Add(p4);
             SqlParameter p5 = new SqlParameter();
-            p5.ParameterName = "@fec";
-            p5.Value = DateTime.Now;
-            p5.SqlDbType = SqlDbType.DateTime;
+            p5.ParameterName = "@sto";
+            p5.Value = carne.StockKG;
+            p5.SqlDbType = SqlDbType.Decimal;
             al.Add(p5);
             SqlParameter p6 = new SqlParameter();
-            p6.ParameterName = "@ope";
-            p6.Value = operacion;
-            p6.SqlDbType = SqlDbType.Int;
+            p6.ParameterName = "@fec";
+            p6.Value = DateTime.Now;
+            p6.SqlDbType = SqlDbType.DateTime;
             al.Add(p6);
             SqlParameter p7 = new SqlParameter();
             p7.ParameterName = "@usu";
@@ -110,7 +108,7 @@ namespace Services
         public static List<object[]> RetornaBitacoraCambio()
         {
             List<object[]> lCambio = new List<object[]>();
-            string storedProcedure = "S_Cambio_Listar";
+            string storedProcedure = "S_CambioCarne_Listar";
             DataTable dt = dao.Leer(storedProcedure);
             foreach(DataRow dr in dt.Rows)
             {
@@ -119,16 +117,28 @@ namespace Services
             }
             return lCambio;
         }
-        public static void BajaLogica(string pId)
+        public static void CambiarEstado(string pId, bool pBool)
         {
-            string storedProcedure = "S_Cambio_BajaLogica";
+            string storedProcedure = "S_CambioCarne_CambiarEstado";
             ArrayList al = new ArrayList();
             SqlParameter p1 = new SqlParameter();
-            p1.ParameterName = "@id";
+            p1.ParameterName = "@cod";
             p1.Value = pId;
             p1.SqlDbType = SqlDbType.Int;
             al.Add(p1);
+            SqlParameter p2 = new SqlParameter();
+            p2.ParameterName = "@act";
+            p2.Value = pBool;
+            p2.SqlDbType = SqlDbType.Bit;
+            al.Add(p2);
             dao.Escribir(storedProcedure, al);
         }
+        private static int DevolverIntCarne(belCarne pCarne)
+        {
+            if(pCarne is belAve) { return 1; }
+            else if(pCarne is belPorcina) { return 2; }
+            else{ return 3; }
+        }
+
     }
 }

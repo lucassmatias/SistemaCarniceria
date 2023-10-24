@@ -96,4 +96,9 @@ C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\GUI\obj\Debug\GUI.La
 C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\GUI\obj\Debug\GUI.LogForm.resources
 C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\GUI\obj\Debug\GUI.ProductForm.resources
 C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\GUI\obj\Debug\GUI.BackupForm.resources
-C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\GUI\obj\Debug\GUI.EventForm.resources
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\GUI\obj\Debug\GUI.ChangesForm.resources
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\GUI\obj\Debug\GUI.ProvidersForm.resources
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\GUI\obj\Debug\GUI.QuoteForm.resources
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\GUI\obj\Debug\GUI.QuoteRequestForm.resources
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\GUI\obj\Debug\GUI.BuyRequestForm.resources
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\GUI\obj\Debug\GUI.CartSelectForm.resources
