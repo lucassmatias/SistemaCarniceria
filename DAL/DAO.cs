@@ -17,7 +17,7 @@ namespace DAL
         public DataTable Leer(string pStoredProcedure, ArrayList pParams = null)
         {
             cs = new SqlConnectionStringBuilder();
-            cs.DataSource = "zaskao\\SQLEXPRESS";
+            cs.DataSource = ".";
             cs.InitialCatalog = "dbCarniceria";
             cs.IntegratedSecurity = true;
             SqlConnection con = new SqlConnection();
@@ -59,7 +59,7 @@ namespace DAL
         public int Escribir(string pStoredProcedure, ArrayList pParams = null)
         {
             cs = new SqlConnectionStringBuilder();
-            cs.DataSource = "zaskao\\SQLEXPRESS";
+            cs.DataSource = ".";
             cs.InitialCatalog = "dbCarniceria";
             cs.IntegratedSecurity = true;
             SqlConnection con = new SqlConnection();

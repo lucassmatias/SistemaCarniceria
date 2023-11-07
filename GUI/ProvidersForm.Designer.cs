@@ -163,6 +163,7 @@
             this.btnBuyRequest.TabIndex = 49;
             this.btnBuyRequest.Text = "Compra";
             this.btnBuyRequest.UseVisualStyleBackColor = true;
+            this.btnBuyRequest.Click += new System.EventHandler(this.btnBuyRequest_Click);
             // 
             // lblOrder
             // 
@@ -191,6 +192,7 @@
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.listBox1);
             this.Name = "ProvidersForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ProvidersForm";
             this.Load += new System.EventHandler(this.ProvidersForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

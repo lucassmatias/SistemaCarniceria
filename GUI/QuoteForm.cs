@@ -41,7 +41,7 @@ namespace GUI
             {
                 foreach(belCotizacion cot in cotizaciones)
                 {
-                    dataGridView1.Rows.Add(cot.Carne.Nombre, cot.Cantidad, cot.Precio);
+                    dataGridView1.Rows.Add(cot.Carne, cot.Cantidad, cot.Precio);
                 }
             }
         }
@@ -65,7 +65,7 @@ namespace GUI
         {
             if (Validation())
             {
-                belCarne carne = listCarne.Find(x => x.Nombre == comboBox1.SelectedItem.ToString());
+                string carne = comboBox1.SelectedItem.ToString();
                 decimal cantidad = decimal.Parse(textBox1.Text);
                 decimal precio = decimal.Parse(textBox2.Text);
                 belCotizacion aux = new belCotizacion(proveedor, carne, cantidad, precio);
@@ -80,7 +80,7 @@ namespace GUI
             try
             {
                 DataGridViewRow row = dataGridView1.SelectedRows[0];
-                belCotizacion aux = cotizaciones.Find(x => x.Carne.Nombre == row.Cells[0].Value.ToString());
+                belCotizacion aux = cotizaciones.Find(x => x.Carne == row.Cells[0].Value.ToString());
                 decimal.TryParse(Interaction.InputBox("Cantidad", "", row.Cells[1].Value.ToString()), out decimal cantidad);
                 decimal.TryParse(Interaction.InputBox("Precio", "", row.Cells[2].Value.ToString()), out decimal precio);
                 aux.Cantidad = cantidad;

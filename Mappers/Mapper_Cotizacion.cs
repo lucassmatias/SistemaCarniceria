@@ -27,8 +27,8 @@ namespace Mappers
             al.Add(p1);
             SqlParameter p2 = new SqlParameter();
             p2.ParameterName = "@car";
-            p2.Value = pItem.Carne.Id;
-            p2.SqlDbType = SqlDbType.Int;
+            p2.Value = pItem.Carne;
+            p2.SqlDbType = SqlDbType.NVarChar;
             al.Add(p2);
             SqlParameter p3 = new SqlParameter();
             p3.ParameterName = "@can";
@@ -73,11 +73,9 @@ namespace Mappers
             DataTable dt = dao.Leer(storedProcedure, al);
             if(dt.Rows.Count != 0)
             {
-                Mapper_Carne map = new Mapper_Carne();
                 foreach (DataRow dr in dt.Rows)
                 {
-                    belCarne carne = map.ConsultaCondicional(dr[1].ToString())[0];
-                    aux.Add(new belCotizacion(dr.ItemArray, carne));
+                    aux.Add(new belCotizacion(dr.ItemArray));
                 }
             }           
             return aux;
@@ -104,8 +102,8 @@ namespace Mappers
             al.Add(p3);
             SqlParameter p4 = new SqlParameter();
             p4.ParameterName = "@car";
-            p4.Value = pItem.Carne.Id;
-            p4.SqlDbType = SqlDbType.Int;
+            p4.Value = pItem.Carne;
+            p4.SqlDbType = SqlDbType.NVarChar;
             al.Add(p4);
             dao.Escribir(storedProcedure, al);
         }

@@ -45,6 +45,8 @@
     <Compile Include="bllCarneCarrito.cs" />
     <Compile Include="bllCarrito.cs" />
     <Compile Include="bllCotizacion.cs" />
+    <Compile Include="bllPedidoCompra.cs" />
+    <Compile Include="bllPedidoCompraCarne.cs" />
     <Compile Include="bllProveedor.cs" />
     <Compile Include="bllTicket.cs" />
     <Compile Include="bllUsuario.cs" />

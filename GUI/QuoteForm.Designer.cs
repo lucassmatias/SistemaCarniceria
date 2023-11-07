@@ -55,8 +55,10 @@
             this.clmQuantity,
             this.clmPrice});
             this.dataGridView1.Location = new System.Drawing.Point(13, 12);
+            this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(403, 385);
             this.dataGridView1.TabIndex = 0;
             // 
@@ -179,6 +181,7 @@
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.dataGridView1);
             this.Name = "QuoteForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "QuoteForm";
             this.Load += new System.EventHandler(this.QuoteForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

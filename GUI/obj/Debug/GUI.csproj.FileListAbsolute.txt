@@ -102,3 +102,4 @@ C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\GUI\obj\Debug\GUI.Qu
 C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\GUI\obj\Debug\GUI.QuoteRequestForm.resources
 C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\GUI\obj\Debug\GUI.BuyRequestForm.resources
 C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\GUI\obj\Debug\GUI.CartSelectForm.resources
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\GUI\obj\Debug\GUI.ShowCartForm.resources

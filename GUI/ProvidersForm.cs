@@ -157,13 +157,16 @@ namespace GUI
         private void btnPrices_Click(object sender, EventArgs e)
         {
             string codigo = listBox1.Items[listBox1.SelectedIndex].ToString();
-            codigo = codigo.Split('-')[0];
-            codigo.TrimEnd();
-            belProveedor proveedor = listProveedor.Find(x => x.Id == codigo);
-            QuoteForm Quoteform = new QuoteForm(proveedor);
-            this.Hide();
-            Quoteform.ShowDialog();
-            this.Show();
+            if(codigo != "-1")
+            {
+                codigo = codigo.Split('-')[0];
+                codigo.TrimEnd();
+                belProveedor proveedor = listProveedor.Find(x => x.Id == codigo);
+                QuoteForm Quoteform = new QuoteForm(proveedor);
+                this.Hide();
+                Quoteform.ShowDialog();
+                this.Show();
+            }        
         }
 
         private void btnSolQuote_Click(object sender, EventArgs e)
@@ -172,6 +175,21 @@ namespace GUI
             this.Hide();
             form.ShowDialog();
             this.Show();
+        }
+
+        private void btnBuyRequest_Click(object sender, EventArgs e)
+        {
+            string codigo = listBox1.Items[listBox1.SelectedIndex].ToString();
+            if (codigo != "-1")
+            {
+                codigo = codigo.Split('-')[0];
+                codigo.TrimEnd();
+                belProveedor proveedor = listProveedor.Find(x => x.Id == codigo);
+                BuyRequestForm Buyform = new BuyRequestForm(proveedor);
+                this.Hide();
+                Buyform.ShowDialog();
+                this.Show();
+            }
         }
     }
 }
