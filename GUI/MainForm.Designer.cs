@@ -177,7 +177,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::GUI.Properties.Resources.Imagen1;
+            this.pictureBox1.Image = global::SistemaCarniceria.Properties.Resources.Imagen1;
             this.pictureBox1.Location = new System.Drawing.Point(83, 122);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";

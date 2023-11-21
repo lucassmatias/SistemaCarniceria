@@ -1,0 +1,6 @@
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Interfaces\bin\Release\Interfaces.dll
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Interfaces\bin\Release\Interfaces.pdb
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Interfaces\obj\Release\Interfaces.csproj.AssemblyReference.cache
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Interfaces\obj\Release\Interfaces.csproj.CoreCompileInputs.cache
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Interfaces\obj\Release\Interfaces.dll
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Interfaces\obj\Release\Interfaces.pdb

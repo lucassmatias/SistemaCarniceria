@@ -24,18 +24,3 @@ C:\Users\lukit\OneDrive\Escritorio\SistemaCarniceria-master\Services\obj\Debug\S
 C:\Users\lukit\OneDrive\Escritorio\SistemaCarniceria-master\Services\obj\Debug\Services.pdb
 C:\Users\lukit\OneDrive\Escritorio\Recursos UAI\3er Año - 1er Cuatrimestre\Ingeniería de software\Código\SistemaCarniceria\Services\bin\Debug\DAL.dll
 C:\Users\lukit\OneDrive\Escritorio\Recursos UAI\3er Año - 1er Cuatrimestre\Ingeniería de software\Código\SistemaCarniceria\Services\bin\Debug\DAL.pdb
-C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Services\bin\Debug\Services.dll
-C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Services\bin\Debug\Services.pdb
-C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Services\bin\Debug\BEL.dll
-C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Services\bin\Debug\DAL.dll
-C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Services\bin\Debug\Interfaces.dll
-C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Services\bin\Debug\BEL.pdb
-C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Services\bin\Debug\DAL.pdb
-C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Services\bin\Debug\Interfaces.pdb
-C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Services\obj\Debug\Services.csproj.AssemblyReference.cache
-C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Services\obj\Debug\Services.csproj.CoreCompileInputs.cache
-C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Services\obj\Debug\Services.csproj.CopyComplete
-C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Services\obj\Debug\Services.dll
-C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Services\obj\Debug\Services.pdb
-C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Services\bin\Debug\ServiceClasses.dll
-C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Services\bin\Debug\ServiceClasses.pdb

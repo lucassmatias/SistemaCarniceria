@@ -1,0 +1,11 @@
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\BEL\bin\Release\BEL.dll
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\BEL\bin\Release\BEL.pdb
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\BEL\bin\Release\Interfaces.dll
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\BEL\bin\Release\ServiceClasses.dll
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\BEL\bin\Release\Interfaces.pdb
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\BEL\bin\Release\ServiceClasses.pdb
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\BEL\obj\Release\BEL.csproj.AssemblyReference.cache
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\BEL\obj\Release\BEL.csproj.CoreCompileInputs.cache
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\BEL\obj\Release\BEL.csproj.CopyComplete
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\BEL\obj\Release\BEL.dll
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\BEL\obj\Release\BEL.pdb
