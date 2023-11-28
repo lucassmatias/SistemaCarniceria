@@ -37,3 +37,29 @@ C:\Users\lukit\OneDrive\Escritorio\Recursos UAI\3er Año - 1er Cuatrimestre\Inge
 C:\Users\lukit\OneDrive\Escritorio\Recursos UAI\3er Año - 1er Cuatrimestre\Ingeniería de software\Código\SistemaCarniceria\Controles\bin\Debug\BLL.pdb
 C:\Users\lukit\OneDrive\Escritorio\Recursos UAI\3er Año - 1er Cuatrimestre\Ingeniería de software\Código\SistemaCarniceria\Controles\bin\Debug\Mappers.pdb
 C:\Users\lukit\OneDrive\Escritorio\Recursos UAI\3er Año - 1er Cuatrimestre\Ingeniería de software\Código\SistemaCarniceria\Controles\obj\Debug\Controles.ComboBoxImageNotEvent.resources
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Controles\bin\Debug\Controles.dll
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Controles\bin\Debug\Controles.pdb
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Controles\bin\Debug\BEL.dll
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Controles\bin\Debug\BLL.dll
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Controles\bin\Debug\Interfaces.dll
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Controles\bin\Debug\ServiceClasses.dll
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Controles\bin\Debug\Services.dll
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Controles\bin\Debug\Mappers.dll
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Controles\bin\Debug\DAL.dll
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Controles\bin\Debug\BEL.pdb
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Controles\bin\Debug\BLL.pdb
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Controles\bin\Debug\Interfaces.pdb
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Controles\bin\Debug\ServiceClasses.pdb
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Controles\bin\Debug\Services.pdb
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Controles\bin\Debug\Mappers.pdb
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Controles\bin\Debug\DAL.pdb
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Controles\obj\Debug\Controles.csproj.AssemblyReference.cache
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Controles\obj\Debug\Controles.ComboBoxImage.resources
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Controles\obj\Debug\Controles.ComboBoxImageNotEvent.resources
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Controles\obj\Debug\Controles.csproj.GenerateResource.cache
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Controles\obj\Debug\Controles.csproj.CoreCompileInputs.cache
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Controles\obj\Debug\Controles.csproj.CopyComplete
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Controles\obj\Debug\Controles.dll
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Controles\obj\Debug\Controles.pdb
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Controles\bin\Debug\Newtonsoft.Json.dll
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\Controles\bin\Debug\Newtonsoft.Json.xml

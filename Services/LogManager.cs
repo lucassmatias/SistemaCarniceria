@@ -139,6 +139,5 @@ namespace Services
             else if(pCarne is belPorcina) { return 2; }
             else{ return 3; }
         }
-
     }
 }

@@ -26,5 +26,6 @@ namespace BEL
             Cantidad = decimal.Parse(array[2].ToString());
             PrecioUnitario = decimal.Parse(array[3].ToString());
         }
+        public belPedidoCompraCarne(){}
     }
 }

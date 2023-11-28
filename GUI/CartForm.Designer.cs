@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CartForm));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.clmId2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -62,6 +63,7 @@
             this.lblName2 = new System.Windows.Forms.Label();
             this.lblSurname = new System.Windows.Forms.Label();
             this.btnConsult = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
@@ -383,6 +385,7 @@
             this.btnConsult.Size = new System.Drawing.Size(128, 41);
             this.btnConsult.TabIndex = 34;
             this.btnConsult.Text = "Consulta";
+            this.toolTip1.SetToolTip(this.btnConsult, "Consulta el precio del producto");
             this.btnConsult.UseVisualStyleBackColor = true;
             this.btnConsult.Click += new System.EventHandler(this.btnConsult_Click);
             // 
@@ -462,5 +465,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmKGPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmNetWeight;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmNetPrice;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

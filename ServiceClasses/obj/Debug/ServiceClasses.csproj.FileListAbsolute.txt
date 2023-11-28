@@ -1,0 +1,9 @@
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\ServiceClasses\bin\Debug\ServiceClasses.dll
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\ServiceClasses\bin\Debug\ServiceClasses.pdb
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\ServiceClasses\bin\Debug\Interfaces.dll
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\ServiceClasses\bin\Debug\Interfaces.pdb
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\ServiceClasses\obj\Debug\ServiceClasses.csproj.AssemblyReference.cache
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\ServiceClasses\obj\Debug\ServiceClasses.csproj.CoreCompileInputs.cache
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\ServiceClasses\obj\Debug\ServiceClasses.csproj.CopyComplete
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\ServiceClasses\obj\Debug\ServiceClasses.dll
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\ServiceClasses\obj\Debug\ServiceClasses.pdb

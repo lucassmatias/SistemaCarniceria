@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.cldId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmTotalPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -39,6 +40,7 @@
             this.btnCartView = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -101,6 +103,7 @@
             this.btnCreate.Size = new System.Drawing.Size(147, 37);
             this.btnCreate.TabIndex = 42;
             this.btnCreate.Text = "Crear";
+            this.toolTip1.SetToolTip(this.btnCreate, "Crea una nueva orden de compra");
             this.btnCreate.UseVisualStyleBackColor = true;
             this.btnCreate.Click += new System.EventHandler(this.btnAdd_Click);
             // 
@@ -118,7 +121,7 @@
             // btnCartView
             // 
             this.btnCartView.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCartView.Location = new System.Drawing.Point(318, 355);
+            this.btnCartView.Location = new System.Drawing.Point(165, 355);
             this.btnCartView.Name = "btnCartView";
             this.btnCartView.Size = new System.Drawing.Size(147, 37);
             this.btnCartView.TabIndex = 45;
@@ -129,7 +132,7 @@
             // btnCancel
             // 
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.Location = new System.Drawing.Point(165, 355);
+            this.btnCancel.Location = new System.Drawing.Point(318, 355);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(147, 37);
             this.btnCancel.TabIndex = 46;
@@ -139,6 +142,7 @@
             // 
             // btnClose
             // 
+            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.Location = new System.Drawing.Point(676, 355);
             this.btnClose.Name = "btnClose";
@@ -150,8 +154,10 @@
             // 
             // BuyRequestForm
             // 
+            this.AcceptButton = this.btnCreate;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnClose;
             this.ClientSize = new System.Drawing.Size(800, 399);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnCancel);
@@ -181,5 +187,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmDate;
         private System.Windows.Forms.DataGridViewCheckBoxColumn clmPaid;
         private System.Windows.Forms.DataGridViewCheckBoxColumn clmCancelled;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

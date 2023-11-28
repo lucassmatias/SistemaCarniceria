@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnCreateBackup = new System.Windows.Forms.Button();
             this.btnRestoreBackup = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
@@ -36,6 +37,7 @@
             this.lblRoute = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.btnExamine = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // btnCreateBackup
@@ -47,6 +49,7 @@
             this.btnCreateBackup.TabIndex = 6;
             this.btnCreateBackup.Tag = "";
             this.btnCreateBackup.Text = "Crear backup";
+            this.toolTip1.SetToolTip(this.btnCreateBackup, "Crea el backup con fecha del día de hoy en la carpeta Backup");
             this.btnCreateBackup.UseVisualStyleBackColor = true;
             this.btnCreateBackup.Click += new System.EventHandler(this.btnCreateBackup_Click);
             // 
@@ -59,6 +62,7 @@
             this.btnRestoreBackup.TabIndex = 7;
             this.btnRestoreBackup.Tag = "";
             this.btnRestoreBackup.Text = "Restaurar backup";
+            this.toolTip1.SetToolTip(this.btnRestoreBackup, "Restaura el backup seleccionado");
             this.btnRestoreBackup.UseVisualStyleBackColor = true;
             this.btnRestoreBackup.Click += new System.EventHandler(this.btnRestoreBackup_Click);
             // 
@@ -104,6 +108,7 @@
             this.btnExamine.TabIndex = 12;
             this.btnExamine.Tag = "";
             this.btnExamine.Text = "Examinar...";
+            this.toolTip1.SetToolTip(this.btnExamine, "Busca y selecciona el backup a restaurar");
             this.btnExamine.UseVisualStyleBackColor = true;
             this.btnExamine.Click += new System.EventHandler(this.btnExamine_Click);
             // 
@@ -136,5 +141,6 @@
         private System.Windows.Forms.Label lblRoute;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button btnExamine;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

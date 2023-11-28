@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lblChanges = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.clmId = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -50,6 +51,7 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -150,6 +152,7 @@
             this.btnRollback.Size = new System.Drawing.Size(130, 37);
             this.btnRollback.TabIndex = 42;
             this.btnRollback.Text = "Cargar";
+            this.toolTip1.SetToolTip(this.btnRollback, "Actualizar la tabla de cambios");
             this.btnRollback.UseVisualStyleBackColor = true;
             this.btnRollback.Click += new System.EventHandler(this.btnRollback_Click);
             // 
@@ -291,5 +294,6 @@
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

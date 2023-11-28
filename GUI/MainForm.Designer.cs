@@ -33,6 +33,7 @@
             this.sistemaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.buyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.adminToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -44,7 +45,6 @@
             this.lblTitle = new System.Windows.Forms.Label();
             this.comboBoxImage1 = new Controles.ComboBoxImage();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.buyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripSystem.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -78,6 +78,7 @@
             this.cartToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.cartToolStripMenuItem.Tag = "MenuCart";
             this.cartToolStripMenuItem.Text = "Carrito";
+            this.cartToolStripMenuItem.ToolTipText = "Accede al área de armado de carrito";
             this.cartToolStripMenuItem.Click += new System.EventHandler(this.carritoToolStripMenuItem_Click);
             // 
             // saleToolStripMenuItem
@@ -86,13 +87,24 @@
             this.saleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saleToolStripMenuItem.Tag = "MenuSale";
             this.saleToolStripMenuItem.Text = "Venta";
+            this.saleToolStripMenuItem.ToolTipText = "Accede al área de cobranza";
             this.saleToolStripMenuItem.Click += new System.EventHandler(this.saleToolStripMenuItem_Click);
+            // 
+            // buyToolStripMenuItem
+            // 
+            this.buyToolStripMenuItem.Name = "buyToolStripMenuItem";
+            this.buyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.buyToolStripMenuItem.Tag = "MenuBuy";
+            this.buyToolStripMenuItem.Text = "Compra";
+            this.buyToolStripMenuItem.ToolTipText = "Accede al área para reabastecer el inventario";
+            this.buyToolStripMenuItem.Click += new System.EventHandler(this.buyToolStripMenuItem_Click);
             // 
             // logOutToolStripMenuItem
             // 
             this.logOutToolStripMenuItem.Name = "logOutToolStripMenuItem";
             this.logOutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.logOutToolStripMenuItem.Text = "Log out";
+            this.logOutToolStripMenuItem.ToolTipText = "Salir del sistema";
             this.logOutToolStripMenuItem.Click += new System.EventHandler(this.logOutToolStripMenuItem_Click);
             // 
             // adminToolStripMenuItem
@@ -114,6 +126,7 @@
             this.userToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.userToolStripMenuItem.Tag = "MenuUser";
             this.userToolStripMenuItem.Text = "Usuario";
+            this.userToolStripMenuItem.ToolTipText = "Administración de usuarios";
             this.userToolStripMenuItem.Click += new System.EventHandler(this.usuarioToolStripMenuItem_Click_1);
             // 
             // productoToolStripMenuItem
@@ -122,6 +135,7 @@
             this.productoToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.productoToolStripMenuItem.Tag = "MenuInventory";
             this.productoToolStripMenuItem.Text = "Inventario";
+            this.productoToolStripMenuItem.ToolTipText = "Administración de inventario";
             this.productoToolStripMenuItem.Click += new System.EventHandler(this.productoToolStripMenuItem_Click);
             // 
             // idiomaToolStripMenuItem
@@ -130,6 +144,7 @@
             this.idiomaToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.idiomaToolStripMenuItem.Tag = "MenuLanguage";
             this.idiomaToolStripMenuItem.Text = "Idioma";
+            this.idiomaToolStripMenuItem.ToolTipText = "Administración de idiomas";
             this.idiomaToolStripMenuItem.Click += new System.EventHandler(this.idiomaToolStripMenuItem_Click);
             // 
             // backupToolStripMenuItem
@@ -138,6 +153,7 @@
             this.backupToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.backupToolStripMenuItem.Tag = "MenuBackup";
             this.backupToolStripMenuItem.Text = "Backup";
+            this.backupToolStripMenuItem.ToolTipText = "Crear backup";
             this.backupToolStripMenuItem.Click += new System.EventHandler(this.backupToolStripMenuItem_Click);
             // 
             // bitacoraToolStripMenuItem
@@ -146,6 +162,7 @@
             this.bitacoraToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.bitacoraToolStripMenuItem.Tag = "MenuLog";
             this.bitacoraToolStripMenuItem.Text = "Bitacora de cambios";
+            this.bitacoraToolStripMenuItem.ToolTipText = "Control de cambios";
             this.bitacoraToolStripMenuItem.Click += new System.EventHandler(this.bitacoraToolStripMenuItem_Click);
             // 
             // bitácoraDeEventosToolStripMenuItem
@@ -154,6 +171,7 @@
             this.bitácoraDeEventosToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.bitácoraDeEventosToolStripMenuItem.Tag = "MenuEvent";
             this.bitácoraDeEventosToolStripMenuItem.Text = "Bitácora de eventos";
+            this.bitácoraDeEventosToolStripMenuItem.ToolTipText = "Control de eventos";
             this.bitácoraDeEventosToolStripMenuItem.Click += new System.EventHandler(this.bitácoraDeEventosToolStripMenuItem_Click);
             // 
             // lblTitle
@@ -185,14 +203,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
-            // 
-            // buyToolStripMenuItem
-            // 
-            this.buyToolStripMenuItem.Name = "buyToolStripMenuItem";
-            this.buyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.buyToolStripMenuItem.Tag = "MenuBuy";
-            this.buyToolStripMenuItem.Text = "Compra";
-            this.buyToolStripMenuItem.Click += new System.EventHandler(this.buyToolStripMenuItem_Click);
             // 
             // MainForm
             // 

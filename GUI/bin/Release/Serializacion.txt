@@ -1,0 +1,8 @@
+[
+  {
+    "Id": null,
+    "CarneNombre": "Nalga",
+    "Cantidad": 1,
+    "PrecioUnitario": 250.00
+  }
+]

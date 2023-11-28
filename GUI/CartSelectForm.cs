@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using BLL;
+using Services;
 
 namespace GUI
 {
@@ -30,6 +31,8 @@ namespace GUI
             listcarne = new List<belPedidoCompraCarne>();
             bllped = new bllPedidoCompra();
             bllcar = new bllPedidoCompraCarne();
+            listcarne = LeerSerial();
+            RefrescarDGV();
         }
         private void CartSelectForm_Load(object sender, EventArgs e)
         {
@@ -48,9 +51,17 @@ namespace GUI
                 decimal cantidad = decimal.Parse(textBox1.Text);
                 decimal precio = decimal.Parse(dataGridView1.SelectedRows[0].Cells[3].Value.ToString());
                 belPedidoCompraCarne ped = new belPedidoCompraCarne(carneNombre, cantidad, precio);
+                ped.Id = proveedor.Id;
                 listcarne.Add(ped);
+                SerializatorManager.Serializar(ped);
                 RefrescarDGV();
             }
+        }
+        private List<belPedidoCompraCarne> LeerSerial()
+        {
+            List<belPedidoCompraCarne> aux = SerializatorManager.DeserializarPedidoCompraCarne();
+            List<belPedidoCompraCarne> aux2 = aux.FindAll(x => x.Id == proveedor.Id);
+            return aux;
         }
         private bool Validation()
         {
