@@ -47,5 +47,9 @@ namespace BLL
         {
             map.Recibir(pId);
         }
+        public List<belPedidoCompra> ConsultaVerificacion()
+        {
+            return map.ConsultaVerificacion();
+        }
     }
 }

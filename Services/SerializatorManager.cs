@@ -8,13 +8,15 @@ using System.IO;
 using BEL;
 using System.Text.Json.Serialization;
 using Newtonsoft.Json;
+using System.Collections;
 
 namespace Services
 {
     public static class SerializatorManager
     {
-        public static void Serializar(object pObject)
+        public static void Serializar(List<belPedidoCompraCarne> pObject)
         {
+            LimpiarSerial();
             string jsonString = JsonConvert.SerializeObject(pObject);
             StreamWriter sw = new StreamWriter("Serializacion.json");
             sw.WriteLine(jsonString);
@@ -22,10 +24,7 @@ namespace Services
         }
         public static List<belPedidoCompraCarne> DeserializarPedidoCompraCarne()
         {
-            string text = File.ReadAllText("Serializacion.json");
-            belPedidoCompraCarne aux = (belPedidoCompraCarne)JsonConvert.DeserializeObject(text,typeof(belPedidoCompraCarne));
-            List<belPedidoCompraCarne> l = new List<belPedidoCompraCarne>();
-            l.Add(aux);
+            List<belPedidoCompraCarne> l = JsonConvert.DeserializeObject<List<belPedidoCompraCarne>>(File.ReadAllText("Serializacion.json"));
             return l;
         }
         public static void LimpiarSerial()

@@ -41,8 +41,8 @@ namespace GUI
                     }
                 }
                 LogManager.CambiarEstado(dr.Cells[0].Value.ToString(), true);
-                VerificatorManager.AltaDVH(belCarne);
-                VerificatorManager.ModificarTotalDVH(listCarne.ToList<IEntity>());
+                //VerificatorManager.AltaDVH(belCarne);
+                //VerificatorManager.ModificarTotalDVH(listCarne.ToList<IEntity>());
                 LogManager.AgregarLogEvento($"LOG - Prev state changed ({belCarne.Nombre})", 2, SessionManager.GetInstance.user);
                 listCarne = null; listCarne = bllcarne.Consulta();
                 CargarLogCambio();

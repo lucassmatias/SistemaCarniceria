@@ -36,5 +36,9 @@ namespace BLL
         {
             throw new NotImplementedException();
         }
+        public List<belPedidoCompraCarne> ConsultaVerificacion()
+        {
+            return map.ConsultaVerificacion();
+        }
     }
 }

@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using BLL;
 using Services;
+using Interfaces;
 
 namespace GUI
 {
@@ -53,7 +54,7 @@ namespace GUI
                 belPedidoCompraCarne ped = new belPedidoCompraCarne(carneNombre, cantidad, precio);
                 ped.Id = proveedor.Id;
                 listcarne.Add(ped);
-                SerializatorManager.Serializar(ped);
+                SerializatorManager.Serializar(listcarne);
                 RefrescarDGV();
             }
         }
@@ -61,7 +62,7 @@ namespace GUI
         {
             List<belPedidoCompraCarne> aux = SerializatorManager.DeserializarPedidoCompraCarne();
             List<belPedidoCompraCarne> aux2 = aux.FindAll(x => x.Id == proveedor.Id);
-            return aux;
+            return aux2;
         }
         private bool Validation()
         {
@@ -89,10 +90,19 @@ namespace GUI
         {
             if(dataGridView2.Rows.Count > 0)
             {
-                string carneNombre = dataGridView1.SelectedRows[0].Cells[1].Value.ToString();
-                decimal cantidad = decimal.Parse(dataGridView1.SelectedRows[0].Cells[2].Value.ToString());
-                decimal precio = decimal.Parse(dataGridView1.SelectedRows[0].Cells[3].Value.ToString());
+                string carneNombre = dataGridView2.SelectedRows[0].Cells[1].Value.ToString();
+                decimal cantidad = decimal.Parse(dataGridView2.SelectedRows[0].Cells[2].Value.ToString());
+                decimal precio = decimal.Parse(dataGridView2.SelectedRows[0].Cells[3].Value.ToString());
                 listcarne.Remove(listcarne.FindAll(x => x.CarneNombre == carneNombre && x.PrecioUnitario == precio && x.Cantidad == cantidad)[0]);
+                if(listcarne.Count > 0)
+                {
+                    SerializatorManager.Serializar(listcarne);
+                }
+                else
+                {
+                    SerializatorManager.LimpiarSerial();
+                }
+
                 RefrescarDGV();
             }
         }
@@ -108,12 +118,15 @@ namespace GUI
                 }
                 belPedidoCompra ped = new belPedidoCompra(proveedor, precio, DateTime.Now, false, false);
                 bllped.Alta(ped);
+                VerificatorManager.AltaDVH(new List<IEntity>() { ped }, "PedidoCompra");
                 belPedidoCompra aux = bllped.Consulta().Last();
                 foreach (belPedidoCompraCarne car in listcarne)
                 {
                     car.Id = aux.Id;
                     bllcar.Alta(car);
                 }
+                VerificatorManager.AltaDVH(listcarne.ToList<IEntity>(), "PedidoCompra");
+                SerializatorManager.LimpiarSerial();
                 this.Close();
             }
         }

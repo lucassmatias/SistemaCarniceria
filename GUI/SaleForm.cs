@@ -133,13 +133,17 @@ namespace GUI
                         }
                         BllTicket.AgregarCodigo(ticket);
                         BllTicket.Alta(ticket);
+                        VerificatorManager.AltaDVH(new List<IEntity>() { ticket }, "Ticket");
                         foreach (belCarneCarrito cc in ticket.ListaCarne)
                         {
                             string codigo = cc.Id;
+                            VerificatorManager.BajaDVH(new List<IEntity>() { cc }, "CarneCarrito");
                             cc.Id = ticket.Id;
                             BllCarneCarrito.ModificaciónCarneCarrito(cc, codigo);
+                            VerificatorManager.AltaDVH(new List<IEntity>() { cc }, "CarneCarrito");
                         }
                         BllCarrito.Baja(SeleccionarCarrito().Id);
+                        VerificatorManager.BajaDVH(new List<IEntity>() { SeleccionarCarrito() }, "Carrito");
                         CargarListBox();
                         MessageBox.Show(msgSuccesfulSale);
                         LogManager.AgregarLogEvento($"SALES - Made a sale ({ticket.Id})", 2, SessionManager.GetInstance.user);
@@ -198,6 +202,7 @@ namespace GUI
             {
                 belCarrito carrito = SeleccionarCarrito();
                 BllCarrito.Baja(carrito.Id);
+                VerificatorManager.BajaDVH(new List<IEntity>(){ carrito}, "Carrito");
                 BllCarneCarrito.Baja(carrito.Id);
             }
             catch (Exception ex)

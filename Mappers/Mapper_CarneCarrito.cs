@@ -108,5 +108,19 @@ namespace Mappers
             al.Add(p2);
             dao.Escribir(storedProcedure, al);
         }
+        public List<belCarneCarrito> ConsultaVerificacion()
+        {
+            string storedProcedure = "S_CarneCarrito_ConsultaVerificacion";
+            List<belCarneCarrito> l = new List<belCarneCarrito>();
+            DataTable dt = dao.Leer(storedProcedure);
+            if(dt.Rows.Count > 0)
+            {
+                foreach(DataRow dr in dt.Rows)
+                {
+                    l.Add(new belCarneCarrito(dr.ItemArray));
+                }
+            }
+            return l;
+        }
     }
 }

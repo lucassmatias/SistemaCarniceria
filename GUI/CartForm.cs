@@ -96,8 +96,6 @@ namespace GUI
                                 CargarDGV2();
                                 CargarDGV1(ListCarne);
                                 btnRemove.Enabled = true;
-                                VerificatorManager.AltaDVH(SeleccionarCarne());
-                                VerificatorManager.ModificarTotalDVH(ListCarne.ToList<IEntity>());
                             }
                             else
                             {
@@ -176,8 +174,6 @@ namespace GUI
                     bllCarrito.QuitarProducto(belCarrito, SeleccionarCarneCarrito().Carne.Id);
                     CargarDGV2();
                     CargarDGV1(ListCarne);
-                    VerificatorManager.AltaDVH(SeleccionarCarne());
-                    VerificatorManager.ModificarTotalDVH(ListCarne.ToList<IEntity>());
                 }
                 else
                 {
@@ -206,15 +202,15 @@ namespace GUI
                         bllCarrito.AgregarImporte(belCarrito);
                         bllCarrito.AgregarID(belCarrito);
                         bllCarrito.Alta(belCarrito);
+                        VerificatorManager.AltaDVH(new List<IEntity>() { belCarrito }, "Carrito");
                         foreach (belCarneCarrito x in belCarrito.Productos)
                         {
                             bllCarneCarrito.Alta(x);
                             belCarne aux = ListCarne.Find(y => y.Id == x.Carne.Id);
                             bllCarne.Modificacion(aux);
                             RegistroStock.TryGetValue(aux.Id, out decimal stockAnterior);
-                            VerificatorManager.AltaDVH(SeleccionarCarne());
-                            VerificatorManager.ModificarTotalDVH(ListCarne.ToList<IEntity>());
                         }
+                        VerificatorManager.AltaDVH(belCarrito.Productos.ToList<IEntity>(), "Carrito");
                         bllCarrito.ClearProductos(belCarrito);
                         CargarDGV2();
                         MessageBox.Show(msgSuccesfulCart);

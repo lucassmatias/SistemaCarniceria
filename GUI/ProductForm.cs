@@ -42,10 +42,9 @@ namespace GUI
                         belVacuna carne = new belVacuna(textBox1.Text, decimal.Parse(textBox2.Text), decimal.Parse(textBox3.Text));
                         carne.Id = row.Cells[0].Value.ToString();
                         BllCarne.Modificacion(carne);
-                        VerificatorManager.AltaDVH(carne);
+                        VerificatorManager.AltaDVH(new List<IEntity>() { carne}, "Carne");
                         LogManager.AgregarLogEvento($"PRODUCTS - Product Modified ({carne.Id})", 1, SessionManager.GetInstance.user);
                         listCarne = BllCarne.Consulta();
-                        VerificatorManager.ModificarTotalDVH(listCarne.ToList<IEntity>());
                         LogManager.AgregarLogCambio(carne, SessionManager.GetInstance.user);
                         RefrescarCarne();
                     }
@@ -85,11 +84,11 @@ namespace GUI
             try
             {
                 DataGridViewRow row = dataGridView1.SelectedRows[0];
+                belCarne aux = listCarne.Find(x => x.Id == row.Cells[0].Value.ToString());
+                VerificatorManager.BajaDVH(new List<IEntity>() { aux }, "Carne");
                 BllCarne.Baja(row.Cells[0].Value.ToString());
                 LogManager.AgregarLogEvento($"PRODUCTS - Product deleted ({row.Cells[0].Value.ToString()})", 1, SessionManager.GetInstance.user);
                 listCarne = BllCarne.Consulta();
-                VerificatorManager.BajaDVH(row.Cells[0].Value.ToString());
-                VerificatorManager.ModificarTotalDVH(listCarne.ToList<IEntity>());
                 RefrescarCarne();
             }
             catch (Exception ex)
@@ -127,10 +126,9 @@ namespace GUI
                         carne = new belPorcina(textBox6.Text, decimal.Parse(textBox5.Text), decimal.Parse(textBox4.Text));
                     }
                     BllCarne.Alta(carne);
-                    VerificatorManager.AltaDVH(carne);
+                    VerificatorManager.AltaDVH(new List<IEntity>() { carne }, "Carne");
                     LogManager.AgregarLogEvento($"PRODUCTS - Product added ({carne.Nombre})", 1, SessionManager.GetInstance.user);
                     listCarne = BllCarne.Consulta();
-                    VerificatorManager.ModificarTotalDVH(listCarne.ToList<IEntity>());
                     RefrescarCarne();
                 }
                 else

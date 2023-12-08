@@ -36,5 +36,9 @@ namespace BLL
         {
             map.Modificacion(pItem);
         }
+        public List<belProveedor> ConsultaVerificacion()
+        {
+            return map.ConsultaVerificacion();
+        }
     }
 }

@@ -10,6 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.VisualBasic;
+using Services;
+using Interfaces;
 
 namespace GUI
 {
@@ -70,6 +72,7 @@ namespace GUI
                 decimal precio = decimal.Parse(textBox2.Text);
                 belCotizacion aux = new belCotizacion(proveedor, carne, cantidad, precio);
                 bllCotizacion.Alta(aux);
+                VerificatorManager.AltaDVH(new List<IEntity>() { aux }, "Cotizacion");
                 cotizaciones = bllCotizacion.ConsultaCondicional(proveedor.Id);
                 RefrescarDataGrid();
             }
@@ -86,6 +89,7 @@ namespace GUI
                 aux.Cantidad = cantidad;
                 aux.Precio = precio;
                 bllCotizacion.Modificacion(aux);
+                VerificatorManager.AltaDVH(new List<IEntity>() { aux}, "Cotizacion");
                 cotizaciones = bllCotizacion.ConsultaCondicional(proveedor.Id);
                 RefrescarDataGrid();
             }

@@ -1,5 +1,7 @@
 ﻿using BEL;
 using BLL;
+using Interfaces;
+using Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,16 +28,30 @@ namespace GUI
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            CartSelectForm cartselectInstance = new CartSelectForm(proveedor);
-            cartselectInstance.ShowDialog();
-            pedidos = bllped.Consulta();
-            RefrescarDGV();
+            try
+            {
+                CartSelectForm cartselectInstance = new CartSelectForm(proveedor);
+                cartselectInstance.ShowDialog();
+                pedidos = bllped.Consulta();
+                RefrescarDGV();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
         private void BuyRequestForm_Load(object sender, EventArgs e)
         {
-            pedidos = bllped.Consulta();
-            pedidos = pedidos.FindAll(x => x.proveedor.Id == proveedor.Id);
-            RefrescarDGV();
+            try
+            {
+                pedidos = bllped.Consulta();
+                pedidos = pedidos.FindAll(x => x.proveedor.Id == proveedor.Id);
+                RefrescarDGV();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
         private void RefrescarDGV()
         {
@@ -51,21 +67,37 @@ namespace GUI
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            if(dataGridView1.SelectedRows.Count > 0)
+            try
             {
-                belPedidoCompra pc = pedidos.Find(x => x.Id == dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
-                bllped.Cancelar(pc.Id);
-                RefrescarDGV();
+                if (dataGridView1.SelectedRows.Count > 0)
+                {
+                    belPedidoCompra pc = pedidos.Find(x => x.Id == dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
+                    bllped.Cancelar(pc.Id);
+                    VerificatorManager.AltaDVH(new List<IEntity>() { pc }, "PedidoCompra");
+                    RefrescarDGV();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
         private void btnReceived_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.SelectedRows.Count > 0)
+            try
             {
-                belPedidoCompra pc = pedidos.Find(x => x.Id == dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
-                bllped.Recibir(pc.Id);
-                RefrescarDGV();
+                if (dataGridView1.SelectedRows.Count > 0)
+                {
+                    belPedidoCompra pc = pedidos.Find(x => x.Id == dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
+                    bllped.Recibir(pc.Id);
+                    VerificatorManager.AltaDVH(new List<IEntity>() { pc }, "PedidoCompra");
+                    RefrescarDGV();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
         private void EnableBtnCancelFunction()

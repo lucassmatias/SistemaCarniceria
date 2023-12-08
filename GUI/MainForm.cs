@@ -11,6 +11,11 @@ using Services;
 using Interfaces;
 using BEL;
 using ServiceClasses;
+using System.IO;
+using System.Diagnostics;
+using Microsoft.VisualBasic.ApplicationServices;
+using SistemaCarniceria;
+
 namespace GUI
 {
     public partial class MainForm : Form, ITraducible
@@ -27,6 +32,8 @@ namespace GUI
         LogForm logFormInstance;
         ProductForm productFormInstance;
         ProvidersForm providersFormInstance;
+        ReportsForm reportFormInstance;
+        BuyReportsForm buyReportsFormInstance;
         private void Form1_Load(object sender, EventArgs e)
         {
             MostrarControles();
@@ -68,23 +75,22 @@ namespace GUI
         {
             Idioma pIdioma = LanguageManager.ListaIdioma.Find(x => x.Id == pCodigoIdioma);
             menuStripSystem.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "msSystem").Texto;
-            userToolStripMenuItem.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "tsUser").Texto;
+            usuarioToolStripMenuItem.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "tsUser").Texto;
             cartToolStripMenuItem.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "tsCart").Texto;
             logOutToolStripMenuItem.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "tsLogout").Texto;
             saleToolStripMenuItem.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "tsSale").Texto;
             idiomaToolStripMenuItem.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "tsLanguage").Texto;
             productoToolStripMenuItem.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "tsInventory").Texto;
+            bitacoraToolStripMenuItem.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "tsChangeLog").Texto;
+            bitácoraDeEventosToolStripMenuItem.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "tsEventLog").Texto;
+            reporteToolStripMenuItem.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "tsSellReport").Texto;
+            reporteComprasToolStripMenuItem.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "tsBuyReport").Texto;
+            buyToolStripMenuItem.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "tsBuy").Texto;
+            ayudaToolStripMenuItem.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "tsHelp").Texto;
+            descargarPdfToolStripMenuItem.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "tsOpenpdf").Texto;
             lblTitle.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "lblTitle").Texto;
             this.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "frmMain").Texto;
         }
-
-        private void usuarioToolStripMenuItem_Click_1(object sender, EventArgs e)
-        {
-            this.Hide();
-            userFormInstance.ShowDialog();
-            this.Show();
-        }
-
         private void saleToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -155,6 +161,33 @@ namespace GUI
         {
             this.Hide();
             providersFormInstance.ShowDialog();
+            this.Show();
+        }
+
+        private void descargarPdfToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(@"ManualDeUsuario.pdf");
+        }
+
+        private void reporteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            reportFormInstance = new ReportsForm();
+            reportFormInstance.ShowDialog();
+            this.Show();
+        }
+
+        private void reporteComprasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            buyReportsFormInstance = new BuyReportsForm();
+            buyReportsFormInstance.ShowDialog();
+            this.Show();
+        }
+        private void usuarioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            userFormInstance.ShowDialog();
             this.Show();
         }
     }

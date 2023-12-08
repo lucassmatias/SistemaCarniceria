@@ -103,5 +103,19 @@ namespace Mappers
                 return 10000000;
             }
         }
+        public List<belTicket> ConsultaVerificacion()
+        {
+            string storedProcedure = "S_Ticket_ConsultaVerificacion";
+            List<belTicket> l = new List<belTicket>();
+            DataTable dt = dao.Leer(storedProcedure);
+            if (dt.Rows.Count > 0)
+            {
+                foreach(DataRow dr in dt.Rows)
+                {
+                    l.Add(new belTicket(dr.ItemArray));
+                }
+            }
+            return l;
+        }
     }
 }

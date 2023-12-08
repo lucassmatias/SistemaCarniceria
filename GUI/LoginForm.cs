@@ -23,18 +23,82 @@ namespace GUI
         string msgWrongPassword;
         string msgNoExistAccount;
         string msgConsistentError;
-        bool blockSystem = true;
+        bool blockSystem = false;
         public LoginForm()
         {
-            InitializeComponent();
-            bllCarne carne = new bllCarne();
-            List<belCarne> listc = carne.Consulta();
-            if (listc.Count > 0)
-            {
-                if (!VerificatorManager.CompararTotalDVH(listc.ToList<IEntity>())) { blockSystem = true; }
-            }
             LanguageManager.InicializarServicio();
             ProfileManager.InicializarServicio();
+            if (VerificacionDatos()){blockSystem = true; MessageBox.Show("error"); }
+            InitializeComponent();
+        }
+        private bool VerificacionDatos()
+        {
+            List<IEntity> Lista;
+            bool Error = false;
+            int flag = 0;
+            bllCarne carne = new bllCarne();
+            bllCarneCarrito carnecarrito = new bllCarneCarrito();
+            bllCarrito carrito = new bllCarrito();
+            bllPedidoCompra pedidocompra = new bllPedidoCompra();
+            bllPedidoCompraCarne pedidocompracarne = new bllPedidoCompraCarne();
+            bllProveedor proveedor = new bllProveedor();
+            bllTicket ticket = new bllTicket();
+            bllCotizacion cotizacion = new bllCotizacion();
+            Lista = carne.Consulta().ToList<IEntity>();
+            if (VerificatorManager.CompararTotalDVH(Lista, "Carne") == false) flag++; 
+            Lista = carnecarrito.ConsultaVerificacion().ToList<IEntity>();
+            if (VerificatorManager.CompararTotalDVH(Lista, "CarneCarrito") == false) flag++;
+            Lista = carrito.ConsultaVerificacion().ToList<IEntity>();
+            if (VerificatorManager.CompararTotalDVH(Lista, "Carrito") == false) flag++;
+            Lista = pedidocompra.ConsultaVerificacion().ToList<IEntity>();
+            if (VerificatorManager.CompararTotalDVH(Lista, "PedidoCompra") == false) flag++;
+            Lista = pedidocompracarne.ConsultaVerificacion().ToList<IEntity>();
+            if (VerificatorManager.CompararTotalDVH(Lista, "PedidoCompraCarne") == false) flag++;
+            Lista = proveedor.ConsultaVerificacion().ToList<IEntity>();
+            if (VerificatorManager.CompararTotalDVH(Lista, "Proveedor") == false) flag++;
+            Lista = ticket.ConsultaVerificacion().ToList<IEntity>();
+            if (VerificatorManager.CompararTotalDVH(Lista, "Ticket") == false) flag++;
+            Lista = cotizacion.ConsultaVerificacion().ToList<IEntity>();
+            if (VerificatorManager.CompararTotalDVH(Lista, "Cotizacion") == false) flag++;
+            if (flag > 0) Error = true;
+            Lista = null;
+            return Error;
+        }
+        private void CargarDVH()
+        {
+            List<IEntity> Lista;
+            bllCarne carne = new bllCarne();
+            bllCarneCarrito carnecarrito = new bllCarneCarrito();
+            bllCarrito carrito = new bllCarrito();
+            bllPedidoCompra pedidocompra = new bllPedidoCompra();
+            bllPedidoCompraCarne pedidocompracarne = new bllPedidoCompraCarne();
+            bllProveedor proveedor = new bllProveedor();
+            bllTicket ticket = new bllTicket();
+            bllCotizacion cotizacion = new bllCotizacion();
+            Lista = carne.Consulta().ToList<IEntity>();
+            VerificatorManager.AltaDVH(Lista, "Carne");
+            VerificatorManager.ModificaciónTotalDVH("Carne");
+            Lista = carnecarrito.ConsultaVerificacion().ToList<IEntity>();
+            VerificatorManager.AltaDVH(Lista, "CarneCarrito");
+            VerificatorManager.ModificaciónTotalDVH("CarneCarrito");
+            Lista = carrito.ConsultaVerificacion().ToList<IEntity>();
+            VerificatorManager.AltaDVH(Lista, "Carrito");
+            VerificatorManager.ModificaciónTotalDVH("Carrito");
+            Lista = pedidocompra.ConsultaVerificacion().ToList<IEntity>();
+            VerificatorManager.AltaDVH(Lista, "PedidoCompra");
+            VerificatorManager.ModificaciónTotalDVH("PedidoCompra");
+            Lista = pedidocompracarne.ConsultaVerificacion().ToList<IEntity>();
+            VerificatorManager.AltaDVH(Lista, "PedidoCompraCarne");
+            VerificatorManager.ModificaciónTotalDVH("PedidoCompraCarne");
+            Lista = proveedor.ConsultaVerificacion().ToList<IEntity>();
+            VerificatorManager.AltaDVH(Lista, "Proveedor");
+            VerificatorManager.ModificaciónTotalDVH("Proveedor");
+            Lista = ticket.ConsultaVerificacion().ToList<IEntity>();
+            VerificatorManager.AltaDVH(Lista, "Ticket");
+            VerificatorManager.ModificaciónTotalDVH("Ticket");
+            Lista = cotizacion.ConsultaVerificacion().ToList<IEntity>();
+            VerificatorManager.AltaDVH(Lista, "Cotizacion");
+            VerificatorManager.ModificaciónTotalDVH("Cotizacion");
         }
         private void button1_Click(object sender, EventArgs e)
         {

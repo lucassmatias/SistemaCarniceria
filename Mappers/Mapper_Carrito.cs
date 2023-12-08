@@ -88,5 +88,19 @@ namespace Mappers
         {
             throw new NotImplementedException();
         }
+        public List<belCarrito> ConsultaVerificacion()
+        {
+            string storedProcedure = "S_Carrito_ConsultaVerificacion";
+            DataTable dt = dao.Leer(storedProcedure);
+            List<belCarrito> l = new List<belCarrito>();
+            if(dt.Rows.Count > 0)
+            {
+                foreach(DataRow dr in dt.Rows)
+                {
+                    l.Add(new belCarrito(dr.ItemArray));
+                }
+            }
+            return l;
+        }
     }
 }

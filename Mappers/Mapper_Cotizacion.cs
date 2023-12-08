@@ -107,5 +107,19 @@ namespace Mappers
             al.Add(p4);
             dao.Escribir(storedProcedure, al);
         }
+        public List<belCotizacion> ConsultaVerificacion()
+        {
+            string storedProcedure = "S_Cotizacion_ConsultaVerificacion";
+            List<belCotizacion> l = new List<belCotizacion>();
+            DataTable dt = dao.Leer(storedProcedure);
+            if(dt.Rows.Count > 0)
+            {
+                foreach(DataRow dr in dt.Rows)
+                {
+                    l.Add(new belCotizacion(dr.ItemArray));
+                }
+            }
+            return l;
+        }
     }
 }

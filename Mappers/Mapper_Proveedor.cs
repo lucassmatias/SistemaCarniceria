@@ -104,5 +104,19 @@ namespace Mappers
             al.Add(p7);
             dao.Escribir(storedProcedure, al);
         }
+        public List<belProveedor> ConsultaVerificacion()
+        {
+            string storedProcedure = "S_Proveedor_ConsultaVerificacion";
+            List<belProveedor> l = new List<belProveedor>();
+            DataTable dt = dao.Leer(storedProcedure);
+            if(dt.Rows.Count > 0)
+            {
+                foreach(DataRow dr in dt.Rows)
+                {
+                    l.Add(new belProveedor(dr.ItemArray));
+                }
+            }
+            return l;
+        }
     }
 }

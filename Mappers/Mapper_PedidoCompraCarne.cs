@@ -82,5 +82,20 @@ namespace Mappers
         {
             throw new NotImplementedException();
         }
+
+        public List<belPedidoCompraCarne> ConsultaVerificacion()
+        {
+            string storedProcedure = "S_PedidoCompraCarne_ConsultaVerificacion";
+            List<belPedidoCompraCarne> l = new List<belPedidoCompraCarne>();
+            DataTable dt = dao.Leer(storedProcedure);
+            if(dt.Rows.Count > 0)
+            {
+                foreach(DataRow dr in dt.Rows)
+                {
+                    l.Add(new belPedidoCompraCarne(dr.ItemArray));
+                }
+            }
+            return l;
+        }
     }
 }

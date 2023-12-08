@@ -39,5 +39,9 @@ namespace BLL
         {
             map.ModificacionCarneCarrito(pItem, pCodigoAnterior);
         }
+        public List<belCarneCarrito> ConsultaVerificacion()
+        {
+            return map.ConsultaVerificacion();
+        }
     }
 }

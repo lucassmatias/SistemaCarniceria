@@ -40,5 +40,9 @@ namespace BLL
         {
             pObject.Id = (map.ConsultaCodigo() + 1).ToString();
         }
+        public List<belTicket> ConsultaVerificacion()
+        {
+            return map.ConsultaVerificacion();
+        }
     }
 }

@@ -80,5 +80,9 @@ namespace BLL
         {
             throw new NotImplementedException();
         }
+        public List<belCarrito> ConsultaVerificacion()
+        {
+            return map.ConsultaVerificacion();
+        }
     }
 }

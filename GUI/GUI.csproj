@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.SqlServer.Types.160.1000.6\build\net462\Microsoft.SqlServer.Types.props" Condition="Exists('..\packages\Microsoft.SqlServer.Types.160.1000.6\build\net462\Microsoft.SqlServer.Types.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -28,6 +29,8 @@
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -64,6 +67,13 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\PROGRAM FILES\MICROSOFT VISUAL STUDIO\2022\COMMUNITY\COMMON7\IDE\COMMONEXTENSIONS\MICROSOFT\SSAS\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.160.1000.6\lib\net462\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -85,6 +95,12 @@
     </Compile>
     <Compile Include="BackupForm.Designer.cs">
       <DependentUpon>BackupForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BuyReportsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BuyReportsForm.Designer.cs">
+      <DependentUpon>BuyReportsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="BuyRequestForm.cs">
       <SubType>Form</SubType>
@@ -115,6 +131,11 @@
     </Compile>
     <Compile Include="ChangesForm.Designer.cs">
       <DependentUpon>ChangesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="dbCarniceria.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbCarniceria.xsd</DependentUpon>
     </Compile>
     <Compile Include="LanguageForm.cs">
       <SubType>Form</SubType>
@@ -170,6 +191,12 @@
     <Compile Include="QuoteRequestForm.Designer.cs">
       <DependentUpon>QuoteRequestForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportsForm.Designer.cs">
+      <DependentUpon>ReportsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SaleForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -193,6 +220,9 @@
     <EmbeddedResource Include="BackupForm.resx">
       <DependentUpon>BackupForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BuyReportsForm.resx">
+      <DependentUpon>BuyReportsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BuyRequestForm.resx">
       <DependentUpon>BuyRequestForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -208,6 +238,7 @@
     <EmbeddedResource Include="ChangesForm.resx">
       <DependentUpon>ChangesForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\InformeVentas.rdlc" />
     <EmbeddedResource Include="LanguageForm.resx">
       <DependentUpon>LanguageForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -235,6 +266,10 @@
     <EmbeddedResource Include="QuoteRequestForm.resx">
       <DependentUpon>QuoteRequestForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportsForm.resx">
+      <DependentUpon>ReportsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ReporteCompras.rdlc" />
     <EmbeddedResource Include="SaleForm.resx">
       <DependentUpon>SaleForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -254,7 +289,19 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="dbCarniceria.xsc">
+      <DependentUpon>dbCarniceria.xsd</DependentUpon>
+    </None>
+    <None Include="dbCarniceria.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dbCarniceria.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dbCarniceria.xss">
+      <DependentUpon>dbCarniceria.xsd</DependentUpon>
+    </None>
     <None Include="GUI_TemporaryKey.pfx" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -313,4 +360,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.SqlServer.Types.160.1000.6\build\net462\Microsoft.SqlServer.Types.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.SqlServer.Types.160.1000.6\build\net462\Microsoft.SqlServer.Types.props'))" />
+  </Target>
 </Project>

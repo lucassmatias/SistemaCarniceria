@@ -11,6 +11,8 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Services;
+using Interfaces;
 
 namespace GUI
 {
@@ -50,6 +52,7 @@ namespace GUI
                 string nombre = Interaction.InputBox("Nombre:");
                 aux.Nombre = nombre;
                 bllProveedor.Alta(aux);
+                VerificatorManager.AltaDVH(new List<IEntity>() { aux}, "Proveedor");
                 listProveedor = bllProveedor.Consulta();
                 RefrescarListbox();
                 RefrescarDataGrid(null, null);
@@ -62,52 +65,69 @@ namespace GUI
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
-            if (listBox1.SelectedIndex != -1)
+            try
             {
-                string codigo = listBox1.Items[listBox1.SelectedIndex].ToString();
-                codigo = codigo.Split('-')[0];
-                codigo.TrimEnd();
-                belProveedor aux = listProveedor.Find(x => x.Id == codigo);
-                bllProveedor.Baja(codigo);
-                if(aux.ListaCotización.Count != 0)
+                if (listBox1.SelectedIndex != -1)
                 {
-                    bllCotizacion.Baja(codigo);
+                    string codigo = listBox1.Items[listBox1.SelectedIndex].ToString();
+                    codigo = codigo.Split('-')[0];
+                    codigo.TrimEnd();
+                    belProveedor aux = listProveedor.Find(x => x.Id == codigo);
+                    bllProveedor.Baja(codigo);
+                    VerificatorManager.BajaDVH(new List<IEntity>() { aux }, "Proveedor");
+                    if (aux.ListaCotización.Count != 0)
+                    {
+                        List<IEntity> l = bllCotizacion.ConsultaCondicional(codigo).ToList<IEntity>();
+                        VerificatorManager.BajaDVH(l, "Cotizacion");
+                        bllCotizacion.Baja(codigo);
+                    }
+                    listProveedor = bllProveedor.Consulta();
+                    RefrescarListbox();
+                    RefrescarDataGrid(null, null);
                 }
-                listProveedor = bllProveedor.Consulta();
-                RefrescarListbox();
-                RefrescarDataGrid(null, null);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
         private void RefrescarDataGrid(object sender, EventArgs e)
         {
             dataGridView1.Rows.Clear();
-            if (listBox1.SelectedIndex != -1)
+            try
             {
-                string codigo = listBox1.Items[listBox1.SelectedIndex].ToString();
-                codigo = codigo.Split('-')[0];
-                codigo.TrimEnd();
-                belProveedor aux = listProveedor.Find(x => x.Id == codigo.ToString());
-                foreach(PropertyInfo a in aux.GetType().GetProperties())
+                if (listBox1.SelectedIndex != -1)
                 {
-                    if(a.Name != "ListaCotización")
+                    string codigo = listBox1.Items[listBox1.SelectedIndex].ToString();
+                    codigo = codigo.Split('-')[0];
+                    codigo.TrimEnd();
+                    belProveedor aux = listProveedor.Find(x => x.Id == codigo.ToString());
+                    foreach (PropertyInfo a in aux.GetType().GetProperties())
                     {
-                        DataGridViewRow dgvRow = new DataGridViewRow();
-                        dgvRow.CreateCells(dataGridView1);
-                        dgvRow.Cells[0].Value = a.Name;
-                        dgvRow.Cells[0].ReadOnly = true;
-                        dgvRow.Cells[1].Value = a.GetValue(aux);
-                        dgvRow.Cells[1].ReadOnly = false;
-                        if(a.Name == "Id")
+                        if (a.Name != "ListaCotización")
                         {
-                            dgvRow.ReadOnly = true;
+                            DataGridViewRow dgvRow = new DataGridViewRow();
+                            dgvRow.CreateCells(dataGridView1);
+                            dgvRow.Cells[0].Value = a.Name;
+                            dgvRow.Cells[0].ReadOnly = true;
+                            dgvRow.Cells[1].Value = a.GetValue(aux);
+                            dgvRow.Cells[1].ReadOnly = false;
+                            if (a.Name == "Id")
+                            {
+                                dgvRow.ReadOnly = true;
+                            }
+                            DataGridViewRow dgvRowClear = new DataGridViewRow();
+                            dgvRowClear.ReadOnly = true;
+                            dataGridView1.Rows.Add(dgvRow);
+                            dataGridView1.Rows.Add(dgvRowClear);
                         }
-                        DataGridViewRow dgvRowClear = new DataGridViewRow();
-                        dgvRowClear.ReadOnly = true;
-                        dataGridView1.Rows.Add(dgvRow);
-                        dataGridView1.Rows.Add(dgvRowClear);
-                    }           
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }          
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -138,6 +158,7 @@ namespace GUI
                         }
                     }
                     bllProveedor.Modificacion(proveedor);
+                    VerificatorManager.AltaDVH(new List<IEntity>() { proveedor }, "Proveedor");
                     listProveedor = bllProveedor.Consulta();
                     RefrescarListbox();
                     RefrescarDataGrid(null, null);
@@ -156,17 +177,24 @@ namespace GUI
 
         private void btnPrices_Click(object sender, EventArgs e)
         {
-            string codigo = listBox1.Items[listBox1.SelectedIndex].ToString();
-            if(codigo != "-1")
+            try
             {
-                codigo = codigo.Split('-')[0];
-                codigo.TrimEnd();
-                belProveedor proveedor = listProveedor.Find(x => x.Id == codigo);
-                QuoteForm Quoteform = new QuoteForm(proveedor);
-                this.Hide();
-                Quoteform.ShowDialog();
-                this.Show();
-            }        
+                string codigo = listBox1.Items[listBox1.SelectedIndex].ToString();
+                if (codigo != "-1")
+                {
+                    codigo = codigo.Split('-')[0];
+                    codigo.TrimEnd();
+                    belProveedor proveedor = listProveedor.Find(x => x.Id == codigo);
+                    QuoteForm Quoteform = new QuoteForm(proveedor);
+                    this.Hide();
+                    Quoteform.ShowDialog();
+                    this.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }                 
         }
 
         private void btnSolQuote_Click(object sender, EventArgs e)
@@ -179,16 +207,23 @@ namespace GUI
 
         private void btnBuyRequest_Click(object sender, EventArgs e)
         {
-            string codigo = listBox1.Items[listBox1.SelectedIndex].ToString();
-            if (codigo != "-1")
+            try
             {
-                codigo = codigo.Split('-')[0];
-                codigo.TrimEnd();
-                belProveedor proveedor = listProveedor.Find(x => x.Id == codigo);
-                BuyRequestForm Buyform = new BuyRequestForm(proveedor);
-                this.Hide();
-                Buyform.ShowDialog();
-                this.Show();
+                string codigo = listBox1.Items[listBox1.SelectedIndex].ToString();
+                if (codigo != "-1")
+                {
+                    codigo = codigo.Split('-')[0];
+                    codigo.TrimEnd();
+                    belProveedor proveedor = listProveedor.Find(x => x.Id == codigo);
+                    BuyRequestForm Buyform = new BuyRequestForm(proveedor);
+                    this.Hide();
+                    Buyform.ShowDialog();
+                    this.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
     }

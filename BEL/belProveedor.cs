@@ -21,6 +21,17 @@ namespace BEL
             CostoEnvio = decimal.Parse(array[6].ToString());
             ListaCotización = pLista;
         }
+        public belProveedor(object[] array)
+        {
+            Id = array[0].ToString();
+            Nombre = array[1].ToString();
+            Localidad = array[2].ToString();
+            Direccion = array[3].ToString();
+            Telefono = array[4].ToString();
+            Mail = array[5].ToString();
+            CostoEnvio = decimal.Parse(array[6].ToString());
+            ListaCotización = null;
+        }
         public string Id { get; set; }
         public string Nombre { get; set; }
         public string Localidad { get;set; }

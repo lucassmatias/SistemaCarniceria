@@ -33,5 +33,14 @@ namespace BEL
             Recibido = bool.Parse(array[4].ToString());
             Cancelado = bool.Parse(array[5].ToString());
         }
+        public belPedidoCompra(object[] array)
+        {
+            Id = array[0].ToString();
+            proveedor = null;
+            PrecioTotal = decimal.Parse(array[2].ToString());
+            Fecha = DateTime.Parse(array[3].ToString());
+            Recibido = bool.Parse(array[4].ToString());
+            Cancelado = bool.Parse(array[5].ToString());
+        }
     }
 }
