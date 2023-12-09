@@ -119,14 +119,6 @@ namespace GUI
                 }
             }
         }
-
-        private void idiomaToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            languageFormInstance.ShowDialog();
-            this.Show();
-        }
-
         private void bitacoraToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ChangesForm ev = new ChangesForm();
@@ -188,6 +180,13 @@ namespace GUI
         {
             this.Hide();
             userFormInstance.ShowDialog();
+            this.Show();
+        }
+
+        private void idiomaToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            this.Hide();
+            languageFormInstance.ShowDialog();
             this.Show();
         }
     }

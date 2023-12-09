@@ -143,6 +143,7 @@
             this.idiomaToolStripMenuItem.Tag = "MenuLanguage";
             this.idiomaToolStripMenuItem.Text = "Idioma";
             this.idiomaToolStripMenuItem.ToolTipText = "Administración de idiomas";
+            this.idiomaToolStripMenuItem.Click += new System.EventHandler(this.idiomaToolStripMenuItem_Click_1);
             // 
             // usuarioToolStripMenuItem
             // 
