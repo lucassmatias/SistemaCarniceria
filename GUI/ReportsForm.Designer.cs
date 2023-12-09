@@ -30,13 +30,25 @@
         {
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.dbCarniceria = new SistemaCarniceria.dbCarniceria();
             this.tTicketBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dbCarniceria = new SistemaCarniceria.dbCarniceria();
+            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.tTicketTableAdapter = new SistemaCarniceria.dbCarniceriaTableAdapters.tTicketTableAdapter();
-            ((System.ComponentModel.ISupportInitialize)(this.dbCarniceria)).BeginInit();
+            this.tPedidoCompraBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.tTicketBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dbCarniceria)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tPedidoCompraBindingSource)).BeginInit();
             this.SuspendLayout();
+            // 
+            // tTicketBindingSource
+            // 
+            this.tTicketBindingSource.DataMember = "tTicket";
+            this.tTicketBindingSource.DataSource = this.dbCarniceria;
+            // 
+            // dbCarniceria
+            // 
+            this.dbCarniceria.DataSetName = "dbCarniceria";
+            this.dbCarniceria.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // reportViewer1
             // 
@@ -44,26 +56,21 @@
             reportDataSource1.Name = "dsTicket";
             reportDataSource1.Value = this.tTicketBindingSource;
             this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
-            this.reportViewer1.LocalReport.ReportEmbeddedResource = "SistemaCarniceria.InformeVentas.rdlc";
+            this.reportViewer1.LocalReport.ReportEmbeddedResource = "SistemaCarniceria.Reports.InformeVentas.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(0, 0);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.ServerReport.BearerToken = null;
             this.reportViewer1.Size = new System.Drawing.Size(800, 450);
             this.reportViewer1.TabIndex = 0;
             // 
-            // dbCarniceria
-            // 
-            this.dbCarniceria.DataSetName = "dbCarniceria";
-            this.dbCarniceria.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // tTicketBindingSource
-            // 
-            this.tTicketBindingSource.DataMember = "tTicket";
-            this.tTicketBindingSource.DataSource = this.dbCarniceria;
-            // 
             // tTicketTableAdapter
             // 
             this.tTicketTableAdapter.ClearBeforeFill = true;
+            // 
+            // tPedidoCompraBindingSource
+            // 
+            this.tPedidoCompraBindingSource.DataMember = "tPedidoCompra";
+            this.tPedidoCompraBindingSource.DataSource = this.dbCarniceria;
             // 
             // ReportsForm
             // 
@@ -74,8 +81,9 @@
             this.Name = "ReportsForm";
             this.Text = "ReportsForm";
             this.Load += new System.EventHandler(this.ReportsForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dbCarniceria)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tTicketBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dbCarniceria)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tPedidoCompraBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -86,5 +94,6 @@
         private dbCarniceria dbCarniceria;
         private System.Windows.Forms.BindingSource tTicketBindingSource;
         private dbCarniceriaTableAdapters.tTicketTableAdapter tTicketTableAdapter;
+        private System.Windows.Forms.BindingSource tPedidoCompraBindingSource;
     }
 }

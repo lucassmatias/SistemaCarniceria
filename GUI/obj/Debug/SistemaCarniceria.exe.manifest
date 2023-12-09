@@ -331,14 +331,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SistemaCarniceria.exe" size="433064">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SistemaCarniceria.exe" size="433576">
       <assemblyIdentity name="SistemaCarniceria" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>Wtw1824EpamTjrzK2zcUhnj4pUmz5/6i7oJ+ND7d6uc=</dsig:DigestValue>
+        <dsig:DigestValue>re3zMDfpAj0ucV/+bYDXw1aoUlphhhInuX+ARWZ3Rms=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
