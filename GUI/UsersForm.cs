@@ -32,7 +32,6 @@ namespace GUI
         {
             InitializeComponent();
         }
-
         private void FormUsuario_Load(object sender, EventArgs e)
         {
             bllUsuario = new bllUsuario();
@@ -77,7 +76,6 @@ namespace GUI
             }
             return tbValidation;
         }
-
         private void btnAdd_Click(object sender, EventArgs e)
         {
             try
@@ -93,7 +91,7 @@ namespace GUI
                     bllUsuario.Alta(new belUsuario(tbDNI.Text, tbUsername.Text, CryptoManager.Encrypt(tbContraseña.Text), tbNombre.Text, tbApellido.Text, tbEmail.Text, perfil, LanguageManager.ListaIdioma.Find(x => x.Id == (comboBoxImageNotEvent1.RetornaComboBox().SelectedIndex + 1).ToString())));
                     ListaUsuario = bllUsuario.Consulta();
                     RefreshDataGrid();
-                    LogManager.AgregarLogEvento($"USERS - User created ({tbUsername.Text})",2, SessionManager.GetInstance.user);
+                    LogManager.AgregarLogEvento($"USUARIO - Usuario creado ({tbUsername.Text})",3, SessionManager.GetInstance.user);
                 }
             }
             catch (Exception ex)
@@ -101,13 +99,12 @@ namespace GUI
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void btnRemove_Click(object sender, EventArgs e)
         {
             try
             {
                 bllUsuario.Baja(SeleccionarUsuario().Id);
-                LogManager.AgregarLogEvento($"USERS - User deleted ({(dataGridView1.SelectedRows[0].DataBoundItem as belUsuario).Id})",3, SessionManager.GetInstance.user);
+                LogManager.AgregarLogEvento($"USUARIO - Usuario eliminado ({(dataGridView1.SelectedRows[0].DataBoundItem as belUsuario).Id})",3, SessionManager.GetInstance.user);
                 ListaUsuario = bllUsuario.Consulta();
                 RefreshDataGrid();
             }
@@ -116,7 +113,6 @@ namespace GUI
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void btnModify_Click(object sender, EventArgs e)
         {
             try
@@ -137,14 +133,13 @@ namespace GUI
                 bllUsuario.Modificacion(aux);
                 ListaUsuario = bllUsuario.Consulta();
                 RefreshDataGrid();
-                LogManager.AgregarLogEvento($"USERS - User Modified ({aux.Id})", 2, SessionManager.GetInstance.user);
+                LogManager.AgregarLogEvento($"USUARIO - Usuario modificado ({aux.Id})", 3, SessionManager.GetInstance.user);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void btnUnlock_Click(object sender, EventArgs e)
         {
             belUsuario aux = SeleccionarUsuario();
@@ -159,7 +154,7 @@ namespace GUI
             bllUsuario.Modificacion(aux);
             ListaUsuario = bllUsuario.Consulta();
             RefreshDataGrid();
-            LogManager.AgregarLogEvento($"USERS - Changed block status from an user ({aux.Id})", 2, SessionManager.GetInstance.user);
+            LogManager.AgregarLogEvento($"USUARIO - Usuario desbloqueado ({aux.Id})", 3, SessionManager.GetInstance.user);
         }
         private void EnableBtnUnlockFunction()
         {
@@ -183,7 +178,6 @@ namespace GUI
 
             }           
         }
-
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -223,12 +217,10 @@ namespace GUI
         {
             UserFilterByName(null, null);
         }
-
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             UserFilterByState(null, null);
         }
-
         private void btnActive_Click(object sender, EventArgs e)
         {
             try
@@ -245,14 +237,13 @@ namespace GUI
                 bllUsuario.Modificacion(aux);
                 ListaUsuario = bllUsuario.Consulta();
                 RefreshDataGrid();
-                LogManager.AgregarLogEvento($"USERS - Changed active status from an user ({aux.Id})", 2,SessionManager.GetInstance.user);
+                LogManager.AgregarLogEvento($"USUARIO - Usuario activado ({aux.Id})", 3,SessionManager.GetInstance.user);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }          
         }
-
         public void Update(string pCodigoIdioma)
         {
             Idioma pIdioma = LanguageManager.ListaIdioma.Find(x => x.Id == pCodigoIdioma);
@@ -296,7 +287,6 @@ namespace GUI
             modificacion = pIdioma.ListaEtiquetas.Find(x => x.Tag == "txtModification").Texto;
             this.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "frmUser").Texto;
         }
-
         private void btnProfile_Click(object sender, EventArgs e)
         {
             this.Hide();

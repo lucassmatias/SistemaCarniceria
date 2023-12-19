@@ -202,19 +202,18 @@ namespace GUI
                         bllCarrito.AgregarImporte(belCarrito);
                         bllCarrito.AgregarID(belCarrito);
                         bllCarrito.Alta(belCarrito);
-                        VerificatorManager.AltaDVH(new List<IEntity>() { belCarrito }, "Carrito");
                         foreach (belCarneCarrito x in belCarrito.Productos)
                         {
                             bllCarneCarrito.Alta(x);
                             belCarne aux = ListCarne.Find(y => y.Id == x.Carne.Id);
                             bllCarne.Modificacion(aux);
+                            VerificatorManager.AltaDVH(new List<IEntity>() { aux }, "Carne");
                             RegistroStock.TryGetValue(aux.Id, out decimal stockAnterior);
                         }
-                        VerificatorManager.AltaDVH(belCarrito.Productos.ToList<IEntity>(), "Carrito");
                         bllCarrito.ClearProductos(belCarrito);
                         CargarDGV2();
                         MessageBox.Show(msgSuccesfulCart);
-                        LogManager.AgregarLogEvento($"CART - Cart Saved ({belCarrito.Id})", 2,SessionManager.GetInstance.user);
+                        LogManager.AgregarLogEvento($"CARRITO - Carrito creado ({belCarrito.Id})", 2,SessionManager.GetInstance.user);
                         CacheStock();
                     }
                 }

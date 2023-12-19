@@ -72,7 +72,7 @@ namespace GUI
                     LanguageManager.ListaIdioma[int.Parse(IdiomaActual.Id) - 1] = LanguageManager.ConsultaIdiomaCodigo(int.Parse(IdiomaActual.Id));
                     RefrescaComboBox();
                     RefrescarListBox();
-                    LogManager.AgregarLogEvento($"LANGUAGE - Tag created ({nombre}))", 1, SessionManager.GetInstance.user);
+                    LogManager.AgregarLogEvento($"IDIOMA - Tag creado ({nombre}))", 3, SessionManager.GetInstance.user);
                 }
                 else
                 {
@@ -103,7 +103,7 @@ namespace GUI
                     RefrescaComboBox();
                     RefrescarListBox();
                     LanguageManager.CambiarIdioma(SessionManager.GetInstance.user.Idioma.Id);
-                    LogManager.AgregarLogEvento($"LANGUAGE - Text modified ({txt}))", 1, SessionManager.GetInstance.user);
+                    LogManager.AgregarLogEvento($"IDIOMA - Texto modificado ({txt}))", 3, SessionManager.GetInstance.user);
                 }
                 else
                 {
@@ -115,7 +115,6 @@ namespace GUI
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
             if(IdiomaActual != null)
@@ -130,12 +129,10 @@ namespace GUI
                 }
             }
         }
-
         private void Cerrar_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
         public void Update(string pCodigoIdioma)
         {
             Idioma pIdioma = LanguageManager.ListaIdioma.Find(x => x.Id == pCodigoIdioma);

@@ -37,68 +37,15 @@ namespace GUI
             bool Error = false;
             int flag = 0;
             bllCarne carne = new bllCarne();
-            bllCarneCarrito carnecarrito = new bllCarneCarrito();
             bllCarrito carrito = new bllCarrito();
             bllPedidoCompra pedidocompra = new bllPedidoCompra();
-            bllPedidoCompraCarne pedidocompracarne = new bllPedidoCompraCarne();
             bllProveedor proveedor = new bllProveedor();
             bllTicket ticket = new bllTicket();
-            bllCotizacion cotizacion = new bllCotizacion();
             Lista = carne.Consulta().ToList<IEntity>();
             if (VerificatorManager.CompararTotalDVH(Lista, "Carne") == false) flag++; 
-            Lista = carnecarrito.ConsultaVerificacion().ToList<IEntity>();
-            if (VerificatorManager.CompararTotalDVH(Lista, "CarneCarrito") == false) flag++;
-            Lista = carrito.ConsultaVerificacion().ToList<IEntity>();
-            if (VerificatorManager.CompararTotalDVH(Lista, "Carrito") == false) flag++;
-            Lista = pedidocompra.ConsultaVerificacion().ToList<IEntity>();
-            if (VerificatorManager.CompararTotalDVH(Lista, "PedidoCompra") == false) flag++;
-            Lista = pedidocompracarne.ConsultaVerificacion().ToList<IEntity>();
-            if (VerificatorManager.CompararTotalDVH(Lista, "PedidoCompraCarne") == false) flag++;
-            Lista = proveedor.ConsultaVerificacion().ToList<IEntity>();
-            if (VerificatorManager.CompararTotalDVH(Lista, "Proveedor") == false) flag++;
-            Lista = ticket.ConsultaVerificacion().ToList<IEntity>();
-            if (VerificatorManager.CompararTotalDVH(Lista, "Ticket") == false) flag++;
-            Lista = cotizacion.ConsultaVerificacion().ToList<IEntity>();
-            if (VerificatorManager.CompararTotalDVH(Lista, "Cotizacion") == false) flag++;
             if (flag > 0) Error = true;
             Lista = null;
             return Error;
-        }
-        private void CargarDVH()
-        {
-            List<IEntity> Lista;
-            bllCarne carne = new bllCarne();
-            bllCarneCarrito carnecarrito = new bllCarneCarrito();
-            bllCarrito carrito = new bllCarrito();
-            bllPedidoCompra pedidocompra = new bllPedidoCompra();
-            bllPedidoCompraCarne pedidocompracarne = new bllPedidoCompraCarne();
-            bllProveedor proveedor = new bllProveedor();
-            bllTicket ticket = new bllTicket();
-            bllCotizacion cotizacion = new bllCotizacion();
-            Lista = carne.Consulta().ToList<IEntity>();
-            VerificatorManager.AltaDVH(Lista, "Carne");
-            VerificatorManager.ModificaciónTotalDVH("Carne");
-            Lista = carnecarrito.ConsultaVerificacion().ToList<IEntity>();
-            VerificatorManager.AltaDVH(Lista, "CarneCarrito");
-            VerificatorManager.ModificaciónTotalDVH("CarneCarrito");
-            Lista = carrito.ConsultaVerificacion().ToList<IEntity>();
-            VerificatorManager.AltaDVH(Lista, "Carrito");
-            VerificatorManager.ModificaciónTotalDVH("Carrito");
-            Lista = pedidocompra.ConsultaVerificacion().ToList<IEntity>();
-            VerificatorManager.AltaDVH(Lista, "PedidoCompra");
-            VerificatorManager.ModificaciónTotalDVH("PedidoCompra");
-            Lista = pedidocompracarne.ConsultaVerificacion().ToList<IEntity>();
-            VerificatorManager.AltaDVH(Lista, "PedidoCompraCarne");
-            VerificatorManager.ModificaciónTotalDVH("PedidoCompraCarne");
-            Lista = proveedor.ConsultaVerificacion().ToList<IEntity>();
-            VerificatorManager.AltaDVH(Lista, "Proveedor");
-            VerificatorManager.ModificaciónTotalDVH("Proveedor");
-            Lista = ticket.ConsultaVerificacion().ToList<IEntity>();
-            VerificatorManager.AltaDVH(Lista, "Ticket");
-            VerificatorManager.ModificaciónTotalDVH("Ticket");
-            Lista = cotizacion.ConsultaVerificacion().ToList<IEntity>();
-            VerificatorManager.AltaDVH(Lista, "Cotizacion");
-            VerificatorManager.ModificaciónTotalDVH("Cotizacion");
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -131,7 +78,7 @@ namespace GUI
                         SessionManager.Login(User);
                         formPrincipalInstance.SessionManager = SessionManager.GetInstance;
                         LanguageManager.Suscribir(formPrincipalInstance);
-                        LogManager.AgregarLogEvento("LOGIN - Login", 1, User);
+                        LogManager.AgregarLogEvento("LOGIN - Ingreso", 1, User);
                         Idioma pIdioma = LanguageManager.Idioma((comboBoxImage1.RetornaComboBox().SelectedIndex + 1).ToString());
                         User.Idioma = pIdioma;
                         bllusuario.Modificacion(User);
@@ -147,19 +94,19 @@ namespace GUI
                     {
                         MessageBox.Show(msgWrongPassword, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         User.Intentos -= 1;
-                        LogManager.AgregarLogEvento("LOGIN - Incorrect password", 2, User);
+                        LogManager.AgregarLogEvento("LOGIN - Contraseña incorrecta", 1, User);
                         if (User.Intentos == 0)
                         {
                             User.Blocked = true;
                             bllusuario.Modificacion(User);
                             MessageBox.Show(msgBlockedAccount, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            LogManager.AgregarLogEvento("LOGIN - Account blocking for missed attempts",3, User);
+                            LogManager.AgregarLogEvento("LOGIN - Cuenta bloqueada por exceso de intentos",3, User);
                         }
                     }
                     else
                     {
                         MessageBox.Show(msgBlockedAccount, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        LogManager.AgregarLogEvento("LOGIN - Blocked account login attempt",3, User);
+                        LogManager.AgregarLogEvento("LOGIN - Cuenta bloqueada por exceso de intentos",3, User);
                     }
                 }
             }
@@ -176,7 +123,6 @@ namespace GUI
             if (cbSee.Checked) { textBox2.UseSystemPasswordChar = false; }
             else { textBox2.UseSystemPasswordChar = true; }
         }
-
         public void Update(string pCodigoIdioma)
         {
             Idioma pIdioma = LanguageManager.ListaIdioma.Find(x => x.Id == pCodigoIdioma);

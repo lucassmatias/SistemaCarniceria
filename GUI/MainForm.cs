@@ -63,14 +63,12 @@ namespace GUI
             LoginFormInstance.ShowDialog();
             this.Close();     
         }
-
         private void carritoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Hide();
             cartFormInstance.ShowDialog();
             this.Show();
         }
-
         public void Update(string pCodigoIdioma)
         {
             Idioma pIdioma = LanguageManager.ListaIdioma.Find(x => x.Id == pCodigoIdioma);
@@ -90,6 +88,7 @@ namespace GUI
             descargarPdfToolStripMenuItem.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "tsOpenpdf").Texto;
             lblTitle.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "lblTitle").Texto;
             this.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "frmMain").Texto;
+            reporteInteligenteToolStripMenuItem.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "tsIntelReport").Texto;
         }
         private void saleToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -126,14 +125,12 @@ namespace GUI
             ev.ShowDialog();
             this.Show();
         }
-
         private void productoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Hide();
             productFormInstance.ShowDialog();
             this.Show();
         }
-
         private void backupToolStripMenuItem_Click(object sender, EventArgs e)
         {
             BackupForm bk = new BackupForm();
@@ -141,26 +138,22 @@ namespace GUI
             bk.ShowDialog();
             this.Show();
         }
-
         private void bitácoraDeEventosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Hide();
             logFormInstance.ShowDialog();
             this.Show();
         }
-
         private void buyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Hide();
             providersFormInstance.ShowDialog();
             this.Show();
         }
-
         private void descargarPdfToolStripMenuItem_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start(@"ManualDeUsuario.pdf");
         }
-
         private void reporteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -168,7 +161,6 @@ namespace GUI
             reportFormInstance.ShowDialog();
             this.Show();
         }
-
         private void reporteComprasToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -182,11 +174,17 @@ namespace GUI
             userFormInstance.ShowDialog();
             this.Show();
         }
-
         private void idiomaToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             this.Hide();
             languageFormInstance.ShowDialog();
+            this.Show();
+        }
+        private void reporteInteligenteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            IntelReportForm irf = new IntelReportForm();
+            this.Hide();
+            irf.ShowDialog();
             this.Show();
         }
     }

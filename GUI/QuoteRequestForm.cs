@@ -21,7 +21,6 @@ namespace GUI
         {
             InitializeComponent();
         }
-
         private void QuoteRequestForm_Load(object sender, EventArgs e)
         {
             bllCarne = new bllCarne();
@@ -43,7 +42,6 @@ namespace GUI
                 comboBox1.Items.Add(car.Nombre);
             }
         }
-
         private void btnAdd_Click(object sender, EventArgs e)
         {
             if (Validation())
@@ -51,7 +49,6 @@ namespace GUI
                 dataGridView1.Rows.Add(comboBox1.SelectedItem.ToString(), textBox1.Text);
             }
         }
-
         private void btnRequest_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Solicitud de cotización enviado correctamente");

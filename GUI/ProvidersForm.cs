@@ -33,7 +33,6 @@ namespace GUI
                 listBox1.Items.Add($"{pro.Id}- {pro.Nombre}");
             }
         }
-
         private void ProvidersForm_Load(object sender, EventArgs e)
         {
             bllProveedor = new bllProveedor();
@@ -43,7 +42,6 @@ namespace GUI
             RefrescarDataGrid(null, null);
             listBox1.SelectedIndexChanged += RefrescarDataGrid;
         }
-
         private void btnAdd_Click(object sender, EventArgs e)
         {
             try
@@ -52,17 +50,16 @@ namespace GUI
                 string nombre = Interaction.InputBox("Nombre:");
                 aux.Nombre = nombre;
                 bllProveedor.Alta(aux);
-                VerificatorManager.AltaDVH(new List<IEntity>() { aux}, "Proveedor");
                 listProveedor = bllProveedor.Consulta();
                 RefrescarListbox();
                 RefrescarDataGrid(null, null);
+                LogManager.AgregarLogEvento($"PROVEEDORES - Proveedor añadido ({aux.Nombre})", 2, SessionManager.GetInstance.user);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void btnRemove_Click(object sender, EventArgs e)
         {
             try
@@ -74,16 +71,15 @@ namespace GUI
                     codigo.TrimEnd();
                     belProveedor aux = listProveedor.Find(x => x.Id == codigo);
                     bllProveedor.Baja(codigo);
-                    VerificatorManager.BajaDVH(new List<IEntity>() { aux }, "Proveedor");
                     if (aux.ListaCotización.Count != 0)
                     {
                         List<IEntity> l = bllCotizacion.ConsultaCondicional(codigo).ToList<IEntity>();
-                        VerificatorManager.BajaDVH(l, "Cotizacion");
                         bllCotizacion.Baja(codigo);
                     }
                     listProveedor = bllProveedor.Consulta();
                     RefrescarListbox();
                     RefrescarDataGrid(null, null);
+                    LogManager.AgregarLogEvento($"PROVEEDORES - Proveedor eliminado ({aux.Nombre})", 2, SessionManager.GetInstance.user);
                 }
             }
             catch (Exception ex)
@@ -129,7 +125,6 @@ namespace GUI
                 MessageBox.Show(ex.Message);
             }          
         }
-
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             try
@@ -158,10 +153,10 @@ namespace GUI
                         }
                     }
                     bllProveedor.Modificacion(proveedor);
-                    VerificatorManager.AltaDVH(new List<IEntity>() { proveedor }, "Proveedor");
                     listProveedor = bllProveedor.Consulta();
                     RefrescarListbox();
                     RefrescarDataGrid(null, null);
+                    LogManager.AgregarLogEvento($"PROVEEDORES - Proveedor actualizado ({proveedor.Nombre})", 2, SessionManager.GetInstance.user);
                 }
             }
             catch (Exception ex)
@@ -169,12 +164,10 @@ namespace GUI
                 MessageBox.Show(ex.Message);
             }          
         }
-
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
         private void btnPrices_Click(object sender, EventArgs e)
         {
             try
@@ -196,7 +189,6 @@ namespace GUI
                 MessageBox.Show(ex.Message);
             }                 
         }
-
         private void btnSolQuote_Click(object sender, EventArgs e)
         {
             QuoteRequestForm form = new QuoteRequestForm();
@@ -204,7 +196,6 @@ namespace GUI
             form.ShowDialog();
             this.Show();
         }
-
         private void btnBuyRequest_Click(object sender, EventArgs e)
         {
             try

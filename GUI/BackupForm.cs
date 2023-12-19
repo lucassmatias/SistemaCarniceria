@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,7 +17,7 @@ namespace GUI
     public partial class BackupForm : Form
     {
         string path = string.Empty;
-        string conexion = "Data Source=zaskao\\SQLEXPRESS;Initial Catalog=dbCarniceria;Integrated Security=True";
+        string conexion = "Data Source=.\\SQLEXPRESS;Initial Catalog=dbCarniceria;Integrated Security=True";
         public BackupForm()
         {
             InitializeComponent();
@@ -38,6 +39,7 @@ namespace GUI
                         Comando.Parameters.AddWithValue("path", path);
                         Comando.ExecuteNonQuery();
                         MessageBox.Show("Backup creado exitosamente!");
+                        LogManager.AgregarLogEvento($"BACKUP - Backup creado ({DateTime.Now})", 3, SessionManager.GetInstance.user);
                     }
                 }
             }
@@ -64,11 +66,13 @@ namespace GUI
                     command.ExecuteNonQuery();
 
                     MessageBox.Show("Backup restaurado exitosamente!");
+
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                LogManager.AgregarLogEvento($"BACKUP - Intento fallido de Backup ({DateTime.Now})", 3, SessionManager.GetInstance.user);
             }
             finally
             {
@@ -77,6 +81,7 @@ namespace GUI
                     con.Open();
                     SqlCommand command = new SqlCommand("alter database [dbCarniceria] set online", con);
                     command.ExecuteNonQuery();
+                    LogManager.AgregarLogEvento($"BACKUP - Base de datos restaurado ({DateTime.Now})", 3, SessionManager.GetInstance.user);
                 }              
             }
         }

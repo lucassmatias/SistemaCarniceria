@@ -326,19 +326,19 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>5kViQNHSm5DVtccJqFD+Eje9RiXwxU1ezyMo/NUzQ/s=</dsig:DigestValue>
+        <dsig:DigestValue>/eSFg59wpsGYVjieTNkPpb92mDEa3QiBI4sZ1PblRz4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SistemaCarniceria.exe" size="433576">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SistemaCarniceria.exe" size="504744">
       <assemblyIdentity name="SistemaCarniceria" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>re3zMDfpAj0ucV/+bYDXw1aoUlphhhInuX+ARWZ3Rms=</dsig:DigestValue>
+        <dsig:DigestValue>G7ZHDlgk424fMo1eX7TkUE5QWFr58skeNavLixOjAKQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

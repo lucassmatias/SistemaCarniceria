@@ -42,7 +42,6 @@ namespace GUI
                 dataGridView1.Rows.Add(new object[] {cot.Id, cot.Carne, cot.Cantidad, cot.Precio});
             }
         }
-
         private void btnAdd_Click(object sender, EventArgs e)
         {
             if(dataGridView1.SelectedRows.Count > 0 && Validation()) 
@@ -85,7 +84,6 @@ namespace GUI
                 }
             }
         }
-
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if(dataGridView2.Rows.Count > 0)
@@ -106,7 +104,6 @@ namespace GUI
                 RefrescarDGV();
             }
         }
-
         private void btnFinalize_Click(object sender, EventArgs e)
         {
             if(dataGridView2.Rows.Count > 0)
@@ -118,15 +115,14 @@ namespace GUI
                 }
                 belPedidoCompra ped = new belPedidoCompra(proveedor, precio, DateTime.Now, false, false);
                 bllped.Alta(ped);
-                VerificatorManager.AltaDVH(new List<IEntity>() { ped }, "PedidoCompra");
                 belPedidoCompra aux = bllped.Consulta().Last();
                 foreach (belPedidoCompraCarne car in listcarne)
                 {
                     car.Id = aux.Id;
                     bllcar.Alta(car);
                 }
-                VerificatorManager.AltaDVH(listcarne.ToList<IEntity>(), "PedidoCompra");
                 SerializatorManager.LimpiarSerial();
+                LogManager.AgregarLogEvento($"CARRITO COMPRA - Carrito creado ({ped.Id})", 2, SessionManager.GetInstance.user);
                 this.Close();
             }
         }

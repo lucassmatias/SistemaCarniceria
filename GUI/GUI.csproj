@@ -137,6 +137,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dbCarniceria.xsd</DependentUpon>
     </Compile>
+    <Compile Include="IntelDs.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IntelDs.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="IntelReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IntelReportForm.Designer.cs">
+      <DependentUpon>IntelReportForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="LanguageForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -238,6 +249,10 @@
     <EmbeddedResource Include="ChangesForm.resx">
       <DependentUpon>ChangesForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="IntelReportForm.resx">
+      <DependentUpon>IntelReportForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\InformeInteligente.rdlc" />
     <EmbeddedResource Include="Reports\InformeVentas.rdlc" />
     <EmbeddedResource Include="LanguageForm.resx">
       <DependentUpon>LanguageForm.cs</DependentUpon>
@@ -301,6 +316,17 @@
       <DependentUpon>dbCarniceria.xsd</DependentUpon>
     </None>
     <None Include="GUI_TemporaryKey.pfx" />
+    <None Include="IntelDs.xsc">
+      <DependentUpon>IntelDs.xsd</DependentUpon>
+    </None>
+    <None Include="IntelDs.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>IntelDs.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="IntelDs.xss">
+      <DependentUpon>IntelDs.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

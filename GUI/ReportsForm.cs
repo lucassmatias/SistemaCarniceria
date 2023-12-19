@@ -16,7 +16,6 @@ namespace SistemaCarniceria
         {
             InitializeComponent();
         }
-
         private void ReportsForm_Load(object sender, EventArgs e)
         {
             // TODO: esta línea de código carga datos en la tabla 'dbCarniceria.tTicket' Puede moverla o quitarla según sea necesario.

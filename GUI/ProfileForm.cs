@@ -36,7 +36,6 @@ namespace GUI
             ActualizarListBoxPerfiles();
             HabilitarControles();
         }
-
         public void Update(string pCodigoIdioma)
         {
             Idioma pIdioma = LanguageManager.ListaIdioma.Find(x => x.Id == pCodigoIdioma);
@@ -56,8 +55,7 @@ namespace GUI
             msgSelectAPermission = pIdioma.ListaEtiquetas.Find(x => x.Tag == "msgSelectAPermission").Texto;
             this.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "frmProfile").Texto;
         }
-
-        public void HabilitarControles()
+        private void HabilitarControles()
         {
             List<Permiso> lPermiso = new List<Permiso>();
             (SessionManager.GetInstance.user.Perfil.Permiso as PermisoCompuesto).RellenaArrayPermisos(SessionManager.GetInstance.user.Perfil.Permiso as PermisoCompuesto, lPermiso);
@@ -76,7 +74,6 @@ namespace GUI
                 }
             }
         }
-
         private void btnCreatePermission_Click(object sender, EventArgs e)
         {
             if(treeView1.SelectedNode != null) 
@@ -103,7 +100,7 @@ namespace GUI
                     per.AgregarPermiso(permiso);
                     ProfileManager.AltaPermisoConRelacion(permiso, per);
                 }
-                LogManager.AgregarLogEvento($"PROFILES - Permission Created ({permiso.Nombre})", 2,SessionManager.GetInstance.user);
+                LogManager.AgregarLogEvento($"PERFILES - Permiso Creado ({permiso.Nombre})", 3,SessionManager.GetInstance.user);
                 ActualizarTreeView();
                 ActualizarListBoxPermisos();
             }
@@ -179,14 +176,13 @@ namespace GUI
                 Perfil perfil = new Perfil(nombre, permiso);
                 ProfileManager.AltaPerfil(perfil);
                 ActualizarListBoxPerfiles();
-                LogManager.AgregarLogEvento($"PROFILES - Profile Created ({perfil.Nombre})", 2, SessionManager.GetInstance.user);
+                LogManager.AgregarLogEvento($"PERFILES - Perfil creado ({perfil.Nombre})", 3, SessionManager.GetInstance.user);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void btnRemoveProfile_Click(object sender, EventArgs e)
         {
             Perfil aux = ProfileManager.ListaPerfil.Find(x => x.Nombre == listBox1.Text);
@@ -200,16 +196,14 @@ namespace GUI
             }
             ActualizarListBoxPerfiles();
             HabilitarControles();
-            LogManager.AgregarLogEvento($"PROFILES - Profile Removed ({aux.Nombre})", 3, SessionManager.GetInstance.user);
+            LogManager.AgregarLogEvento($"PERFILES - Perfil eliminado ({aux.Nombre})", 3, SessionManager.GetInstance.user);
         }
-
         private void btnClose_Click(object sender, EventArgs e)
         {
             LanguageManager.Desuscribir(this);
             this.Dispose();
             this.Close();
         }
-
         private void btnAssignProfile_Click(object sender, EventArgs e)
         {
             Perfil aux = ProfileManager.ListaPerfil.Find(x => x.Nombre == listBox1.Text);
@@ -217,9 +211,8 @@ namespace GUI
             lblProfileName.Text = usuario.Perfil.Nombre;
             BllUsuario.Modificacion(usuario);
             HabilitarControles();
-            LogManager.AgregarLogEvento($"PROFILES - Profile Assigned ({aux.Nombre} to {usuario.Username})", 2, SessionManager.GetInstance.user);
+            LogManager.AgregarLogEvento($"PERFILES - Perfil asignado ({aux.Nombre} a {usuario.Username})", 3, SessionManager.GetInstance.user);
         }
-
         private void btnPermissionDelete_Click(object sender, EventArgs e)
         {
             string nombre = listBox2.Text;
@@ -230,7 +223,7 @@ namespace GUI
             ActualizarTreeView();
             ActualizarListBoxPerfiles();
             HabilitarControles();
-            LogManager.AgregarLogEvento($"PROFILES - Permission deleted ({nombre}))", 3, SessionManager.GetInstance.user);
+            LogManager.AgregarLogEvento($"PERFILES - Permiso eliminado ({nombre}))", 3, SessionManager.GetInstance.user);
         }
         private void RecursivaEliminarPermiso(PermisoCompuesto pPermisoActual)
         {

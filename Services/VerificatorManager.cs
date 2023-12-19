@@ -27,7 +27,7 @@ namespace Services
                     if (attr.PropertyType.FullName.Equals(typeof(DateTime).FullName))
                     {
                         DateTime dt = (DateTime)attr.GetValue(entity);
-                        dvh += dt.ToString("ddmmyyyyhhmmss");
+                        dvh += dt.ToString("yyyymmddhhmmss");
                     }
                     else
                     {
@@ -48,7 +48,15 @@ namespace Services
         }
         public static bool CompararTotalDVH(List<IEntity> pList, string tableName)
         {
-            string Total1 = GenerarTotalDVH(pList);
+            string Total1;
+            if(pList.Count == 0)
+            {
+                Total1 = "0";
+            }
+            else
+            {
+                Total1 = GenerarTotalDVH(pList);
+            }
             string storedProcedure = $"DVH_{tableName}_RetornaDVTotal";
             string TotalDB = dao.Leer(storedProcedure).Rows[0].ItemArray[0].ToString(); 
             return Total1 == TotalDB ? true : false;

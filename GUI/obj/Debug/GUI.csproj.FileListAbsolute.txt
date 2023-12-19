@@ -130,3 +130,4 @@ C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\GUI\bin\Debug\Micros
 C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\GUI\obj\Debug\GUI.csproj.SuggestedBindingRedirects.cache
 C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\GUI\obj\Debug\SistemaCarniceria.exe.config
 C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\GUI\obj\Debug\SistemaCarniceria.BuyReportsForm.resources
+C:\Users\lukit\OneDrive\Escritorio\Codigo\SistemaCarniceria\GUI\obj\Debug\SistemaCarniceria.IntelReportForm.resources

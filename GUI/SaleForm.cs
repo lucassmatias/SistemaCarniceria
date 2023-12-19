@@ -36,7 +36,6 @@ namespace GUI
             rbCash.Checked = true;
             btnCharge.Enabled = false;
         }
-
         private void SaleForm_Load(object sender, EventArgs e)
         {
             listBox1.Items.Clear();
@@ -108,12 +107,10 @@ namespace GUI
             msgCartRemoved = pIdioma.ListaEtiquetas.Find(x => x.Tag == "msgCartRemoved").Texto;
             btnRemove.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "btnRemove").Texto;
         }
-
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
         private void btnCharge_Click(object sender, EventArgs e)
         {
             try
@@ -133,20 +130,17 @@ namespace GUI
                         }
                         BllTicket.AgregarCodigo(ticket);
                         BllTicket.Alta(ticket);
-                        VerificatorManager.AltaDVH(new List<IEntity>() { ticket }, "Ticket");
                         foreach (belCarneCarrito cc in ticket.ListaCarne)
                         {
                             string codigo = cc.Id;
-                            VerificatorManager.BajaDVH(new List<IEntity>() { cc }, "CarneCarrito");
                             cc.Id = ticket.Id;
                             BllCarneCarrito.ModificaciónCarneCarrito(cc, codigo);
-                            VerificatorManager.AltaDVH(new List<IEntity>() { cc }, "CarneCarrito");
                         }
                         BllCarrito.Baja(SeleccionarCarrito().Id);
-                        VerificatorManager.BajaDVH(new List<IEntity>() { SeleccionarCarrito() }, "Carrito");
+                        ticket.ListaCarne = null;
                         CargarListBox();
                         MessageBox.Show(msgSuccesfulSale);
-                        LogManager.AgregarLogEvento($"SALES - Made a sale ({ticket.Id})", 2, SessionManager.GetInstance.user);
+                        LogManager.AgregarLogEvento($"VENTA - Venta realizada ({ticket.Id})", 2, SessionManager.GetInstance.user);
                         textBox1.Text = "";
                         textBox2.Text = "";
                     }
@@ -161,7 +155,6 @@ namespace GUI
                 MessageBox.Show(ex.Message);
             }          
         }
-
         private void rbCash_CheckedChanged(object sender, EventArgs e)
         {
             if(rbCash.Checked) 
@@ -171,7 +164,6 @@ namespace GUI
             }
             else { MetodoPagoFlag = 2; textBox1.ReadOnly = true; }
         }
-
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             if(listBox1.Items.Count != 0)
@@ -186,7 +178,6 @@ namespace GUI
                 }
             }
         }
-
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
             if(e.KeyChar != (char)Keys.Back && e.KeyChar != (char)Keys.Oemcomma) 
@@ -195,14 +186,12 @@ namespace GUI
             }
             
         }
-
         private void btnRemove_Click(object sender, EventArgs e)
         {
             try
             {
                 belCarrito carrito = SeleccionarCarrito();
                 BllCarrito.Baja(carrito.Id);
-                VerificatorManager.BajaDVH(new List<IEntity>(){ carrito}, "Carrito");
                 BllCarneCarrito.Baja(carrito.Id);
             }
             catch (Exception ex)

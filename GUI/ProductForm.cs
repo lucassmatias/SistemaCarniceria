@@ -43,7 +43,7 @@ namespace GUI
                         carne.Id = row.Cells[0].Value.ToString();
                         BllCarne.Modificacion(carne);
                         VerificatorManager.AltaDVH(new List<IEntity>() { carne}, "Carne");
-                        LogManager.AgregarLogEvento($"PRODUCTS - Product Modified ({carne.Id})", 1, SessionManager.GetInstance.user);
+                        LogManager.AgregarLogEvento($"INVENTARIO - Producto modificado ({carne.Id})", 3, SessionManager.GetInstance.user);
                         listCarne = BllCarne.Consulta();
                         LogManager.AgregarLogCambio(carne, SessionManager.GetInstance.user);
                         RefrescarCarne();
@@ -87,7 +87,7 @@ namespace GUI
                 belCarne aux = listCarne.Find(x => x.Id == row.Cells[0].Value.ToString());
                 VerificatorManager.BajaDVH(new List<IEntity>() { aux }, "Carne");
                 BllCarne.Baja(row.Cells[0].Value.ToString());
-                LogManager.AgregarLogEvento($"PRODUCTS - Product deleted ({row.Cells[0].Value.ToString()})", 1, SessionManager.GetInstance.user);
+                LogManager.AgregarLogEvento($"INVENTARIO - Producto eliminado ({row.Cells[0].Value.ToString()})", 3, SessionManager.GetInstance.user);
                 listCarne = BllCarne.Consulta();
                 RefrescarCarne();
             }
@@ -126,9 +126,10 @@ namespace GUI
                         carne = new belPorcina(textBox6.Text, decimal.Parse(textBox5.Text), decimal.Parse(textBox4.Text));
                     }
                     BllCarne.Alta(carne);
-                    VerificatorManager.AltaDVH(new List<IEntity>() { carne }, "Carne");
-                    LogManager.AgregarLogEvento($"PRODUCTS - Product added ({carne.Nombre})", 1, SessionManager.GetInstance.user);
                     listCarne = BllCarne.Consulta();
+                    carne = listCarne.Last();
+                    VerificatorManager.AltaDVH(new List<IEntity>() { carne }, "Carne");
+                    LogManager.AgregarLogEvento($"INVENTARIO - Producto agregado ({carne.Nombre})", 3, SessionManager.GetInstance.user);
                     RefrescarCarne();
                 }
                 else
@@ -141,12 +142,10 @@ namespace GUI
                 MessageBox.Show(ex.Message);
             }
         }
-
         public void Update(string pCodigoIdioma)
         {
             
         }
-
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
             try

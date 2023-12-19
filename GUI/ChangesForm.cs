@@ -16,12 +16,12 @@ namespace GUI
 {
     public partial class ChangesForm : Form
     {
+        List<belCarne> listCarne;
+        bllCarne bllcarne;
         public ChangesForm()
         {
             InitializeComponent();
         }
-        List<belCarne> listCarne;
-        bllCarne bllcarne;
         private void btnRollback_Click(object sender, EventArgs e)
         {
             try
@@ -41,9 +41,8 @@ namespace GUI
                     }
                 }
                 LogManager.CambiarEstado(dr.Cells[0].Value.ToString(), true);
-                //VerificatorManager.AltaDVH(belCarne);
-                //VerificatorManager.ModificarTotalDVH(listCarne.ToList<IEntity>());
-                LogManager.AgregarLogEvento($"LOG - Prev state changed ({belCarne.Nombre})", 2, SessionManager.GetInstance.user);
+                VerificatorManager.AltaDVH(new List<IEntity>() { belCarne }, "Carne");
+                LogManager.AgregarLogEvento($"BITACORA CAMBIO - Cambio a estado previo ({belCarne.Nombre})", 2, SessionManager.GetInstance.user);
                 listCarne = null; listCarne = bllcarne.Consulta();
                 CargarLogCambio();
             }
@@ -59,7 +58,6 @@ namespace GUI
                 btnRollback.Enabled = bool.Parse(dataGridView1.SelectedRows[0].Cells[7].Value.ToString()) == true ? false : true;
             }
         }
-
         private void dataGridView2_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -80,19 +78,16 @@ namespace GUI
                 dataGridView1.Rows.Add(ob);
             }
         }
-
         private void EventForm_Load(object sender, EventArgs e)
         {
             CargarLogCambio();
             bllcarne = new bllCarne();
             listCarne = bllcarne.Consulta();
         }
-
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
         private void btnFilter_Click(object sender, EventArgs e)
         {
             List<Object[]> Filtered = new List<Object[]>();

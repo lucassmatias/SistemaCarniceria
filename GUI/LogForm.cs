@@ -22,12 +22,10 @@ namespace GUI
         {
             InitializeComponent();
         }
-
         public void Update(string pCodigoIdioma)
         {
             
         }
-
         private void LogForm_Load(object sender, EventArgs e)
         {
             CargarLogEvento();
@@ -55,12 +53,10 @@ namespace GUI
                 }
             }
         }
-
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
         private void btnFilter_Click(object sender, EventArgs e)
         {
             List<Array> Filtered = new List<Array>();           
@@ -119,7 +115,6 @@ namespace GUI
                 }
             }           
         }
-
         private void btnConsult_Click(object sender, EventArgs e)
         {
             CargarLogEvento();

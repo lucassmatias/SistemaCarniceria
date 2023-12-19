@@ -33,6 +33,7 @@ namespace GUI
                 CartSelectForm cartselectInstance = new CartSelectForm(proveedor);
                 cartselectInstance.ShowDialog();
                 pedidos = bllped.Consulta();
+                pedidos = pedidos.FindAll(x => x.proveedor.Id == proveedor.Id);
                 RefrescarDGV();
             }
             catch (Exception ex)
@@ -73,8 +74,10 @@ namespace GUI
                 {
                     belPedidoCompra pc = pedidos.Find(x => x.Id == dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
                     bllped.Cancelar(pc.Id);
-                    VerificatorManager.AltaDVH(new List<IEntity>() { pc }, "PedidoCompra");
+                    pedidos = bllped.Consulta();
+                    pedidos = pedidos.FindAll(x => x.proveedor.Id == proveedor.Id);
                     RefrescarDGV();
+                    LogManager.AgregarLogEvento($"COMPRA - Pedido cancelado ({pc.Id})", 2, SessionManager.GetInstance.user);
                 }
             }
             catch (Exception ex)
@@ -91,8 +94,10 @@ namespace GUI
                 {
                     belPedidoCompra pc = pedidos.Find(x => x.Id == dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
                     bllped.Recibir(pc.Id);
-                    VerificatorManager.AltaDVH(new List<IEntity>() { pc }, "PedidoCompra");
+                    pedidos = bllped.Consulta();
+                    pedidos = pedidos.FindAll(x => x.proveedor.Id == proveedor.Id);
                     RefrescarDGV();
+                    LogManager.AgregarLogEvento($"COMPRA - Pedido recibido ({pc.Id})", 2, SessionManager.GetInstance.user);
                 }
             }
             catch (Exception ex)
@@ -130,9 +135,12 @@ namespace GUI
 
         private void btnCartView_Click(object sender, EventArgs e)
         {
-            ShowCartForm form = new ShowCartForm(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
-            form.ShowDialog();
-            form = null;
+            if(dataGridView1.SelectedRows.Count != 0)
+            {
+                ShowCartForm form = new ShowCartForm(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
+                form.ShowDialog();
+                form = null;
+            }
         }
 
         private void btnClose_Click(object sender, EventArgs e)

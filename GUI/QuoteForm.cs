@@ -72,12 +72,11 @@ namespace GUI
                 decimal precio = decimal.Parse(textBox2.Text);
                 belCotizacion aux = new belCotizacion(proveedor, carne, cantidad, precio);
                 bllCotizacion.Alta(aux);
-                VerificatorManager.AltaDVH(new List<IEntity>() { aux }, "Cotizacion");
                 cotizaciones = bllCotizacion.ConsultaCondicional(proveedor.Id);
                 RefrescarDataGrid();
+                LogManager.AgregarLogEvento($"COTIZACION - Cotizacion añadida ({proveedor.Id})", 2, SessionManager.GetInstance.user);
             }
         }
-
         private void btnModify_Click(object sender, EventArgs e)
         {
             try
@@ -89,16 +88,15 @@ namespace GUI
                 aux.Cantidad = cantidad;
                 aux.Precio = precio;
                 bllCotizacion.Modificacion(aux);
-                VerificatorManager.AltaDVH(new List<IEntity>() { aux}, "Cotizacion");
                 cotizaciones = bllCotizacion.ConsultaCondicional(proveedor.Id);
                 RefrescarDataGrid();
+                LogManager.AgregarLogEvento($"COTIZACION - Cotizacion Modificada ({proveedor.Id})", 2, SessionManager.GetInstance.user);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();

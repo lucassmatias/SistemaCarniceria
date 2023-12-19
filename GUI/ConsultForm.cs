@@ -24,7 +24,6 @@ namespace GUI
             lblId.Text = $"Id: {pCarne.Id}";
             lblStock.Text = $"Stock: {pCarne.StockKG} Kg";
         }
-
         public void Update(string pCodigoIdioma)
         {
             Idioma pIdioma = LanguageManager.ListaIdioma.Find(x => x.Id == pCodigoIdioma);
@@ -35,7 +34,6 @@ namespace GUI
             btnClose.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "btnClose").Texto;
             this.Text = pIdioma.ListaEtiquetas.Find(x => x.Tag == "frmConsult").Texto;
         }
-
         private void btnCalculate_Click(object sender, EventArgs e)
         {
             textBox2.Text = Carne.PrecioKG.ToString();
@@ -47,12 +45,10 @@ namespace GUI
             C = A * B;
             textBox3.Text = C.ToString();
         }
-
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
         private void ConsultForm_KeyPress(object sender, KeyPressEventArgs e)
         {
             if(e.KeyChar == (char)Keys.Enter)
